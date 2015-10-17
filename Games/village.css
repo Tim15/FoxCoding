@@ -1,0 +1,22 @@
+li.topnav{
+  display: inline;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  display: inline-table;
+  width: 10%;
+  height: 5%;
+  text-align: center;
+  font-size: 18px;
+  transition: all .25s ease-out;
+}
+div#wrapper {
+	margin: auto;
+	width: 700px;
+	padding: 20px 0 0 20px;
+	position: relative;
+}

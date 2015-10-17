@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fox Calc</title>
+  <link href="calc.css" rel="stylesheet" type="text/css">
+  <script src="calc.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="list">
+    <table>
+      <tr>
+        <td>
+          <input id="input-textbox" class="style-2" type="text" size="37" />
+        </td>
+        <td>
+          <button type="button" onclick="go();return false;">Calculate</button>
+          <script>
+            var textIn = document.getElementById("input-textbox");
+            var textOut = document.getElementById("output-textbox");
+            var output;
+            var a;
+
+            function process(input) {
+              a = input.replace(/abs/g, "Math.abs");
+              a = a.replace(/acos/g, "Math.acos");
+              a = a.replace(/asin/g, "Math.asin");
+              a = a.replace(/atan/g, "Math.atan");
+              a = a.replace(/atan2/g, "Math.atan2");
+              a = a.replace(/ceil/g, "Math.ceil");
+              a = a.replace(/cos/g, "Math.cos");
+              a = a.replace(/exp/g, "Math.exp");
+              a = a.replace(/floor/g, "Math.floor");
+              a = a.replace(/log/g, "math.log");
+              a = a.replace(/max/g, "Math.max");
+              a = a.replace(/min/g, "Math.min");
+              a = a.replace(/pow/g, "Math.pow");
+              a = a.replace(/random/g, "Math.random");
+              a = a.replace(/round/g, "Math.round");
+              a = a.replace(/sin/g, "Math.sin");
+              a = a.replace(/sqrt/g, "Math.sqrt");
+              a = a.replace(/tan/g, "Math.tan");
+              a = a.replace(/E/g, "Math.E");
+              a = a.replace(/e/g, "Math.E");
+              a = a.replace(/pi/g, "Math.PI");
+              a = a.replace(/Pi/g, "Math.PI");
+              a = a.replace(/PI/g, "Math.PI");
+
+              output = eval(a);
+              return output;
+            };
+
+            function go() {
+              var input = textIn.value;
+              textIn.value = "";
+              var output = process(input);
+              document.getElementById("output-textbox").value += output + "\n";
+            };
+          </script>
+        </td>
+      </tr>
+    </table>
+    <textarea id="output-textbox" rows="20" cols="50"></textarea>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="turn" id="black">
+    h
+  </div>
+  <div class="turn" id="darkgrey">
+    a
+  </div>
+  <div class="turn" id="grey">
+    p
+  </div>
+  <div class="turn" id="lightgrey">
+    p
+  </div>
+  <div class="turn" id="white">
+    y
+  </div>
+</body>
+
+</html>

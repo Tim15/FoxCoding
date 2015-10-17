@@ -1,0 +1,55 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-size: 76%;
+  font-family: Verdana;
+  background: #eee;
+  padding: 50px 0;
+}
+div {
+  width: 100px;
+  height: 100px;
+  transition: width 2s, height 2s, transform 2s;
+}
+.style-2 {
+  border-radius: 50px;
+}
+.style-2:focus {
+  background-color: lightgrey;
+}
+#input-textbox {
+  text-align: right;
+}
+div#black {
+  background-color: black;
+  width: 200px;
+  height: 200px;
+}
+div#darkgrey {
+  background-color: darkgrey;
+  width: 160px;
+  height: 160px;
+}
+div#grey {
+  background-color: grey;
+  width: 120px;
+  height: 120px;
+}
+div#lightgrey {
+  background-color: lightgrey;
+  width: 80px;
+  height: 80px;
+}
+div#white {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+}
+div.turn:hover {
+  transform: rotate(10deg);
+}
+div.turn {
+  margin: auto;
+}

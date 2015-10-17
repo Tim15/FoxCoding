@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<div class="navigate">
+  <ul>
+    <li><a href="">Start a chat</a></li>
+    <li><a href="">Join a chat</a></li>
+    <li><a href="">Help</a></li>
+  </ul>
+</div>
+  <table>
+  <tr>
+    <div class="chatbox" height="900">
+<h1 style="text-align:center;">Chat</h1>
+    </div>
+  </tr>
+  <tr>
+    <td>
+  <form>
+    <textarea id="inputtext" rows="1" cols="150" default="Type your message"></textarea><button type="button" onclick="post()">post</button>
+  </form>
+  <script>
+        function post() {
+          var y = document.getElementById("chatbox");
+          var x = document.getElementById("inputtext").value;
+          document.getElementById("chatbox").innerHTML = y + "<br>" + x;
+        }
+      </script>
+    </td>
+  </tr>
+  </table>
+</body>
+</html>
