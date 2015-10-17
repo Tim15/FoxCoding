@@ -102,6 +102,19 @@ var ljcworker = {
   upgradecost: 50,
 }
 
+var dev = {
+  value: false
+}
+
+Object.observe(dev, function (){
+  if (dev.value == true) {
+    food.amount = 99999999999999999999;
+    wood.amount = 99999999999999999999;
+    stone.amount = 99999999999999999999;
+    builder.amount = 99999999999999999999;
+  }
+});
+
 document.getElementById("food").innerHTML = food.amount;
 document.getElementById("wood").innerHTML = wood.amount;
 document.getElementById("stone").innerHTML = stone.amount;
@@ -177,6 +190,19 @@ function addworkf(number) {
   calculate()
 };
 
+function buy(type, amount, values) {
+  for (i = 0; i < values.length; i++) {
+    value = values[i];
+    console.log(value);
+    if ((window[type].cost[value] * amount) <= window[value].amount) {
+
+    } else {
+      return false;
+    }
+    return true;
+  }
+}
+
 function buildmine(number) {
   calculate()
   if ((wood.amount * number) >= (mine.cost.wood * number) && (food.amount * number) >= (mine.cost.food * number) && (stone.amount * number) >= (mine.cost.stone * number) && (builder >= mine.cost.builder)) {
@@ -189,12 +215,22 @@ function buildmine(number) {
     document.getElementById('food').innerHTML = food.amount;
     document.getElementById('mine').innerHTML = mine.amount;
   };
-    calculate()
+  calculate()
 };
 
 function buyfield(number) {
   calculate()
-  if ((wood.amount * number) >= (field.cost.wood * number) && (food.amount * number) >= (field.cost.food * number) && (stone.amount * number) >= (field.cost.stone * number) && (builder >= field.cost.builder)) {
+  if(buy('field', number, ['wood', 'food', 'stone', 'builders']) == true) {
+    field.amount += number;
+    stone.amount -= field.cost.stone * number;
+    food.amount = food.amount - field.cost.food * number;
+    wood.amount = wood.amount - field.cost.wood * number;
+    document.getElementById('wood').innerHTML = food.amount;
+    document.getElementById('stone').innerHTML = stone.amount;
+    document.getElementById('food').innerHTML = food.amount;
+    document.getElementById('field').innerHTML = field.amount;
+  }
+  /*if ((wood.amount) >= (field.cost.wood * number) && (food.amount) >= (field.cost.food * number) && (stone.amount) >= (field.cost.stone * number) && (builder >= field.cost.builder)) {
     field.amount = field.amount + number;
     stone.amount = stone.amount - field.cost.stone;
     food.amount = food.amount - field.cost.food;
@@ -203,8 +239,8 @@ function buyfield(number) {
     document.getElementById('stone').innerHTML = stone.amount;
     document.getElementById('food').innerHTML = food.amount;
     document.getElementById('field').innerHTML = field.amount;
-  };
-    calculate()
+  };*/
+  calculate()
 };
 
 function constructcabin(number) {
