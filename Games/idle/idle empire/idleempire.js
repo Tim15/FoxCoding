@@ -1,3 +1,10 @@
+//*******************************************************************************
+//*******************************************************************************
+//****************************Resources******************************************
+//*******************************************************************************
+//*******************************************************************************
+var resourcesave
+
 var population = {
   total: 1,
   freespace: 0,
@@ -6,115 +13,82 @@ var population = {
   hunger: 0,
 }
 
-var science = {
-  amount: 0
+var amount = {
+  wood: 0,
+  // TODO: special resource
+  food: 0,
+  herbs: 0,
+  stone: 0,
+  ore: 0,
+  iron: 0,
+  gold: 0,
+  steel: 0,
+  coal: 0,
+  wool: 0,
+  string: 0,
+  spears:0,
+  swords:0,
+  crudestonetools: 0,
+  basicstonetools: 0,
+  advancedstonetools: 0,
+  crudeirontools: 0,
+  basicirontools: 0,
+  advancedstonetools: 0,
 }
 
-var stone = {
-  amount: 0,
-};
-
-var food = {
-  amount: 0,
-};
-
-var wood = {
-  amount: 0,
+var buildings = {
+tent: {amount: 0,cost: {wood: 5,skins: 7},freespace: 1},
+house: {amount: 0,cost: {wood: 20,stone: 10},freespace: 2}
 }
+var worker = {amount: 0, cost: {food: 20}, hunger: 0.5,
+farmer: {amount: 0,cost: {food: 25,},gather: 1,},
+woodcutter: {amount: 0,cost: {food: 25,}, gather: 0.75,},
+miner: {amount: 0, cost: {food: 25}, gather: 0.5,},
+scientist: {amount: 0, gather: 1},
+builder: {amount: 0,cost: {food: 25,wood: 10,stone: 5}, gather: 0.5,}
+}
+//*******************************************************************************
+//*******************************************************************************
+//****************************BASE FUNCTIONS*************************************
+//*******************************************************************************
+//*******************************************************************************
 
-var tent = {
-  amount: 0,
-  cost: {
-    wood: 5,
-    skins: 7
+var html = {
+  disablebutton: function(id) {
+    this.getElement(id).disabled = "disabled";
   },
-  freespace: 1,
-}
-
-var house = {
-  amount: 0,
-  cost: {
-    wood: 20,
-    stone: 10
+  setinnerhtml: function(id, value) {
+    document.getElementById(id).innerHTML = value;
   },
-  freespace: 2,
 }
-
-var worker = {
-  cost: {
-    food: 20,
-  },
-  hunger: 0.5,
-}
-
-var farmer = {
-  amount: 0,
-  cost: {
-    food: 25,
-  },
-  gather: 1,
-}
-
-var woodcutter = {
-  amount: 0,
-  cost: {
-    food: 25,
-  },
-  gather: 0.75,
-}
-
-var miner = {
-  amount: 0,
-  cost: {
-    food: 25,
-  },
-  gather: 0.5,
-}
-
-var scientist = {
-  amount: 0,
-  
-}
-
-var builder = {
-  amount: 0,
-  cost: {
-    food: 25,
-    wood: 10,
-    stone: 5
-  },
-  gather: 0.5,
-}
-
-function hi() {
-  this.innerHTML = this.innerHTML + 1;
-}
-
-
 
 function calculate() {
-  setinnerhtml('foodstoresamount', food.amount)
-  setinnerhtml('woodstoresamount', wood.amount)
-  setinnerhtml('stonestoresamount', stone.amount)
-  setinnerhtml('sciencestoresamount', science.amount)
-  setinnerhtml('farmeramount', farmer.amount)
-  setinnerhtml('woodcutteramount', woodcutter.amount)
-  setinnerhtml('mineramount', miner.amount)
-  setinnerhtml('mineramount', scientist.amount)
+  html.setinnerhtml('foodstoresamount', amount.food)
+  html.setinnerhtml('woodstoresamount', amount.wood)
+  html.setinnerhtml('stonestoresamount', amount.stone)
+  html.setinnerhtml('sciencestoresamount', amount.science)
+  html.setinnerhtml('farmer.amount', worker.farmer.amount)
+  html.setinnerhtml('woodcutter.amount', worker.woodcutter.amount)
+  html.setinnerhtml('miner.amount', worker.miner.amount)
+  html.setinnerhtml('miner.amount', worker.scientistamount)
   population.hunger = ((worker.hunger * (population.total - 1)) + 0)
 }
 
-function setinnerhtml(id, value) {
-  document.getElementById('id').innerHTML = value;
-}
+function save() {
+ resourcesave = {
+   food: amount.food,
+   stone: amount.stone,
+   wood: amount.wood,
 
+ }
+}
 
 paneSelect('village')
 
 function dev() {
-  food.amount = 10000000000;
-  stone.amount = 10000000000;
-  wood.amount = 10000000000;
+  amount.food = 10000000000;
+  amount.stone = 10000000000;
+  amount.wood = 10000000000;
   population.freespace = 10000000000;
 }
 
@@ -192,22 +166,22 @@ function gather(type, number) {
   switch (type) {
     case 'food':
       calculate()
-      food.amount += number;
+      amount.food += number;
       calculate()
       break;
     case 'food':
       calculate()
-      wood.amount += number;
+      amount.wood += number;
       calculate()
       break;
     case 'stone':
       calculate()
-      stone.amount += number;
+      amount.stone += number;
       calculate()
       break;
     case 'science':
       calculate()
-      science.amount += number;
+      amount.science += number;
       calculate()
       break;
   }
@@ -215,9 +189,9 @@ function gather(type, number) {
 
 function buildsmallhouse(number) {
   calculate()
-  if (wood.amount >= house.cost.wood * number && stone.amount >= house.cost.wood * number) {
-    population.freespace += (house.freespace * number);
-    house.amount += number;
+  if (amount.wood >= buildings.house.cost.wood * number && amount.stone >= buildings.house.cost.stone * number) {
+    population.freespace += (buildings.housefreespace * number);
+    buildings.houseamount += number;
   }
   calculate()
 }
@@ -225,7 +199,7 @@ function buildsmallhouse(number) {
 function hire(type, number) {
   calculate()
   if (type == 'worker') {
-    if (population.freespace >= number && food.amount * number >= worker.cost.food * number) {
+    if (population.freespace >= number && amount.food * number >= worker.cost.food * number) {
       population.freespace -= number
       population.unemployed += number
     }
@@ -234,35 +208,33 @@ function hire(type, number) {
     switch (type) {
       case 'farmer':
         calculate()
-        if (food.amount >= farmer.cost.food * number) {
-          farmer.amount += number;
-          setinnerhtml('mineramount', miner.amount)
-          document.getElementById('farmeramount').innerHTML = farmer.amount;
+        if (amount.food >= worker.farmer.cost.food * number) {
+          worker.farmer.amount += number;
+          html.setinnerhtml('farmer.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'woodcutter':
         calculate()
-        if (food.amount >= woodcutter.cost.food) {
-          woodcutter.amount += number;
-          setinnerhtml('mineramount', miner.amount)
-          document.getElementById('woodcutteramount').innerHTML = woodcutter.amount;
+        if (amount.food >= worker.woodcutter.cost.food) {
+          worker.woodcutter.amount += number;
+          html.setinnerhtml('woodcutter.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'miner':
         calculate()
-        if (food.amount >= miner.cost.food) {
-          miner.amount += number;
-          etinnerhtml('mineramount', miner.amount)
+        if (amount.food >= worker.miner.cost.food) {
+          worker.miner.amount += number;
+          etinnerhtml('miner.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'builder':
         calculate()
-        if (food.amount >= builder.cost.food && wood.amount >= builder.cost.wood && stonefood.amount >= builder.cost.stone && freespace) {
+        if (amount.food >= builder.cost.food && amount.wood >= builder.cost.wood && stoneamount.food >= builder.cost.stone && freespace) {
           builder.amount += number;
-          setinnerhtml('mineramount', miner.amount)
+          html.setinnerhtml('builder.amount', worker.miner.amount)
         } else {
 
         }
@@ -279,9 +251,9 @@ calculate()
 window.setInterval(function() {
 
   calculate()
-  gather('food', ((farmer.gather * farmer.amount) - population.hunger))
-  gather('wood', (woodcutter.gather * woodcutter.amount))
-  gather('stone', (miner.gather * miner.amount))
+  gather('food', ((worker.farmer.gather * worker.farmer.amount) - population.hunger))
+  gather('wood', (worker.woodcutter.gather * worker.woodcutter.amount))
+  gather('stone', (worker.miner.gather * worker.miner.amount))
   calculate()
 
 }, 1000);
