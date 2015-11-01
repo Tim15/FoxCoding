@@ -1,0 +1,507 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="idleempire.css" />
+</head>
+
+<body>
+
+	<div id="panesSelectors">
+		<div id="selectors">
+			<div id="selectvillage" class="paneSelector selected" onclick="paneSelect('village')">Village</div>
+			<div id="selecttownhall" class="paneSelector" onclick="paneSelect('townhall')">Town hall</div>
+			<div id="selectlab" class="paneSelector" onclick="paneSelect('lab')">Lab</div>
+			<div id="selectplaceholder" class="paneSelector" onclick="paneSelect('placeholder')">placeholder</div>
+			<div id="selecttrade" class="paneSelector" onclick="paneSelect('trade')">Trade</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div id="villagepane">
+		<table>
+			<tbody>
+				<tr class="noline">
+					<td class="noline">
+						<span id="">
+							<button onclick="gather('stone', 1), this.blur()">Mine stone</button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button onclick="buildsmallhouse(1), this.blur()">Build a house</button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+				</tr>
+				<tr class="noline">
+					<td class="noline">
+						<span id="">
+							<button onclick="gather('food', 1), this.blur()">Gather food</button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+				</tr>
+				<tr class="noline">
+					<td class="noline">
+						<span id="">
+							<button onclick="gather('wood', 1), this.blur()">Chop wood</button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button onclick=""></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+				</tr>
+				<tr class="noline">
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+				</tr>
+				<tr class="noline">
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+					<td class="noline">
+						<span id="">
+							<button></button>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="townhallpane">
+		<table class="noline">
+			<tr>
+				<th colspan="3" style="text-align:left;">
+					<p>
+						Total population:
+						<span class="totalpopulation"> 1</span>
+					</p>
+					<p>
+						Living space free:
+						<span class="livingspacefree"> 0</span>
+					</p>
+					<p>
+						Population employed:
+						<span class="populationemployed"> 0</span>
+					</p>
+					<p>
+						Population unemployed:
+						<span class="populationunemployed"> 0</span>
+					</p>
+				</th>
+			</tr>
+			<tr>
+				<th>
+					<button onclick="hire('worker', 1)">Add a worker</button>
+				</th>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="jobfarmer">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="farmeramount">0</span>
+								<button onclick="hire('farmer', 1)">></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="jobwoodcutter">
+						<button>
+							<</button>
+								<span>Wood cutter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="woodcutteramount">0</span>
+								<button onclick="hire('woodcutter', 1)">></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="jobminer">
+						<button>
+							<</button>
+								<span>Miner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="mineramount">0</span>
+								<button onclick="hire('miner', 1)">></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Builder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____storesamount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+			<tr class="noline">
+				<td class="noline">
+					<span id="job">
+						<button>
+							<</button>
+								<span>Farmer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+								<span id="_____amount">0</span>
+								<button>></button>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="labpane">
+
+	</div>
+	<div id="placeholderpane">
+
+	</div>
+	<div id="tradepane">
+
+	</div>
+	<span id="">
+		<fieldset>
+			<legend>Inventory</legend>
+			<table class="noline">
+				<tbody class="noluine">
+					<tr>
+						<th class="noline">Main resorses |</th>
+						<th class="noline">Secondary resorces |</th>
+						<th class="noline">Buildings |</th>
+						<th class="noline">Workers |</th>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="storesfood">Food: </span>
+							<span id="foodstoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesherbs">Herbs: </span>
+							<span id="herbstoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesfields">Fields: </span>
+							<span id="fieldstoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesfarmers">Farmers: </span>
+							<span id="farmerstoresamount">0</span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="storesstone">Stone: </span>
+							<span id="stonestoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesore">Ore: </span>
+							<span id="orestoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesmines">Mines: </span>
+							<span id="minestoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="storesminers">Miners: </span>
+							<span id="minerstoresamount">0</span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="storeswood">Wood: </span>
+							<span id="woodstoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="stores____">: </span>
+							<span id="_____storesamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount">0</span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="storesscience">Science: </span>
+							<span id="sciencestoresamount">0</span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+					<tr class="noline">
+						<td class="noline">
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Farmers: </span>
+							<span id="_____storesamount"></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</span>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="idleempire.js"></script>
+</body>
+
+</html>

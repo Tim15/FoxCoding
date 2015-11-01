@@ -10,15 +10,13 @@
 			<tr class="noline">
 				<td class="noline">
 					<span id="">
-						<button onclick="gatherfood(food.upgrade)">Gather food</button>
+						<button onclick="getunit(1), this.blur()">Get a unit</button>
 					</span>
 				</td>
 				<td class="noline">
-					<span id=""><button onclick="buycart(1)">Add a leaf sled</button></span>
 				</td>
 				<td class="noline">
 					<span id="">
-
 					</span>
 				</td>
 				<td class="noline">
@@ -26,12 +24,11 @@
 				</td>
 				<td class="noline">
 					<span id="">
-						<button onclick="load()">load</button>
 					</span>
 				</td>
 			</tr>
 			<tr class="noline">
-				<td class="noline"><span id=""><button onclick="buydrone(1)">Buy drone</button></span></td>
+				<td class="noline"><span id=""></span></td>
 				<td class="noline"><span id=""></span></td>
 				<td class="noline"><span id=""></span></td>
 				<td class="noline"><span id=""></span></td>
@@ -40,7 +37,6 @@
 			<tr class="noline">
 				<td class="noline">
 					<span id="">
-						<button onclick="buyhive(1)">Buy hive</button>
 					</span>
 				</td>
 				<td class="noline">
@@ -78,20 +74,11 @@
 	<span id="">
 		<fieldset>
 			<legend>Inventory</legend>
-			Food:
-			<span id="food">0</span>
+			Units:
+			<span id="unitamount">0</span>
 			<br>
-			<span>Drones:
-				<span id="drone">0</span>|+
-				<span id="dronefoodps">0</span> food/sec</span>
-			<br>
-			<span>Hives:
-				<span id="hive">0</span>|+
-				<span id="hivedroneps">0</span> drones/sec</span>
 		</fieldset>
 	</span>
-	Drone cost:
-	<span id="cursorCost">10</span>
 	<script type="text/javascript" src="idle1.js"></script>
 </body>
 
