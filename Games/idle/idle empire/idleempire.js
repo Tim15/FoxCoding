@@ -3,7 +3,8 @@
 //****************************Resources******************************************
 //*******************************************************************************
 //*******************************************************************************
-var resourcesave
+var value;
+var resourcesave;
 
 var population = {
   total: 1,
@@ -11,9 +12,10 @@ var population = {
   employed: 0,
   unemployed: 0,
   hunger: 0,
-}
+};
 
 var amount = {
+  science: 0,
   wood: 0,
   // TODO: special resource
   food: 0,
@@ -26,61 +28,101 @@ var amount = {
   coal: 0,
   wool: 0,
   string: 0,
-  spears:0,
-  swords:0,
+  spears: 0,
+  swords: 0,
   crudestonetools: 0,
   basicstonetools: 0,
   advancedstonetools: 0,
   crudeirontools: 0,
   basicirontools: 0,
   advancedstonetools: 0,
-}
+};
 
 var buildings = {
-tent: {amount: 0,cost: {wood: 5,skins: 7},freespace: 1},
-house: {amount: 0,cost: {wood: 20,stone: 10},freespace: 2}
-}
-var worker = {amount: 0, cost: {food: 20}, hunger: 0.5,
-farmer: {amount: 0,cost: {food: 25,},gather: 1,},
-woodcutter: {amount: 0,cost: {food: 25,}, gather: 0.75,},
-miner: {amount: 0, cost: {food: 25}, gather: 0.5,},
-scientist: {amount: 0, gather: 1},
-builder: {amount: 0,cost: {food: 25,wood: 10,stone: 5}, gather: 0.5,}
-}
+  tent: {
+    amount: 0,
+    cost: {
+      wood: 5,
+      skins: 7
+    },
+    freespace: 1
+  },
+  house: {
+    amount: 0,
+    cost: {
+      wood: 20,
+      stone: 10
+    },
+    freespace: 2
+  }
+};
+
+var worker = {
+  amount: 0,
+  cost: {
+    food: 20
+  },
+  hunger: 0.5,
+  farmer: {
+    amount: 0,
+    cost: {
+      food: 25,
+    },
+    gather: 1,
+  },
+  woodcutter: {
+    amount: 0,
+    cost: {
+      food: 25,
+    },
+    gather: 0.75,
+  },
+  miner: {
+    amount: 0,
+    cost: {
+      food: 25
+    },
+    gather: 0.5,
+  },
+  scientist: {
+    amount: 0,
+    gather: 1
+  },
+  builder: {
+    amount: 0,
+    cost: {
+      food: 25,
+      wood: 10,
+      stone: 5
+    },
+    gather: 0.5,
+  }
+};
 //*******************************************************************************
 //*******************************************************************************
 //****************************BASE FUNCTIONS*************************************
 //*******************************************************************************
 //*******************************************************************************
 
-var html = {
-  disablebutton: function(id) {
-    this.getElement(id).disabled = "disabled";
-  },
-  setinnerhtml: function(id, value) {
-    document.getElementById(id).innerHTML = value;
-  },
-}
 
 function calculate() {
-  html.setinnerhtml('foodstoresamount', amount.food)
-  html.setinnerhtml('woodstoresamount', amount.wood)
-  html.setinnerhtml('stonestoresamount', amount.stone)
-  html.setinnerhtml('sciencestoresamount', amount.science)
-  html.setinnerhtml('farmer.amount', worker.farmer.amount)
-  html.setinnerhtml('woodcutter.amount', worker.woodcutter.amount)
-  html.setinnerhtml('miner.amount', worker.miner.amount)
-  html.setinnerhtml('miner.amount', worker.scientistamount)
+  for (var i = 0; i < woodcutteramount.length; i++) {
+    document.getElementsByClassName('farmeramount')[i].innerHTML = worker.farmer.amount;
+    document.getElementsByClassName('woodcutteramount')[i].innerHTML = worker.woodcutter.amount;
+    document.getElementsByClassName('mineramount')[i].innerHTML = worker.miner.amount;
+    document.getElementsByClassName('smelteramount')[i].innerHTML = worker.smelter.amount;
+  };
+  document.getElementsByClassName('scienceamount')[i].innerHTML = amount.science;
+  document.getElementsByClassName('foodamount')[i].innerHTML = amount.food;
+  document.getElementsByClassName('woodamount')[i].innerHTML = amount.wood;
+  document.getElementsByClassName('stoneamount')[i].innerHTML = amount.stone;
+  document.getElementsByClassName('herbsamount')[i].innerHTML = amount.herbs;
+  document.getElementsByClassName('oreamount')[i].innerHTML = amount.ore;
   population.hunger = ((worker.hunger * (population.total - 1)) + 0)
 }
 
 function save() {
- resourcesave = {
-   food: amount.food,
-   stone: amount.stone,
-   wood: amount.wood,
-
- }
+  resourcesave = amount
 }
 
 paneSelect('village')
@@ -169,7 +211,7 @@ function gather(type, number) {
       amount.food += number;
       calculate()
       break;
-    case 'food':
+    case 'wood':
       calculate()
       amount.wood += number;
       calculate()
@@ -179,6 +221,21 @@ function gather(type, number) {
       amount.stone += number;
       calculate()
       break;
+    case 'ore':
+      calculate()
+      amount.ore += number;
+      calculate()
+      break;
+    case 'skins':
+      calculate()
+      amount.skins += number;
+      calculate()
+      break;
+    case 'iron':
+    calculate()
+    amount.iron += number
+    calculate()
+    break;
     case 'science':
       calculate()
       amount.science += number;
@@ -187,11 +244,22 @@ function gather(type, number) {
   }
 }
 
-function buildsmallhouse(number) {
+function build(type, number) {
   calculate()
-  if (amount.wood >= buildings.house.cost.wood * number && amount.stone >= buildings.house.cost.stone * number) {
-    population.freespace += (buildings.housefreespace * number);
-    buildings.houseamount += number;
+  switch (type) {
+    case 'tent':
+      if (amount.wood >= buildings.tent.cost.wood && amount.skins >= buildings.tent.cost.skins) {
+        buildings.tent.amount
+      }
+      break;
+    case 'smallhouse':
+    if (amount.wood >= buildings.house.cost.wood * number && amount.stone >= buildings.house.cost.stone * number) {
+      population.freespace += (buildings.housefreespace * number);
+      buildings.houseamount += number;
+    }
+      break;
+    case '':
+      break;
   }
   calculate()
 }
@@ -199,7 +267,8 @@ function buildsmallhouse(number) {
 function hire(type, number) {
   calculate()
   if (type == 'worker') {
-    if (population.freespace >= number && amount.food * number >= worker.cost.food * number) {
+    if (population.freespace >= number && amount.food >= worker.cost.food * number) {
+      worker.amount += number
       population.freespace -= number
       population.unemployed += number
     }
@@ -208,46 +277,41 @@ function hire(type, number) {
     switch (type) {
       case 'farmer':
         calculate()
-        if (amount.food >= worker.farmer.cost.food * number) {
+        if (amount.food >= worker.farmer.cost.food * number && worker.amount) {
+          population.unemployed -= number
           worker.farmer.amount += number;
-          html.setinnerhtml('farmer.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'woodcutter':
         calculate()
         if (amount.food >= worker.woodcutter.cost.food) {
+          population.unemployed -= number
           worker.woodcutter.amount += number;
-          html.setinnerhtml('woodcutter.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'miner':
         calculate()
         if (amount.food >= worker.miner.cost.food) {
+          population.unemployed -= number
           worker.miner.amount += number;
-          etinnerhtml('miner.amount', worker.miner.amount)
         };
         calculate()
         break;
       case 'builder':
         calculate()
-        if (amount.food >= builder.cost.food && amount.wood >= builder.cost.wood && stoneamount.food >= builder.cost.stone && freespace) {
-          builder.amount += number;
-          html.setinnerhtml('builder.amount', worker.miner.amount)
-        } else {
-
+        if (amount.food >= worker.builder.cost.food && amount.wood >= worker.builder.cost.wood && stoneamount.food >= worker.builder.cost.stone && freespace) {
+          population.unemployed -= number
+          worker.builder.amount += number;
         }
         calculate()
         break;
       default:
-
     };
   };
 };
-
 calculate()
-
 window.setInterval(function() {
 
   calculate()

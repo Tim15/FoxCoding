@@ -17,15 +17,12 @@ var hivefps;
 var hivecost = 100;
 
 function calculate() {
-  drone.fps = drone.upgrade  * drone.amount;
   document.getElementById('dronefoodps').innerHTML = drone.fps;
   document.getElementById('hivedroneps').innerHTML = hiveup * hive;
-  drone.gather = prettify(drone.amount * food.upgrade)
-}
-
-function prettify(input) {
-  var output = Math.round(input * 1000000) / 1000000;
-  return output;
+  drone.gather = Math.round(drone.amount * food.upgrade)
+  drone.fps = drone.gather;
+  drone.cost = Math.round(drone.cost)
+  food.upgradecost = Math.round(food.upgradecost)
 }
 
 function gatherfood(number) {
@@ -39,6 +36,7 @@ function buycart(number) {
     food.upgrade = food.upgrade + number;
     food.amount = food.amount - food.upgradecost;
     document.getElementById('food').innerHTML = food.amount;
+    food.upgradecost *= 1.1
     calculate()
   };
 };
@@ -49,6 +47,7 @@ function buydrone(number) {
     food.amount = food.amount - drone.cost;
     document.getElementById('food').innerHTML = food.amount;
     document.getElementById('drone').innerHTML = drone.amount;
+    drone.cost *= 1.1
     calculate()
   };
 };
@@ -65,6 +64,7 @@ function buyhive(number) {
     food.amount = food.amount - hivecost;
     document.getElementById('food').innerHTML = food.amount;
     document.getElementById('hive').innerHTML = hive;
+    hivecost *= 1.1
     calculate()
   };
 };

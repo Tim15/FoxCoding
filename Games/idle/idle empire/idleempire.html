@@ -5,7 +5,6 @@
 </head>
 
 <body>
-
 	<div id="panesSelectors">
 		<div id="selectors">
 			<div id="selectvillage" class="paneSelector selected" onclick="paneSelect('village')">Village</div>
@@ -314,48 +313,39 @@
 						<th class="noline">Main resorses |</th>
 						<th class="noline">Secondary resorces |</th>
 						<th class="noline">Buildings |</th>
-						<th class="noline">Workers |</th>
 					</tr>
 					<tr class="noline">
 						<td class="noline">
 							<span id="storesfood">Food: </span>
-							<span id="foodstoresamount">0</span>
+							<span class="foodamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="storesherbs">Herbs: </span>
-							<span id="herbstoresamount">0</span>
+							<span class="herbsamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="storesfields">Fields: </span>
 							<span id="fieldstoresamount">0</span>
 						</td>
-						<td class="noline">
-							<span id="storesfarmers">Farmers: </span>
-							<span id="farmerstoresamount">0</span>
-						</td>
 					</tr>
 					<tr class="noline">
 						<td class="noline">
 							<span id="storesstone">Stone: </span>
-							<span id="stonestoresamount">0</span>
+							<span class="stoneamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="storesore">Ore: </span>
-							<span id="orestoresamount">0</span>
+							<span class="oreamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="storesmines">Mines: </span>
 							<span id="minestoresamount">0</span>
 						</td>
-						<td class="noline">
-							<span id="storesminers">Miners: </span>
-							<span id="minerstoresamount">0</span>
-						</td>
 					</tr>
 					<tr class="noline">
 						<td class="noline">
 							<span id="storeswood">Wood: </span>
-							<span id="woodstoresamount">0</span>
+							<span class="woodamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="stores____">Herbs: </span>
@@ -365,15 +355,11 @@
 							<span id="stores____">Cabins: </span>
 							<span id="_____storesamount">0</span>
 						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
-							<span id="_____storesamount">0</span>
-						</td>
 					</tr>
 					<tr class="noline">
 						<td class="noline">
 							<span id="storesscience">Science: </span>
-							<span id="sciencestoresamount">0</span>
+							<span class="scienceamount">0</span>
 						</td>
 						<td class="noline">
 							<span id="stores____">Herbs: </span>
@@ -381,10 +367,6 @@
 						</td>
 						<td class="noline">
 							<span id="stores____">Fields: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
 							<span id="_____storesamount"></span>
 						</td>
 					</tr>
@@ -401,8 +383,18 @@
 							<span id="stores____">Fields: </span>
 							<span id="_____storesamount"></span>
 						</td>
+					</tr>
+					<tr class="noline">
 						<td class="noline">
-							<span id="stores____">Farmers: </span>
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
 							<span id="_____storesamount"></span>
 						</td>
 					</tr>
@@ -419,8 +411,18 @@
 							<span id="stores____">Fields: </span>
 							<span id="_____storesamount"></span>
 						</td>
+					</tr>
+					<tr class="noline">
 						<td class="noline">
-							<span id="stores____">Farmers: </span>
+							<span id="stores____">Food: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Herbs: </span>
+							<span id="_____storesamount"></span>
+						</td>
+						<td class="noline">
+							<span id="stores____">Fields: </span>
 							<span id="_____storesamount"></span>
 						</td>
 					</tr>
@@ -437,10 +439,6 @@
 							<span id="stores____">Fields: </span>
 							<span id="_____storesamount"></span>
 						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
-							<span id="_____storesamount"></span>
-						</td>
 					</tr>
 					<tr class="noline">
 						<td class="noline">
@@ -453,46 +451,6 @@
 						</td>
 						<td class="noline">
 							<span id="stores____">Fields: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
-							<span id="_____storesamount"></span>
-						</td>
-					</tr>
-					<tr class="noline">
-						<td class="noline">
-							<span id="stores____">Food: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Herbs: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Fields: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
-							<span id="_____storesamount"></span>
-						</td>
-					</tr>
-					<tr class="noline">
-						<td class="noline">
-							<span id="stores____">Food: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Herbs: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Fields: </span>
-							<span id="_____storesamount"></span>
-						</td>
-						<td class="noline">
-							<span id="stores____">Farmers: </span>
 							<span id="_____storesamount"></span>
 						</td>
 					</tr>

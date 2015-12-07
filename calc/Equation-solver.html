@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Equation calculator</title>
+  <script src="algebra.min.js"></script>
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+  <link rel="stylesheet" href="Equation-solver.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.brown-indigo.min.css">
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Equation calculator</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href=""></a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Equation calculator</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="Equation-solver.html">Solve an equation with an unknown variable</a>
+        <a class="mdl-navigation__link" href="Expression-solver.html">Solve an expression</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="page">
+          <br>
+          <br>
+          <br>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield is-upgraded">
+              <input class="mdl-textfield__input" type="text" id="input">
+              <label class="mdl-textfield__label" for="input">Equation...</label>
+            </div>
+          </form>
+          <br>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield is-upgraded">
+              <input class="mdl-textfield__input" type="text" id="solveFor">
+              <label class="mdl-textfield__label" for="solveFor">Variable...</label>
+            </div>
+          </form>
+          <br>
+          <button onclick="solve()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Calculate
+          </button>
+          <br>
+          <br>
+          <br>
+          <p id="answer"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    function solve() {
+      var eq = document.getElementById("input").value
+      var solved = document.getElementById("solveFor").value
+      var x1 = algebra.parse(eq.toString());
+      var x = x1.solveFor(solved.toString());
+      //var sum = eq.summation(solved, 1, 1);
+      //var lambda = new Expression("lambda");
+      //katex.render(lambda.toTex(), x);
+      document.getElementById("answer").innerHTML = solved.toString() + " = " + x;
+    }
+  </script>
+</body>
+
+</html>
