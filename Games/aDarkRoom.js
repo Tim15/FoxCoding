@@ -90,22 +90,26 @@ if (true) {
 
   function createworld() {
     for (var i = 0; i < 20; i++) {
-      x = Math.random().toFixed(2)
-      if (row.length = 0) {
-        b()
-      } else if (world.length >= 1 && world.length <= 21) {
-        if (row[row.length - 1] == ';') {
-          t(';', ',', '.')
-        } else if (row[row.length - 1] == ',') {
-          t(',', '.', ';')
-        } else {
-          t('.', ',', ';')
+      for (var i = 0; i < 20; i++) {
+        x = Math.random().toFixed(2)
+        if (row.length = 0) {
+          b()
+        } else if (world.length >= 1 && world.length <= 21) {
+          if (row[row.length - 1] == ';') {
+            a(';', ',', '.')
+          } else if (row[row.length - 1] == ',') {
+            a(',', '.', ';')
+          } else {
+            a('.', ',', ';')
+          }
         }
+        row.push(x)
       }
-      row.push(x)
+      for (var i = 0; i < row.length; i++) {
+        world.push(row[i]);
+      }
+      row = [];
     }
-    world.push('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '<br>');
-    row = [];
   }
 
   function calculateOpponent() {
