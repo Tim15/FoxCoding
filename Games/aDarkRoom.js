@@ -1,3 +1,5 @@
+var 
+
 var person = {
   damage: 1,
   totalHP: 1,
@@ -109,6 +111,9 @@ if (true) {
         world.push(row[i]);
       }
       row = [];
+    }
+    for (var i = 0; i < world.length; i++) {
+    document.getElementById('world').innerHTML += world[i]
     }
   }
 
