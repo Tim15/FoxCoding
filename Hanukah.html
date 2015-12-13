@@ -110,26 +110,6 @@
     </tr>
     <tr>
       <td class="">
-        <div class="part flame"></div>
-      </td>
-      <td class="part space"></td>
-      <td class="">
-        <div class="part flame"></div>
-      </td>
-      <td class="part space"></td>
-      <td class="">
-        <div class="part flame"></div>
-      </td>
-      <td class="part space"></td>
-      <td class="">
-        <div class="part flame"></div>
-      </td>
-      <td class="part space"></td>
-      <td class="">
-        <div class="part wick"></div>
-      </td>
-      <td class="part space"></td>
-      <td class="">
         <div id="1" class="part flame"></div>
       </td>
       <td class="part space"></td>
@@ -138,11 +118,31 @@
       </td>
       <td class="part space"></td>
       <td class="">
-        <div id="3" class="part flame "></div>
+        <div id="3" class="part flame"></div>
       </td>
       <td class="part space"></td>
       <td class="">
-        <div id="4" class="part flame "></div>
+        <div id="4" class="part flame"></div>
+      </td>
+      <td class="part space"></td>
+      <td class="">
+        <div class="part wick"></div>
+      </td>
+      <td class="part space"></td>
+      <td class="">
+        <div id="5" class="part flame"></div>
+      </td>
+      <td class="part space"></td>
+      <td class="">
+        <div id="6" class="part flame"></div>
+      </td>
+      <td class="part space"></td>
+      <td class="">
+        <div id="7" class="part flame "></div>
+      </td>
+      <td class="part space"></td>
+      <td class="">
+        <div id="8" class="part flame "></div>
       </td>
     </tr>
     <tr>
@@ -238,15 +238,20 @@
     </tr>
   </table>
   <script>
+  var d = new Date();
+  var x;
     for (var i = 0; i < document.getElementsByClassName('light').length; i++) {
       x = Math.random().toFixed(2)
       document.getElementsByClassName('light')[i].style.animationDelay = x + 's'
     }
     function check(){
-      for (var i = 0; i < (Date.getDate() - 5); i++) {
-        document.getElementById(i.toString()).className += 'light';
+      for (var i = 1; i <= (d.getDate() - 5); i++) {
+        x = i.toString()
+        document.getElementById(x).className += ' light';
+        console.log(i.toString());
       }
     }
+    window.onLoad = check()
     window.setInterval(check, 3600000);
   </script>
 </body>

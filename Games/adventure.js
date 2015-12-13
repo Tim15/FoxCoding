@@ -13,12 +13,22 @@ var gather = {
 }
 var distanceTraveled = 0
 
-function calculate() {
-    //document.getElementById('wood').innerHTML = amount.wood
+function check() {
+  document.getElementById('wood-amount').innerHTML = amount.wood
+  document.getElementById('food-amount').innerHTML = amount.food
+  document.getElementById('stone-amount').innerHTML = amount.stone
+    //document.getElementById('event ').display = 'none'
+}
+
+function dev() {
+  amount.stone = 100000
+  amount.wood = 100000
+  amount.food = 100000
+  check()
 }
 
 function paneSelect(name) {
-  calculate()
+  check()
   if (name == 'cave') {
     document.getElementById('cavepane').style.display = 'block';
     document.getElementById('camppane').style.display = 'none';
@@ -79,50 +89,75 @@ function paneSelect(name) {
     document.getElementById('selectvillages').className = 'paneSelector nextOnLeft';
     document.getElementById('selecttrade').className = 'paneSelector selected';
   }
-  calculate()
+  check()
 }
 
 function gather(type, num) {
-    switch (type) {
-      case 'wood':
-        amount.wood += num
+  check()
+  switch (type) {
+    case 'wood':
+      amount.wood += num;
       break;
-      case 'food':
-        amount.food += num
+    case 'food':
+      amount.food += num;
       break;
-      case 'stone':
-        amount.stone += num
+    case 'stone':
+      amount.stone += num;
       break;
-      case '':
-
-      break;
-      case '':
-
-      break;
-      case '':
-
-      break;
-      case '':
-
-      break;
-    }
+  }
+  check()
 }
 
 function buy(type, num, pricenum, pricetype) {
+  check()
   x = 0
   for (i = 0; i < pricenum.length; i++) {
     if (pricetype[i] >= pricenum[i]) {
+      pricenum[i] - pricetype[i]
       x++
     }
   }
 
   if (x == pricenum.length) {
     type += num
+  } else {
+    console.log('sorry')
   }
+  x = 0
+  check()
 }
-window.onload = function(){
-  paneSelect('cave')
+
+function event(type, other) {
+  check()
+  x = 0
+  if (type == 'random') {
+    x = Math.random()
+    if (x < 0.05) {
+      say('A desprete wanderer', 'PLACEHOLDER', ['1', '2'], [amount.wood += 1, amount.food += 1])
+    }
+  } else {
+    switch (type) {
+      case 'not enough':
+        say()
+        break;
+    }
+  }
+  x = 0
+  check()
 }
-window.setInterval(function () {
+
+function say(title, discription, buttontitles, buttonworkings) {
+  x = []
+  for (var i = 0; i < buttontitles.length; i++) {
+    x.push('<button onclick="' + buttonworkings[i] + '">' + buttontitles[i] + '</button>')
+  }
+  document.getElementById('event').innerHTML = '<h3>' + title + '</h3>\n<br>\n<p>' + discription + '</p>\n<br>\n<br>' + x + ''
+}
+window.onload = function() {
+  paneSelect('cave');
+  check();
+  gather('wood', 1);
+}
+window.setInterval(function() {
 
 }, 1000);

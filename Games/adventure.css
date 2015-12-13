@@ -52,6 +52,16 @@
 #game{
   width: 900px;
 }
+#event{
+  background-color: white;
+  position: absolute;
+  left: 500px;
+  top: 100px;
+  padding: 1em;
+}
+.border{
+  border: 1.5px solid black;
+}
 button:active, .looklikebutton:active {
   background-color: #dbd6d6;
 }
