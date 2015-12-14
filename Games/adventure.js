@@ -197,6 +197,9 @@ window.onload = function() {
 
     }
   }
+  function onPressed(id, next) {
+    
+  }
   window.setInterval(function() {
     gather('wood', (gatherAmount.wood) * workers.wood);
     gather('food', (gatherAmount.food) * workers.food);
