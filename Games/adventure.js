@@ -198,7 +198,7 @@ window.onload = function() {
     }
   }
   function onPressed(id, next) {
-    document.getElementById('id')
+    document.getElementById(id)
   }
   window.setInterval(function() {
     gather('wood', (gatherAmount.wood) * workers.wood);
