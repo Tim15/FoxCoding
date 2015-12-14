@@ -92,7 +92,7 @@ function paneSelect(name) {
   check();
 }
 
-function gather(type, num) {
+var gather = function(type, num) {
   check();
   switch (type) {
     case 'wood':
@@ -106,14 +106,14 @@ function gather(type, num) {
       break;
   }
   check();
-}
+};
 
 function buy(type, num, pricenum, pricetype) {
-  check()
+  check();
   x = 0;
   for (i = 0; i < pricenum.length; i++) {
     if (pricetype[i] >= pricenum[i]) {
-      pricenum[i] - pricetype[i];
+      pricetype[i] -= pricenum[i] * num;
       x++;
     }
   }
@@ -128,7 +128,7 @@ function buy(type, num, pricenum, pricetype) {
 }
 
 function event(type, other) {
-  check()
+  check();
   x = 0;
   if (type == 'random') {
     x = Math.random();
@@ -147,7 +147,7 @@ function event(type, other) {
 }
 
 function say(title, discription, buttontitles, buttonworkings) {
-  x = []
+  x = [];
   for (var i = 0; i < buttontitles.length; i++) {
     x.push('<button onclick="' + buttonworkings[i] + '">' + buttontitles[i] + '</button>');
   }
@@ -157,7 +157,7 @@ window.onload = function() {
   paneSelect('cave');
   check();
   //gather('wood', 1);
-}
+};
 window.setInterval(function() {
 
 }, 1000);
