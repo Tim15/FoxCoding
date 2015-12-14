@@ -23,12 +23,12 @@ window.onload = function() {
     };
     var buildings = {
 
-    }
+    };
     var save = {
       workers: {},
       resorces: {},
       buildings: {}
-    }
+  };
     var distanceTraveled = 0;
   } else {
     for (var variable in localStorage.darkroom) {
@@ -138,9 +138,9 @@ window.onload = function() {
         pricetype[i] -= pricenum[i] * num;
         x++;
       } else {
-        var str = pricetype[i].toString()
-        str = str.slice(str.indexOf('amount.') + 7, str.length)
-        event('not enough', 'wood')
+        var str = pricetype[i].toString();
+        str = str.slice(str.indexOf('amount.') + 7, str.length);
+        event('not enough', str);
       }
     }
 
@@ -191,14 +191,14 @@ window.onload = function() {
     switch (type) {
       case 'wood':
         if (amount.food >= workers.cost * num)
-          workers.wood += num
+          workers.wood += num;
         break;
       default:
 
     }
   }
   function onPressed(id, next) {
-    
+
   }
   window.setInterval(function() {
     gather('wood', (gatherAmount.wood) * workers.wood);
@@ -208,5 +208,5 @@ window.onload = function() {
   paneSelect('cave');
   check();
   //document.getElementById('event').style.display = 'none';
-  buy(amount.wood, 1, [10], [amount.wood])
-}
+  buy(amount.wood, 1, [10], [amount.wood]);
+};
