@@ -6,7 +6,7 @@ var amount = {
   stone: 0,
   food: 0,
 };
-var gather = {
+var gatherAmount = {
   wood: 1,
   stone: 0.5,
   food: 1,
@@ -92,7 +92,7 @@ function paneSelect(name) {
   check();
 }
 
-var gather = function(type, num) {
+function gather(type, num) {
   check();
   switch (type) {
     case 'wood':
@@ -106,7 +106,7 @@ var gather = function(type, num) {
       break;
   }
   check();
-};
+}
 
 function buy(type, num, pricenum, pricetype) {
   check();
