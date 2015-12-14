@@ -133,7 +133,7 @@ function event(type, other) {
   if (type == 'random') {
     x = Math.random();
     if (x < 0.05) {
-      say('A desprete wanderer', 'A poor traveler desprete for food, money, and lodgings offers to teach you ', [], []);
+      say('A desprete wanderer', 'A poor traveler desprete for food, money, and lodgings offers to teach you ', ['Get wood', 'Get stone'], []);
     }
   } else {
     switch (type) {
