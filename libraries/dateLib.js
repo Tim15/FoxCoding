@@ -1,3 +1,4 @@
+//REVIEW: Done
 var d = new Date();
 var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 var dATE = d.getMonth() + '/' + d.getDate() + '/' + findAtNum(d.getFullYear(), [2, 3]);
@@ -5,7 +6,7 @@ var Time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 var time = tConvert(d.getHours()) + ':' + d.getMinutes() + ':' + d.getSeconds();
 var test, x, y, z;
 var now = {
-  date: date
+  date: date,
   time: Time,
   monthDay: d.getDate(),
   weekDay: d.getDay(),
@@ -15,17 +16,26 @@ var now = {
   min: d.getMinutes(),
   month: d.getMonth(),
   sec: d.getSeconds(),
-  next: [],
+  addMonthDay: 0,
+  addWeekDay: 0,
+  addYear: 0,
+  addHour: 0,
+  addMilisec: 0,
+  addMin: 0,
+  addMonth: 0,
+  addSec: 0
 }
+var simplify = {
+
+}
+//REVIEW: Done
 String.prototype.allReplace = function(obj) {
   var retStr = this;
-  for (var x in obj) {
+  for (x in obj) {
     retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
   }
   return retStr;
 };
-
-
 function findAtNum(input, numbers) {
   x = '';
   for (var i = 0; i < numbers.length; i++) {
@@ -33,18 +43,14 @@ function findAtNum(input, numbers) {
   }
   return x
 }
-
 function allIndexOf(str, toSearch) {
-
   var pos, indices = [];
   for (pos = str.indexOf(toSearch); pos !== -1; pos = str.indexOf(toSearch, pos + 1)) {
     indices.push(pos);
   }
   return indices;
 }
-
 function tConvert(time, stuff) {
-
   if (time.length > 1) { // If time format correct
     if (time > 12) {
       return (time - 12).toString() + 'PM';
@@ -53,7 +59,40 @@ function tConvert(time, stuff) {
     }
   }
 }
+function dayToNum() {
+  switch(this.val.toLowerCase()){
+    case 'mon':
+    case 'monday':
+    this.val = 1
+      break;
+    case 'tue':
+    case 'tuesday':
+    this.val = 2
+      break;
+    case 'wed':
+    case 'wednesday':
+    this.val = 3
+      break;
+    case 'thu':
+    case 'thursday':
+    this.val = 4
+      break;
+    case 'fri':
+    case 'friday':
+    this.val = 5
+      break;
+    case 'sat':
+    case 'saturday':
+    this.val = 6
+      break;
+    case 'sun':
+    case 'Sunday':
+    this.val = 0
+      break;
+  }
+}
 
+//REVIEW: Done
 Date.prototype.getMonthNames = function() {
   if (this.getMonth() === 0) {
     this.monthName = "January";
@@ -176,79 +215,6 @@ Date.prototype.getShortWeekNames = function() {
     this.dayOfWeekShort = "Sat"
   };
 };
-
-function dayToNum() {
-  switch(this.toLowerCase()){
-    case 'mon':
-    case 'monday':
-    this = 1
-      break;
-    case 'tue':
-    case 'tuesday':
-    this = 2
-      break;
-    case 'wed':
-    case 'wednesday':
-    this = 3
-      break;
-    case 'thu':
-    case 'thursday':
-    this = 4
-      break;
-    case 'fri':
-    case 'friday':
-    this = 5
-      break;
-    case 'sat':
-    case 'saturday':
-    this = 6
-      break;
-    case 'sun':
-    case 'Sunday':
-    this = 0
-      break;
-  }
-}
-
-function constructNext(format) {
-  format.allReplace({})
-}
-
-function next(input, format) {
-  x = d.getDate()
-  i = d.getDay()
-  switch (input.toLowerCase()) {
-    case 'mon':
-    case 'monday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 1))
-      break;
-    case 'tue':
-    case 'tuesday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 2))
-      break;
-    case 'wed':
-    case 'wednesday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 3))
-      break;
-    case 'thu':
-    case 'thursday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 4))
-      break;
-    case 'fri':
-    case 'friday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 5))
-      break;
-    case 'sat':
-    case 'saturday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum + 6))
-      break;
-    case 'sun':
-    case 'Sunday':
-    now.next.push(x + ((i - input.dayToNum) + input.dayToNum))
-      break;
-  }
-}
-
 Date.prototype.updateTime = function() {
   d.getShortWeekNames()
   d.getWeekNames()
@@ -266,6 +232,74 @@ Date.prototype.updateTime = function() {
   now.sec = d.getSeconds()
 };
 
+//REVIEW: Not done
+//TODO: Add thing that need to be replaced with vals
+function constructNext(format) {
+  format.allReplace({});
+}
+
+//REVIEW: Not done
+// TODO: Add ways to return vaues & add the ways to get values
+function add(amount, type) {
+  switch(type.toLowerCase()){
+  case 'hour':
+   this.addHour = this.hour + amount;
+  break;
+  case 'day':
+  this.addDay = this.monthDay + amount;
+  break;
+  case 'week':
+
+  break;
+  case 'month':
+
+  break;
+  case 'year':
+
+  break;
+  }
+}
+
+// REVIEW: Not done
+// TODO: Update constructNext() to return proper format
+function next(input, format) {
+  x = d.getDate()
+  i = d.getDay()
+  switch (input.toLowerCase()) {
+    case 'mon':
+    case 'monday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 1))
+      break;
+    case 'tue':
+    case 'tuesday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 2))
+      break;
+    case 'wed':
+    case 'wednesday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 3))
+      break;
+    case 'thu':
+    case 'thursday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 4))
+      break;
+    case 'fri':
+    case 'friday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 5))
+      break;
+    case 'sat':
+    case 'saturday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 6))
+      break;
+    case 'sun':
+    case 'Sunday':
+    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum))
+      break;
+    this.val = constructNext(format)
+  }
+}
+
+// REVIEW: Done
+// NOTE: Maybe add more values, or syntax
 function decrypt(input) {
   d.getShortWeekNames()
   d.getWeekNames()
@@ -290,4 +324,10 @@ function decrypt(input) {
     '#y#': findAtNum(d.getFullYear(), [2, 3]),
     '#c#': findAtNum(d.getFullYear(), [0]) + 1
   });
+}
+
+// REVIEW: Not started
+// TODO: Find a way to input different types of values, and symplify them, and return the result
+function symplify(){
+
 }
