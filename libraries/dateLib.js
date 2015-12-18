@@ -16,14 +16,8 @@ var Now = {
   min: d.getMinutes(),
   month: d.getMonth(),
   sec: d.getSeconds(),
-  futureMonthDay: 0,
-  futureWeekDay: 0,
-  futureYear: 0,
-  futureHour: 0,
-  futureMilisec: 0,
-  futureMin: 0,
-  futureMonth: 0,
-  futureSec: 0
+  timezoneoffset: d.getTimezoneOffset(),
+  timezone: d.getTimezoneOffset()/60
 }
 var anchorNow = Now
 
@@ -214,6 +208,7 @@ Date.prototype.getShortWeekNames = function() {
     this.dayOfWeekShort = "Sat"
   };
 };
+
 Date.prototype.updateTime = function() {
   d.getShortWeekNames()
   d.getWeekNames()
@@ -232,10 +227,6 @@ Date.prototype.updateTime = function() {
 
 };
 
-//REVIEW: Done
-
-
-//REVIEW: Not done
 // TODO: Add ways to return vaues & add the ways to get values
 function add(amount, type) {
   switch(type.toLowerCase()){
@@ -303,7 +294,7 @@ function is(type, time){
 // REVIEW: not done
 function get(object, type, date){
   if(date == undefined){
-
+    Now.(object.toLowerCase().trim()).(type.object.toLowerCase().trim())
   } else {
 
   }
