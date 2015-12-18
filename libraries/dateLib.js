@@ -1,31 +1,48 @@
 //REVIEW: Done
-var d = new Date();
-var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
-var dATE = d.getMonth() + '/' + d.getDate() + '/' + findAtNum(d.getFullYear(), [2, 3]);
-var Time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-var time = tConvert(d.getHours()) + ':' + d.getMinutes() + ':' + d.getSeconds();
-var test, x, y, z;
-var Now = {
-  date: date,
-  time: Time,
-  monthDay: d.getDate(),
-  weekDay: d.getDay(),
-  year: d.getFullYear(),
-  hour: d.getHours(),
-  milisec: d.getMilliseconds(),
-  min: d.getMinutes(),
-  month: d.getMonth(),
-  sec: d.getSeconds(),
-  futureMonthDay: 0,
-  futureWeekDay: 0,
-  futureYear: 0,
-  futureHour: 0,
-  futureMilisec: 0,
-  futureMin: 0,
-  futureMonth: 0,
-  futureSec: 0
+
+var anchorNow = Now;
+
+//Class for instantiation
+function Now () {
+    this.method = function (args){
+        this.data = data;
+    };
+    return function (){
+        //all info about current time
+        var d = new Date();
+        var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
+        var dATE = d.getMonth() + '/' + d.getDate() + '/' + findAtNum(d.getFullYear(), [2, 3]);
+        var Time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+        var time = tConvert(d.getHours()) + ':' + d.getMinutes() + ':' + d.getSeconds();
+        var test, x, y, z;
+        // TODO: Convert Now Object to Now function format
+        this.nowObj = {
+          date: date,
+          time: Time,
+          monthDay: d.getDate(),
+          weekDay: d.getDay(),
+          year: d.getFullYear(),
+          hour: d.getHours(),
+          milisec: d.getMilliseconds(),
+          min: d.getMinutes(),
+          month: d.getMonth(),
+          sec: d.getSeconds(),
+          futureMonthDay: 0,
+          futureWeekDay: 0,
+          futureYear: 0,
+          futureHour: 0,
+          futureMilisec: 0,
+          futureMin: 0,
+          futureMonth: 0,
+          futureSec: 0
+        };
+        return 'hi';
+    };
 }
-var anchorNow = Now
+/*
+var allNowData = Now();
+var specificNowData = Now.specificFunction();
+*/
 
 //REVIEW: Done
 String.prototype.allReplace = function(obj) {
@@ -40,7 +57,7 @@ function findAtNum(input, numbers) {
   for (var i = 0; i < numbers.length; i++) {
     x = x + ((input + "").charAt(numbers[i])).toString();
   }
-  return x
+  return x;
 }
 function allIndexOf(str, toSearch) {
   var pos, indices = [];
