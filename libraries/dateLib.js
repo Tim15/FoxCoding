@@ -5,7 +5,7 @@ var dATE = d.getMonth() + '/' + d.getDate() + '/' + findAtNum(d.getFullYear(), [
 var Time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 var time = tConvert(d.getHours()) + ':' + d.getMinutes() + ':' + d.getSeconds();
 var test, x, y, z;
-var now = {
+var Now = {
   date: date,
   time: Time,
   monthDay: d.getDate(),
@@ -16,18 +16,17 @@ var now = {
   min: d.getMinutes(),
   month: d.getMonth(),
   sec: d.getSeconds(),
-  addMonthDay: 0,
-  addWeekDay: 0,
-  addYear: 0,
-  addHour: 0,
-  addMilisec: 0,
-  addMin: 0,
-  addMonth: 0,
-  addSec: 0
+  futureMonthDay: 0,
+  futureWeekDay: 0,
+  futureYear: 0,
+  futureHour: 0,
+  futureMilisec: 0,
+  futureMin: 0,
+  futureMonth: 0,
+  futureSec: 0
 }
-var simplify = {
+var anchorNow = Now
 
-}
 //REVIEW: Done
 String.prototype.allReplace = function(obj) {
   var retStr = this;
@@ -94,124 +93,124 @@ function dayToNum() {
 
 //REVIEW: Done
 Date.prototype.getMonthNames = function() {
-  if (this.getMonth() === 0) {
+  if (d.getMonth() === 0) {
     this.monthName = "January";
   };
-  if (this.getMonth() == 1) {
+  if (d.getMonth() == 1) {
     this.monthName = "February"
   };
-  if (this.getMonth() == 2) {
+  if (d.getMonth() == 2) {
     this.monthName = "March"
   };
-  if (this.getMonth() == 3) {
+  if (d.getMonth() == 3) {
     this.monthName = "April"
   };
-  if (this.getMonth() == 4) {
+  if (d.getMonth() == 4) {
     this.monthName = "May"
   };
-  if (this.getMonth() == 5) {
+  if (d.getMonth() == 5) {
     this.monthName = "June"
   };
-  if (this.getMonth() == 6) {
+  if (d.getMonth() == 6) {
     this.monthName = "July"
   };
-  if (this.getMonth() == 7) {
+  if (d.getMonth() == 7) {
     this.monthName = "August"
   };
-  if (this.getMonth() == 8) {
+  if (d.getMonth() == 8) {
     this.monthName = "September"
   };
-  if (this.getMonth() == 9) {
+  if (d.getMonth() == 9) {
     this.monthName = "October"
   };
-  if (this.getMonth() == 10) {
+  if (d.getMonth() == 10) {
     this.monthName = "November"
   };
-  if (this.getMonth() == 11) {
+  if (d.getMonth() == 11) {
     this.monthName = "December"
   };
 };
 Date.prototype.getShortMonthNames = function() {
-  if (this.getMonth() == 0) {
+  if (d.getMonth() == 0) {
     this.monthNameShort = "Jan."
   };
-  if (this.getMonth() == 1) {
+  if (d.getMonth() == 1) {
     this.monthNameShort = "Feb."
   };
-  if (this.getMonth() == 2) {
+  if (d.getMonth() == 2) {
     this.monthNameShort = "Mar."
   };
-  if (this.getMonth() == 3) {
+  if (d.getMonth() == 3) {
     this.monthNameShort = "Apr."
   };
-  if (this.getMonth() == 4) {
+  if (d.getMonth() == 4) {
     this.monthNameShort = "May"
   };
-  if (this.getMonth() == 5) {
+  if (d.getMonth() == 5) {
     this.monthNameShort = "June"
   };
-  if (this.getMonth() == 6) {
+  if (d.getMonth() == 6) {
     this.monthNameShort = "July"
   };
-  if (this.getMonth() == 7) {
+  if (d.getMonth() == 7) {
     this.monthNameShort = "Aug."
   };
-  if (this.getMonth() == 8) {
+  if (d.getMonth() == 8) {
     this.monthNameShort = "Sept."
   };
-  if (this.getMonth() == 9) {
+  if (d.getMonth() == 9) {
     this.monthNameShort = "Oct."
   };
-  if (this.getMonth() == 10) {
+  if (d.getMonth() == 10) {
     this.monthNameShort = "Nov."
   };
-  if (this.getMonth() == 11) {
+  if (d.getMonth() == 11) {
     this.monthNameShort = "Dec."
   };
 };
 Date.prototype.getWeekNames = function() {
-  if (this.getDay() == 0) {
+  if (d.getDay() == 0) {
     this.dayOfWeek = "Sunday"
   };
-  if (this.getDay() == 1) {
+  if (d.getDay() == 1) {
     this.dayOfWeek = "Monday"
   };
-  if (this.getDay() == 2) {
+  if (d.getDay() == 2) {
     this.dayOfWeek = "Tuesday"
   };
-  if (this.getDay() == 3) {
+  if (d.getDay() == 3) {
     this.dayOfWeek = "Wednesday"
   };
-  if (this.getDay() == 4) {
+  if (d.getDay() == 4) {
     this.dayOfWeek = "Thursday"
   };
-  if (this.getDay() == 5) {
+  if (d.getDay() == 5) {
     this.dayOfWeek = "Friday"
   };
-  if (this.getDay() == 6) {
+  if (d.getDay() == 6) {
     this.dayOfWeek = "Saturday"
   };
 };
 Date.prototype.getShortWeekNames = function() {
-  if (this.getDay() == 0) {
+  if (d.getDay() == 0) {
     this.dayOfWeekShort = "Sun"
   };
-  if (this.getDay() == 1) {
+  if (d.getDay() == 1) {
     this.dayOfWeekShort = "Mon"
   };
-  if (this.getDay() == 2) {
+  if (d.getDay() == 2) {
     this.dayOfWeekShort = "Tue"
   };
-  if (this.getDay() == 3) {
+  if (d.getDay() == 3) {
     this.dayOfWeekShort = "Wed"
   };
-  if (this.getDay() == 4) {
+  if (d.getDay() == 4) {
     this.dayOfWeekShort = "Thu"
   };
-  if (this.getDay() == 5) {
+  if (d.getDay() == 5) {
     this.dayOfWeekShort = "Fri"
   };
-  if (this.getDay() == 6) {
+  if (d.getDay() == 6) {
     this.dayOfWeekShort = "Sat"
   };
 };
@@ -230,6 +229,7 @@ Date.prototype.updateTime = function() {
   now.min = d.getMinutes()
   now.month = d.getMonth()
   now.sec = d.getSeconds()
+
 };
 
 //REVIEW: Not done
@@ -262,43 +262,54 @@ function add(amount, type) {
 
 // REVIEW: Not done
 // TODO: Update constructNext() to return proper format
-function next(input, format) {
+function next(input, num) {
+  updateTime()
   x = d.getDate()
   i = d.getDay()
   switch (input.toLowerCase()) {
     case 'mon':
     case 'monday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 1))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 1))
       break;
     case 'tue':
     case 'tuesday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 2))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 2))
       break;
     case 'wed':
     case 'wednesday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 3))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 3))
       break;
     case 'thu':
     case 'thursday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 4))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 4))
       break;
     case 'fri':
     case 'friday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 5))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 5))
       break;
     case 'sat':
     case 'saturday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum + 6))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 6))
       break;
     case 'sun':
     case 'Sunday':
-    now.Next.push(x + ((i - input.dayToNum) + input.dayToNum))
+    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum))
       break;
-    this.val = constructNext(format)
   }
 }
 
+// REVIEW: not done
+function is(type, time){
+
+}
+
+// REVIEW: not done
+function get(object, type){
+
+}
+
 // REVIEW: Done
+// NOTE: Output text
 // NOTE: Maybe add more values, or syntax
 function decrypt(input) {
   d.getShortWeekNames()
@@ -329,5 +340,11 @@ function decrypt(input) {
 // REVIEW: Not started
 // TODO: Find a way to input different types of values, and symplify them, and return the result
 function symplify(){
-
+  var TIME = this
+}
+window.onload = function(argument) {
+  now.getShortWeekNames()
+  now.getWeekNames()
+  now.getShortMonthNames()
+  now.getMonthNames()
 }

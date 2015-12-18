@@ -9,7 +9,30 @@
 
 <body>
   <span id="time"></span>
-  <button onclick="alert(decrypt('Today is #Nd#, #NM# #D#, #Y#')), console.log(now.next.next('mon'))">do it</button>
+  <button onclick="alert(decrypt('Today is #Nd#, #NM# #D#, #Y#')), console.log(Now.next('mon'))">do it</button>
+  <p>
+    Now = Everything about now
+    Now.reset() resets Now to current time
+    Now.next('thursday', 2) = Two thursdays from now
+    Now.add(3, 'days') = Three days from now
+    Now.add(3, 'days').startOf('day') gets the time at the start of two days from now
+    Now.startOf('day') = Gets the time at the start of the day
+    Now.endOf('day') = Gets the time at the start of the day
+    Now.parse(12/3/15, [#M#-#d#-#Y#]) = {Month: 12, Day: 3, Year: 15}
+    Now.time = the current time
+    Now.settings.dateFormat = [#M#, #d#, #Y#] changes the order of the date var
+    Now.compare(Now, Now.add(3, 'days')) = the differences between the first, and second argument
+    Now.is('Today', 'friday') = tests if today is friday
+    Now.is('leap Year', date) = tests if this year is a leap year
+    Now.get('month', 'number', now) = the month numbers
+    Now.get('day', 'name', now) = the name of today
+    Now.get('time zone', 'offset')
+    Now.get('week') = the number of the week
+----------------------------------------------------------------------------------------------------------------------
+    Now.get() defaults to now
+    Now.
+
+  </p>
 </body>
 
 </html>
