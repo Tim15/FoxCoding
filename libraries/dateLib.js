@@ -127,6 +127,7 @@ var Now = {
   weekDayName: d.dayOfWeek,
   weekDayNameShort: d.dayOfWeekShort,
   year: d.getFullYear(),
+  leapYear: false,
   hour: d.getHours(),
   milisec: d.getMilliseconds(),
   min: d.getMinutes(),
@@ -148,11 +149,10 @@ var time = Now.hourFormat + ':' + d.getMinutes() + ':' + d.getSeconds();
 var test, x, y, z;
 Now.date = date;
 Now.time = time;
-Now.leapyear = leapYear(Now.year);
 
 //REVIEW: Done
-String.prototype.allReplace = function(obj) {
-  var retStr = this.val;
+function allReplace(obj) {
+  var retStr = this.toString();
   for (x in obj) {
     retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
   }
@@ -287,15 +287,15 @@ function leapYear() {
   if (Now.year % 2 == 0){
     if (Now.year % 100 == 0){
       if (Now.year % 400 == 0){
-        this.val = true
+        return true
       } else {
-        this.val = false
+        return false
       }
     } else {
-      this.val = true
+      return true
     }
   } else {
-    this.val = false
+    return false
   }
 }
 
@@ -394,7 +394,7 @@ function decrypt(input) {
   Now.getWeekNames();
   Now.getShortMonthNames();
   Now.getMonthNames();
-  return allReplace(input, {
+  return input.allReplace({
     '%d%': date,
     '%t%': time,
     '#m#': d.getMilliseconds(),
@@ -484,4 +484,5 @@ function gparse(){
 // REVIEW: Not started
 // TODO: Find a way to input different types of values, and symplify them, and return the result
 function symplify() {
+
 }

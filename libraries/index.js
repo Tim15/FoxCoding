@@ -137,17 +137,3 @@ Number.prototype.diameter = function(type) {
 Number.prototype.convert = function(type1, type2) {
   this = ([type2] / [type1]) * this
 }
-Number.prototype.squareArea = function(input, type) {
-  switch (type.toLowerCase()) {
-    case 'width':
-    case 'height':
-      this = this / 2
-      break;
-    case 'area':
-      this = this
-      break;
-    case 'perimiter':
-      throw 'There is not enough data to calculate the area of this square'
-      break;
-  }
-}
