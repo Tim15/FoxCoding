@@ -27,11 +27,11 @@ function Ifelse(condition, code1, code2) {
 }
 
 function Elseif(conditions, code) {
-  if (conditions[0]) {
-    code[0]
-  }
-  for (var i = 1; i < conditions.length; i++) {
-    conditions[i]
+  for (var i = 0; i < conditions.length; i++) {
+    if (conditions[i]) {
+      code[i]
+    }
+    i++
   }
 }
 
@@ -84,7 +84,7 @@ function wait(length, code) {
   }, length);
 }
 
-function toRegexp(input) {
+function toRegexp(input, limiters) {
   var edit = input.allReplace({
     ')or(': '|',
     'anything in[': '[',
@@ -113,8 +113,9 @@ function toRegexp(input) {
     ' times{': '{',
     'at the end': '$',
     'in the begining': '^',
-    'Is foolowed by': '?=',
-    'Is not foolowed by': '?!'
+    'Is followed by': '?=',
+    'Is not followed by': '?!'
   });
+  edit = '/' + edit + '/' + limiters;
   return new RegExp(edit);
 }

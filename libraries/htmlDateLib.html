@@ -9,7 +9,7 @@
 
 <body>
   <span id="time"></span>
-  <button onclick="alert(decrypt('Today is #Nd#, #NM# #D#, #Y#')), console.log(Now.next('mon'))">do it</button>
+  <button onclick="Now.year.leapYear(), alert(decrypt('Today is #Nd#, #NM# #D#, #Y#')), console.log(Now.leapYear)">do it</button>
   <p>
     Now() = Everything about now
     <br>Now.next('thursday', 2) = Two thursdays from now
@@ -19,7 +19,7 @@
     <br>Now.endOf('day') = Gets the time at the start of the day
     <br>Now.parse(12/3/15, [#M#-#d#-#Y#]) = {Month: 12, Day: 3, Year: 15}
     <br>Now.time = the current time
-    <br>Now.settings.dateFormat = [#M#, #d#, #Y#] changes the order of the date var
+    <br>Now.settings.dateFormat = ['#M#', '#d#', '#Y#'] changes the order of the date var
     <br>Now.compare(Now, Now.add(3, 'days')) = the differences between the first, and second argument
     <br>Now.is('Today', 'friday') = tests if today is friday
     <br>Now.is('leap Year', date) = tests if this year is a leap year

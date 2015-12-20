@@ -1,33 +1,162 @@
-//REVIEW: Done
 var d = new Date();
-var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
-var dATE = d.getMonth() + '/' + d.getDate() + '/' + findAtNum(d.getFullYear(), [2, 3]);
-var Time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-var time = tConvert(d.getHours()) + ':' + d.getMinutes() + ':' + d.getSeconds();
-var test, x, y, z;
 var Now = {
-  date: date,
-  time: Time,
+  getMonthNames : function() {
+    if (d.getMonth() === 0) {
+      this.monthName = "January";
+    };
+    if (d.getMonth() == 1) {
+      this.monthName = "February"
+    };
+    if (d.getMonth() == 2) {
+      this.monthName = "March"
+    };
+    if (d.getMonth() == 3) {
+      this.monthName = "April"
+    };
+    if (d.getMonth() == 4) {
+      this.monthName = "May"
+    };
+    if (d.getMonth() == 5) {
+      this.monthName = "June"
+    };
+    if (d.getMonth() == 6) {
+      this.monthName = "July"
+    };
+    if (d.getMonth() == 7) {
+      this.monthName = "August"
+    };
+    if (d.getMonth() == 8) {
+      this.monthName = "September"
+    };
+    if (d.getMonth() == 9) {
+      this.monthName = "October"
+    };
+    if (d.getMonth() == 10) {
+      this.monthName = "November"
+    };
+    if (d.getMonth() == 11) {
+      this.monthName = "December"
+    };
+  },
+  getShortMonthNames : function() {
+    if (d.getMonth() == 0) {
+      this.monthNameShort = "Jan."
+    };
+    if (d.getMonth() == 1) {
+      this.monthNameShort = "Feb."
+    };
+    if (d.getMonth() == 2) {
+      this.monthNameShort = "Mar."
+    };
+    if (d.getMonth() == 3) {
+      this.monthNameShort = "Apr."
+    };
+    if (d.getMonth() == 4) {
+      this.monthNameShort = "May"
+    };
+    if (d.getMonth() == 5) {
+      this.monthNameShort = "June"
+    };
+    if (d.getMonth() == 6) {
+      this.monthNameShort = "July"
+    };
+    if (d.getMonth() == 7) {
+      this.monthNameShort = "Aug."
+    };
+    if (d.getMonth() == 8) {
+      this.monthNameShort = "Sept."
+    };
+    if (d.getMonth() == 9) {
+      this.monthNameShort = "Oct."
+    };
+    if (d.getMonth() == 10) {
+      this.monthNameShort = "Nov."
+    };
+    if (d.getMonth() == 11) {
+      this.monthNameShort = "Dec."
+    };
+  },
+  getWeekNames : function() {
+    if (d.getDay() == 0) {
+      this.dayOfWeek = "Sunday"
+    };
+    if (d.getDay() == 1) {
+      this.dayOfWeek = "Monday"
+    };
+    if (d.getDay() == 2) {
+      this.dayOfWeek = "Tuesday"
+    };
+    if (d.getDay() == 3) {
+      this.dayOfWeek = "Wednesday"
+    };
+    if (d.getDay() == 4) {
+      this.dayOfWeek = "Thursday"
+    };
+    if (d.getDay() == 5) {
+      this.dayOfWeek = "Friday"
+    };
+    if (d.getDay() == 6) {
+      this.dayOfWeek = "Saturday"
+    };
+  },
+  getShortWeekNames : function() {
+    if (d.getDay() == 0) {
+      this.dayOfWeekShort = "Sun"
+    };
+    if (d.getDay() == 1) {
+      this.dayOfWeekShort = "Mon"
+    };
+    if (d.getDay() == 2) {
+      this.dayOfWeekShort = "Tue"
+    };
+    if (d.getDay() == 3) {
+      this.dayOfWeekShort = "Wed"
+    };
+    if (d.getDay() == 4) {
+      this.dayOfWeekShort = "Thu"
+    };
+    if (d.getDay() == 5) {
+      this.dayOfWeekShort = "Fri"
+    };
+    if (d.getDay() == 6) {
+      this.dayOfWeekShort = "Sat"
+    };
+  },
   monthDay: d.getDate(),
   weekDay: d.getDay(),
+  weekDayName: d.dayOfWeek,
+  weekDayNameShort: d.dayOfWeekShort,
   year: d.getFullYear(),
   hour: d.getHours(),
   milisec: d.getMilliseconds(),
   min: d.getMinutes(),
   month: d.getMonth(),
+  monthName: d.monthName,
+  monthNameShort: d.monthNameShort,
   sec: d.getSeconds(),
   timezoneoffset: d.getTimezoneOffset(),
-  timezone: d.getTimezoneOffset()/60
+  timezone: d.getTimezoneOffset() / 60,
+  settings: {
+    dateFormat: ['#M#', '#d#', '#Y#'],
+    hourFormat: tConvert(d.getHours()),
+    yearFormat: d.getFullYear()
+  }
 }
-var anchorNow = Now
+var anchorNow = Now;
+var date = decrypt(Now.settings.dateFormat);
+var time = Now.hourFormat + ':' + d.getMinutes() + ':' + d.getSeconds();
+var test, x, y, z;
+Now.date = date;
+Now.time = time;
+Now.leapyear = leapYear(Now.year);
 
 //REVIEW: Done
 String.prototype.allReplace = function(obj) {
-  var retStr = this;
+  var retStr = this.val;
   for (x in obj) {
     retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
   }
-  return retStr;
+  this.val = retStr;
 };
 function findAtNum(input, numbers) {
   x = '';
@@ -53,198 +182,146 @@ function tConvert(time, stuff) {
   }
 }
 function dayToNum() {
-  switch(this.val.toLowerCase()){
+  switch (this.val.toLowerCase().trim()) {
     case 'mon':
     case 'monday':
-    this.val = 1
+      Now.weekDay = 1
       break;
     case 'tue':
     case 'tuesday':
-    this.val = 2
+      Now.weekDay = 2
       break;
     case 'wed':
     case 'wednesday':
-    this.val = 3
+      Now.weekDay = 3
       break;
     case 'thu':
     case 'thursday':
-    this.val = 4
+      Now.weekDay = 4
       break;
     case 'fri':
     case 'friday':
-    this.val = 5
+      Now.weekDay = 5
       break;
     case 'sat':
     case 'saturday':
-    this.val = 6
+      Now.weekDay = 6
       break;
     case 'sun':
     case 'Sunday':
-    this.val = 0
+      Now.weekDay = 0
+      break;
+    case 'jan':
+    case 'january':
+      Now.month = 0
+      break;
+    case 'feb':
+    case 'february':
+      Now.month = 1
+      break;
+    case 'mar':
+    case 'march':
+      Now.month = 2
+      break;
+    case 'apr':
+    case 'april':
+      Now.month = 3
+      break;
+    case 'may':
+      Now.month = 4
+      break;
+    case 'june':
+      Now.month = 5
+      break;
+    case 'july':
+      Now.month = 6
+      break;
+    case 'aug':
+    case 'august':
+      Now.month = 7
+      break;
+    case 'sep':
+    case 'september':
+      Now.month = 8
+      break;
+    case 'oct':
+    case 'october':
+      Now.month = 9
+      break;
+    case 'nov':
+    case 'november':
+      Now.month = 10
+      break;
+    case 'dec':
+    case 'december':
+      Now.month = 11
       break;
   }
 }
 
-//REVIEW: Done
-Date.prototype.getMonthNames = function() {
-  if (d.getMonth() === 0) {
-    this.monthName = "January";
-  };
-  if (d.getMonth() == 1) {
-    this.monthName = "February"
-  };
-  if (d.getMonth() == 2) {
-    this.monthName = "March"
-  };
-  if (d.getMonth() == 3) {
-    this.monthName = "April"
-  };
-  if (d.getMonth() == 4) {
-    this.monthName = "May"
-  };
-  if (d.getMonth() == 5) {
-    this.monthName = "June"
-  };
-  if (d.getMonth() == 6) {
-    this.monthName = "July"
-  };
-  if (d.getMonth() == 7) {
-    this.monthName = "August"
-  };
-  if (d.getMonth() == 8) {
-    this.monthName = "September"
-  };
-  if (d.getMonth() == 9) {
-    this.monthName = "October"
-  };
-  if (d.getMonth() == 10) {
-    this.monthName = "November"
-  };
-  if (d.getMonth() == 11) {
-    this.monthName = "December"
-  };
-};
-Date.prototype.getShortMonthNames = function() {
-  if (d.getMonth() == 0) {
-    this.monthNameShort = "Jan."
-  };
-  if (d.getMonth() == 1) {
-    this.monthNameShort = "Feb."
-  };
-  if (d.getMonth() == 2) {
-    this.monthNameShort = "Mar."
-  };
-  if (d.getMonth() == 3) {
-    this.monthNameShort = "Apr."
-  };
-  if (d.getMonth() == 4) {
-    this.monthNameShort = "May"
-  };
-  if (d.getMonth() == 5) {
-    this.monthNameShort = "June"
-  };
-  if (d.getMonth() == 6) {
-    this.monthNameShort = "July"
-  };
-  if (d.getMonth() == 7) {
-    this.monthNameShort = "Aug."
-  };
-  if (d.getMonth() == 8) {
-    this.monthNameShort = "Sept."
-  };
-  if (d.getMonth() == 9) {
-    this.monthNameShort = "Oct."
-  };
-  if (d.getMonth() == 10) {
-    this.monthNameShort = "Nov."
-  };
-  if (d.getMonth() == 11) {
-    this.monthNameShort = "Dec."
-  };
-};
-Date.prototype.getWeekNames = function() {
-  if (d.getDay() == 0) {
-    this.dayOfWeek = "Sunday"
-  };
-  if (d.getDay() == 1) {
-    this.dayOfWeek = "Monday"
-  };
-  if (d.getDay() == 2) {
-    this.dayOfWeek = "Tuesday"
-  };
-  if (d.getDay() == 3) {
-    this.dayOfWeek = "Wednesday"
-  };
-  if (d.getDay() == 4) {
-    this.dayOfWeek = "Thursday"
-  };
-  if (d.getDay() == 5) {
-    this.dayOfWeek = "Friday"
-  };
-  if (d.getDay() == 6) {
-    this.dayOfWeek = "Saturday"
-  };
-};
-Date.prototype.getShortWeekNames = function() {
-  if (d.getDay() == 0) {
-    this.dayOfWeekShort = "Sun"
-  };
-  if (d.getDay() == 1) {
-    this.dayOfWeekShort = "Mon"
-  };
-  if (d.getDay() == 2) {
-    this.dayOfWeekShort = "Tue"
-  };
-  if (d.getDay() == 3) {
-    this.dayOfWeekShort = "Wed"
-  };
-  if (d.getDay() == 4) {
-    this.dayOfWeekShort = "Thu"
-  };
-  if (d.getDay() == 5) {
-    this.dayOfWeekShort = "Fri"
-  };
-  if (d.getDay() == 6) {
-    this.dayOfWeekShort = "Sat"
-  };
-};
-
-Date.prototype.updateTime = function() {
+function updateTime() {
   d.getShortWeekNames()
   d.getWeekNames()
   d.getShortMonthNames()
   d.getMonthNames()
-  now.date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear()
-  now.time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-  now.monthDay = d.getDate()
-  now.weekDay = d.getDay()
-  now.year = d.getFullYear()
-  now.hour = d.getHours()
-  now.milisec = d.getMilliseconds()
-  now.min = d.getMinutes()
-  now.month = d.getMonth()
-  now.sec = d.getSeconds()
-
+  anchorNow.date = date,
+  anchorNow.time = Time,
+  anchorNow.monthDay = d.getDate(),
+  anchorNow.weekDay = d.getDay(),
+  anchorNow.weekDayName = d.dayOfWeek,
+  anchorNow.weekDayNameShort = d.dayOfWeekShort,
+  anchorNow.year = d.getFullYear(),
+  anchorNow.hour = d.getHours(),
+  anchorNow.milisec = d.getMilliseconds(),
+  anchorNow.min = d.getMinutes(),
+  anchorNow.month = d.getMonth(),
+  anchorNow.monthName = d.monthName,
+  anchorNow.monthNameShort = d.monthNameShort
+  anchorNow.sec = d.getSeconds(),
+  anchorNow.leapYear = leapYear(d.getFullYear()),
+  anchorNow.timezoneoffset = d.getTimezoneOffset(),
+  anchorNow.timezone = d.getTimezoneOffset() / 60
 };
+
+function leapYear() {
+  if (Now.year % 2 == 0){
+    if (Now.year % 100 == 0){
+      if (Now.year % 400 == 0){
+        this.val = true
+      } else {
+        this.val = false
+      }
+    } else {
+      this.val = true
+    }
+  } else {
+    this.val = false
+  }
+}
+
+function reset() {
+  updateTime()
+  Now = anchorNow
+}
 
 // TODO: Add ways to return vaues & add the ways to get values
 function add(amount, type) {
-  switch(type.toLowerCase()){
-  case 'hour':
-   this.addHour = this.hour + amount;
-  break;
-  case 'day':
-  this.addDay = this.monthDay + amount;
-  break;
-  case 'week':
+  switch (type.toLowerCase()) {
+    case 'hour':
+      this.addHour = this.hour + amount;
+      break;
+    case 'day':
+      this.addDay = this.monthDay + amount;
+      break;
+    case 'week':
 
-  break;
-  case 'month':
+      break;
+    case 'month':
 
-  break;
-  case 'year':
+      break;
+    case 'year':
 
-  break;
+      break;
   }
 }
 
@@ -257,44 +334,53 @@ function next(input, num) {
   switch (input.toLowerCase()) {
     case 'mon':
     case 'monday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 1))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 1))
       break;
     case 'tue':
     case 'tuesday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 2))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 2))
       break;
     case 'wed':
     case 'wednesday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 3))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 3))
       break;
     case 'thu':
     case 'thursday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 4))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 4))
       break;
     case 'fri':
     case 'friday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 5))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 5))
       break;
     case 'sat':
     case 'saturday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 6))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum + 6))
       break;
     case 'sun':
     case 'Sunday':
-    Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum))
+      Now.futureMonthDay = (x + ((i - input.dayToNum) + input.dayToNum))
       break;
   }
 }
 
 // REVIEW: not done
-function is(type, time){
+function is(type, time) {
+  var TTTT = type.iparse()
+  if (type == undefined) {
 
+  } else {
+    TTTT.dayToNum()
+    if (true) {
+
+    }
+  }
 }
 
 // REVIEW: not done
-function get(object, type, date){
-  if(date == undefined){
-    Now.(object.toLowerCase().trim()).(type.object.toLowerCase().trim())
+function get(object, date) {
+  var TTTT = object.gparse()
+  if (date == undefined) {
+    return TTTT
   } else {
 
   }
@@ -304,14 +390,12 @@ function get(object, type, date){
 // NOTE: Output text
 // NOTE: Maybe add more values, or syntax
 function decrypt(input) {
-  d.getShortWeekNames()
-  d.getWeekNames()
-  d.getShortMonthNames()
-  d.getMonthNames()
-  return input.allReplace({
+  Now.getShortWeekNames();
+  Now.getWeekNames();
+  Now.getShortMonthNames();
+  Now.getMonthNames();
+  return allReplace(input, {
     '%d%': date,
-    '%D%': dATE,
-    '%T%': Time,
     '%t%': time,
     '#m#': d.getMilliseconds(),
     '#mm#': d.getMinutes(),
@@ -329,14 +413,75 @@ function decrypt(input) {
   });
 }
 
+function iparse() {
+  var parsed = this.toLowerCase().trim()
+  switch(parsed){
+  case 'today':
+  this.val = Now.weekDay
+  break;
+  case 'year':
+  case 'thisyear':
+  this.val = Now.year
+  break;
+  case 'month':
+  case 'thismonth':
+  this.val = Now.month
+  break;
+  case 'week':
+
+  break;
+  }
+}
+
+function gparse(){
+  var parsed = this.toLowerCase().trim()
+  switch(parsed){
+  case 'day':
+  case 'today':
+  case 'daynum':
+  case 'daynumber':
+  this.val = Now.weekDay
+  break;
+  case 'dayname':
+  case 'todayname':
+  case 'nameoftoday':
+  case 'nameofday':
+  this.val = Now.weekDayName
+  break;
+  case 'shortdayname':
+  case 'daynameshort':
+  case 'todaynameshort':
+  case 'shorttodayname':
+  case 'nameoftodayshort':
+  case 'shortnameoftoday':
+  case 'nameofdayshort':
+  case 'shortnameofday':
+  this.val = Now.weekDayNameShort
+  break;
+  case 'month':
+  case 'thismonth':
+  case 'monthnum':
+  case 'monthnumber':
+  this.val = Now.month
+  break;
+  case 'monthname':
+  case 'nameofmonth':
+  this.val = Now.monthName
+  break;
+  case 'shortmonthname':
+  case 'monthnameshort':
+  case 'monthnameshort':
+  case 'shortmonthname':
+  case 'nameofmonthshort':
+  case 'shortnameofmonth':
+  case 'nameofmonthshort':
+  case 'shortnameofmonth':
+  this.val = Now.monthNameShort
+  break;
+  }
+}
+
 // REVIEW: Not started
 // TODO: Find a way to input different types of values, and symplify them, and return the result
-function symplify(){
-
-}
-window.onload = function(argument) {
-  now.getShortWeekNames()
-  now.getWeekNames()
-  now.getShortMonthNames()
-  now.getMonthNames()
+function symplify() {
 }
