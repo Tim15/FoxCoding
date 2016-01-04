@@ -1,0 +1,36 @@
+.objHeaders{
+  border-radius: 15px;
+  background-color: lightgrey;
+  height: 70px;
+  width: 97%;
+}
+.objHeadername{
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: block;
+  color: black;
+}
+.objHeadername:hover{
+  color: grey;
+}
+.sectHeaders{
+  padding-left: 1em;
+  font-weight: bold;
+}
+.navhr{
+  width:100%;
+}
+.middle{
+  text-align: center;
+}
+.nounder{
+  text-decoration: none;
+}
+#documentationpage{
+  margin-left: 2em;
+}
+#mathdoclink{
+  margin-top: none;
+  padding: none;
+}

@@ -207,6 +207,4 @@ window.onload = function() {
   }, 1000);
   paneSelect('cave');
   check();
-  //document.getElementById('event').style.display = 'none';
-  buy(amount.wood, 1, [10], [amount.wood]);
 };

@@ -1,4 +1,4 @@
-var 
+var
 
 var person = {
   damage: 1,
@@ -53,8 +53,8 @@ var cooldown = 0;
 var type;
 var x;
 var fight = false;
-var world = []
-var row = [];
+var world = '';
+var row = '';
 var land = '';
 
 function a(a, b, c) {
