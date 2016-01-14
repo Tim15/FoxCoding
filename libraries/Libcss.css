@@ -1,8 +1,11 @@
 .objHeaders{
   border-radius: 15px;
-  background-color: lightgrey;
+  background-color: grey;
   height: 70px;
-  width: 97%;
+  width: 100%;
+}
+.objHeaders:hover{
+  background-color: #aaaaaa;
 }
 .objHeadername{
   font-weight: bold;
@@ -27,10 +30,19 @@
 .nounder{
   text-decoration: none;
 }
+.olist{
+  list-style-type: square;
+}
+.class{
+  margin-left: 1em;
+}
 #documentationpage{
-  margin-left: 2em;
+  /*margin-left: 2em;*/
 }
 #mathdoclink{
   margin-top: none;
   padding: none;
+}
+#overview{
+  padding-left: 0.5em
 }

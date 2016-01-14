@@ -1,9 +1,8 @@
-window.onload = function() {
-  if (!localStorage.darkroom) {
     var i = 0;
     var x = 0;
     var y = 0;
     var z = 0;
+    var saveCode
     var id = ['wood', 'food', 'stone'];
     var amount = {
       wood: 0,
@@ -30,11 +29,6 @@ window.onload = function() {
       buildings: {}
   };
     var distanceTraveled = 0;
-  } else {
-    for (var variable in localStorage.darkroom) {
-        window[variable] = localStorage.darkroom[variable];
-    }
-  }
 
   function check() {
     document.getElementById('wood-amount').innerHTML = amount.wood;
@@ -159,7 +153,9 @@ window.onload = function() {
     if (type == 'random') {
       x = Math.random();
       if (x < 0.05) {
-        say('A desprete wanderer', 'A poor traveler desprete for food, money, and lodgings offers to teach you ', ['Get wood', 'Get stone'], [gather('wood', 1), gather('stone', 1)]);
+        say('A desprete wanderer', 'A poor traveler desprete for food, money, and lodgings offers to teach you ', ['Get wood', 'Get stone'], ['gather(\'wood\', 1)', 'gather(\'stone\', 1)']);
+      } else if (x < 0.20) {
+        say('A giant fire', 'A giant fire has started, and you have lost a lot of wood.', ['Get wood'], ['if(amount.wood >= 50){\namount.wood -= 50\n} else {\nwood.amount = 0\n}']);
       }
     } else {
       switch (type) {
@@ -207,4 +203,4 @@ window.onload = function() {
   }, 1000);
   paneSelect('cave');
   check();
-};
+  document.getElementById('event').style.display = 'none';
