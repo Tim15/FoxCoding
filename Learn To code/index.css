@@ -1,0 +1,17 @@
+#canvasTable{
+  margin-left: auto;
+  margin-right: auto;
+}
+.lessonTitle{
+  font-weight: bold;
+}
+.center{
+  text-align: center;
+}
+.pp{
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.link:hover{
+  color: #6781ff;
+}

@@ -1,4 +1,3 @@
-
-function getcode(from, to) {
-  document.getElementById(to).innerHTML = document.getElementById(from).value;
+function getcode(frrom, to) {
+  document.getElementById(to).innerHTML = document.getElementById(frrom).value;
 };

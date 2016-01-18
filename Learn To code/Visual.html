@@ -45,10 +45,59 @@
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <!-- Your content goes here -->
+        <br>
+        <br>
+        <table id="canvasTable">
+          <tr>
+            <td>
+              <canvas id="canvas" width="550" height="440" style="border:1px solid #d3d3d3;"></canvas>
+            </td>
+            <td>
+              <textarea id="canvasText" rows="29" cols="76"></textarea>
+            </td>
+          </tr>
+        </table>
       </div>
     </main>
   </div>
+  <script>
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+
+    var Circle = {
+      x: 275,
+      y: 220,
+      turn: function (way) {
+        switch (way) {
+          case 'right':
+
+            break;
+          case 'left':
+
+            break;
+
+          default:
+
+        }
+      },
+      move: function (way, amount) {
+        switch (way) {
+          case 'foward':
+
+            break;
+          case 'backward':
+
+            break;
+        }
+      },
+    }
+
+    function draw(){
+      ctx.beginPath();
+      ctx.arc(Circle.x,Circle.y,20,0,2*Math.PI);
+      ctx.stroke();
+    }
+  </script>
 </body>
 
 </html>

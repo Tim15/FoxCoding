@@ -22,12 +22,10 @@ var add = {},
   kelvin = -273,
   fahrenhiet = 33.8,
   mile = 1609.34;
-var test, x, y, z, a = 0,
-  b = 0,
-  c = 0;
+var test, x, y, z, a = 0, b = 0, c = 0;
 var d = new Date();
 var monthLengths = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
+var Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 var Now = function() {
   if (this.month === 0) {
     this.monthName = "January";
@@ -309,11 +307,9 @@ var Now = function() {
     this.dayOfYear += 1
   }
 };
-
 function isArray(myArray) {
   return myArray.constructor.toString().indexOf("Array") > -1;
 }
-
 function findAtNum(input, numbers) {
   x = '';
   for (var i = 0; i < numbers.length; i++) {
@@ -321,7 +317,6 @@ function findAtNum(input, numbers) {
   }
   return x
 }
-
 function allIndexOf(str, toSearch) {
   var pos, indices = [];
   for (pos = str.indexOf(toSearch); pos !== -1; pos = str.indexOf(toSearch, pos + 1)) {
@@ -329,7 +324,6 @@ function allIndexOf(str, toSearch) {
   }
   return indices;
 }
-
 function replaceAll(input, obj) {
   var retStr = input.toString();
   for (x in obj) {
@@ -355,7 +349,6 @@ function tConvert(time, stuff) {
     }
   }
 }
-
 function dayToNum() {
   switch (this.val.toLowerCase().trim()) {
     case 'mon':
@@ -452,7 +445,6 @@ Number.prototype.LeapYear = function() {
     this.leapYear = false
   }
 }
-
 function decrypt(input) {
   var f = new Now()
   return replaceAll(input, {
@@ -473,7 +465,6 @@ function decrypt(input) {
     '#c#': findAtNum(d.getFullYear(), [0]) + 1
   });
 }
-
 function iparse() {
   var parsed = this.toLowerCase().trim()
   switch (parsed) {
@@ -493,7 +484,6 @@ function iparse() {
       break;
   }
 }
-
 function gparse(input) {
   asdf = new Now()
   var parsed = input.toLowerCase().trim()
@@ -542,7 +532,6 @@ function gparse(input) {
       break;
   }
 }
-
 function symplify() {
   leapyear()
 
@@ -585,10 +574,24 @@ function symplify() {
     }
   }
 }
-
 function toDate(input) {
 
 }
+
+//+------------------------------------------------------------------------------+
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//|+===========================XXX:::::::::::::::::XXX==========================+|
+//|+=##########################XXX::REGEX LIBRARY::XXX#########################=+|
+//|+===========================XXX:::::::::::::::::XXX==========================+|
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//+------------------------------------------------------------------------------+
+
+RegExp.prototype.addFlag = function (flags) {
+  var arr = this.toString()
+  arr = arr.match(/[gmi]/g)
+  this = this.toString().replace(/\/(([^\/\n])+(.*))\/(g|m|i){0,3}/g, '$1')
+  return new RegExp(this.val, arr.replace(flags, '') + flags)
+};
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -608,7 +611,7 @@ String.prototype.insertAt = function(input, val) {
   if (val == undefined) {
     return this.toString() + input.toString()
   } else {
-    return this.toString().replace(this.charAt(val), input.toString() + this.charAt(val))
+    return this.toString().replace(this.charAt(val), this.charAt(val) + input.toString())
   }
 };
 String.prototype.charsFrom = function(val1, val2) {
@@ -730,14 +733,7 @@ String.prototype.multiply = function(num) {
 }
 String.prototype.fract = function(num1, num2) {
     return num1.toString() + '/' + num2.toString()
-  }
-  //+------------------------------------------------------------------------------+
-  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-  //|+===========================XXX::::::::::::::::XXX===========================+|
-  //|+=##########################XXX::MATH LIBRARY::XXX##########################=+|
-  //|+===========================XXX::::::::::::::::XXX===========================+|
-  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-  //+------------------------------------------------------------------------------+
+}
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -752,7 +748,6 @@ var conversions = [
     ['inch', 'in'], inch
   ]
 ]
-
 var math = {
   eval: function(val1, val2) {
 
@@ -929,7 +924,9 @@ var math = {
   floor: function(val1) {
     return Math.floor(val1)
   },
-
+  prim: function(val1) {
+    return Math.pow(a, p - 1) % p === 1;
+  },
 }
 var triangle = function() {
   this.a = '?',
@@ -940,21 +937,18 @@ var triangle = function() {
   this.B = '?',
   this.perimeter = '?'
 }
-
 var rectangle = function() {
   this.l = '?',
   this.w = '?',
   this.perimeter = '?',
   this.area = '?'
 }
-
 var circle = function() {
   this.r = '?',
   this.d = '?',
   this.circumference = '?',
   this.area = '?'
 }
-
 function solveTri(obj) {
   var sides  = (obj.a != '?') + (obj.b != '?') + (obj.c != '?');  // Testing how many sides we know
 	var angles = (obj.A != '?') + (obj.B != '?') + (obj.C != '?');  // Testing how many angles we know
@@ -1061,7 +1055,6 @@ function solveTri(obj) {
   var SEratios = math.sec(A).toString() + math.sec(B).toString() + math.sec(C).toString()
   var COratios = math.cot(A).toString() + math.cot(B).toString() + math.cot(C).toString()
 }
-
 function solveRect(obj){
   if (obj.l != '?' && obj.w != '?'){
     obj.perimeter = (obj.l * 2) + (obj.w * 2)
@@ -1080,7 +1073,6 @@ function solveRect(obj){
     obj.area = (obj.l * obj.w)
   }
 }
-
 function solveCircle(obj){
   if (obj.r != '?'){
     obj.d = obj.r * 2
@@ -1100,9 +1092,6 @@ function solveCircle(obj){
       obj.circumference = 2 * Math.PI * obj.r
   }
 }
-
-
-
 function solveSide(a, b, C) {
 	C = degToRad(C);
 	if (C > 0.001){
@@ -1111,7 +1100,6 @@ function solveSide(a, b, C) {
 		return Math.sqrt((a - b) * (a - b) + a * b * C * C * (1 - C * C / 12));
     }
 }
-
 function solveAngle(a, b, c) {
 	var temp = (a * a + b * b - c * c) / (2 * a * b);
 	if (-1 <= temp && temp <= 0.9999999)
@@ -1121,48 +1109,117 @@ function solveAngle(a, b, c) {
 	else
 		throw "No solution";
 }
-
 function degToRad(x) {
 	return x / 180 * Math.PI;
 }
-
 function radToDeg(x) {
 	return x / Math.PI * 180;
 }
-
 Number.prototype.convert = function(type1, type2) {
   this.val = ([type2] / [type1]) * this.val
 }
-
 function Calculate(input) {
-  a = input.replace(/abs/g, "Math.abs");
-  a = a.replace(/acos/g, "Math.acos");
-  a = a.replace(/asin/g, "Math.asin");
-  a = a.replace(/atan/g, "Math.atan");
-  a = a.replace(/atan2/g, "Math.atan2");
-  a = a.replace(/ceil/g, "Math.ceil");
-  a = a.replace(/cos/g, "Math.cos");
-  a = a.replace(/exp/g, "Math.exp");
-  a = a.replace(/floor/g, "Math.floor");
-  a = a.replace(/log/g, "math.log");
-  a = a.replace(/max/g, "Math.max");
-  a = a.replace(/min/g, "Math.min");
-  a = a.replace(/pow/g, "Math.pow");
-  a = a.replace(/random/g, "Math.random");
-  a = a.replace(/round/g, "Math.round");
-  a = a.replace(/sin/g, "Math.sin");
-  a = a.replace(/sqrt/g, "Math.sqrt");
-  a = a.replace(/tan/g, "Math.tan");
-  a = a.replace(/E/g, "Math.E");
-  a = a.replace(/e/g, "Math.E");
-  a = a.replace(/pi/g, "Math.PI");
-  a = a.replace(/Pi/g, "Math.PI");
-  a = a.replace(/PI/g, "Math.PI");
+
 
   var output = eval(a);
   return output;
 }
+var Equation = {
+  type: 'equation',
+  A: '?',
+  B: '?',
+  C: '?',
+  D: '?',
+  E: '?',
+  F: '?',
+  G: '?',
+  H: '?',
+  I: '?',
+  J: '?',
+  K: '?',
+  L: '?',
+  M: '?',
+  N: '?',
+  O: '?',
+  P: '?',
+  Q: '?',
+  R: '?',
+  S: '?',
+  T: '?',
+  U: '?',
+  V: '?',
+  W: '?',
+  X: '?',
+  Y: '?',
+  Z: '?',
+  a: '?',
+  b: '?',
+  c: '?',
+  d: '?',
+  e: '?',
+  f: '?',
+  g: '?',
+  h: '?',
+  i: '?',
+  j: '?',
+  k: '?',
+  l: '?',
+  m: '?',
+  n: '?',
+  o: '?',
+  p: '?',
+  q: '?',
+  r: '?',
+  s: '?',
+  t: '?',
+  u: '?',
+  v: '?',
+  w: '?',
+  x: '?',
+  y: '?',
+  z: '?',
+};
+var solve = function(Eq, rav, obj) {
+  var end = false
+  var fc = Eq.charAt(0);
+  if (!fc.match(/[a-z0-9\.\+\-\(]/i)) {
+    throw 'You can\'t have ' + fc + ' as your first character, you need a letter, number or one of these . + - ('
+    end = true
+  }
+  if (!end){
+    for (var x in obj) {
+      if (obj.hasOwnProperty(x)) {
+        Eq = Eq.replace(x, obj.x)
+      }
+    }
+  var qe
+  var EQ
+  var eq = Eq.split(' = ')
+  eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ') + ' + rav;
+  eq[1] = rav
+  eq = eq.join('=')
+  Eq = Eq.replace(/((\+|\-)?[a-z0-9])((\+|\-)?[a-z0-9])/ig, '$1 * ');
+  Eq = Eq.replace(/(\))(?=[a-z0-9])/ig, '$1 * ');
+  Eq = Eq.replace(/([a-z0-9])(?=\()/ig, '$1 * ');
+  Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
+  Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
+  Eq = Eq.replace(/\-\s*([a-zA-Z0-9])+/ig, ' + -$1')
+//  Eq = Eq.replace(/(\(\s*([-+]?)(\d+(\.?\d)*)(?:\s*([-+*\/\%])\s+((?:\s[-+])?(\d+(\.?\d)*))\s*)+\))/ig, eval('$1'))
+  console.log(Eq)
+  console.log(eq)
+  console.log(qe)
+  }
+}
+var Expression = function () {
 
+}
+/*
+for (var rra = -Infinity; arr < Infinity; arr += 0.1) {
+    if(Math.abs(funct(arr)) < 0.1) {
+      console.log("Root = " + Math.round(arr, 2));
+    }
+  }
+*/
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //|+===========================XXX:::::::::::::::::XXX==========================+|
@@ -1177,7 +1234,6 @@ function lvar(argument) {
   this.not = []
   this.val = []
 }
-
 String.prototype.parse = function(type, val1) {
     if (type.toString().toLowerCase() == 'js') {
       if (val1 == undefined) {
@@ -1203,60 +1259,31 @@ function leval(val1) {
     return val1
   }
 }
-Boolean.prototype.and = function(val1, val2) {
-  if (val2 == undefined) {
-    if (this == true && val1 == true) {
-      return true
-    } else {
-      return false
-    }
-  } else {
+var and = function(val1, val2) {
     return val1 && val2
-  }
 }
-Boolean.prototype.or = function(val1, val2) {
-  if (val2 == undefined) {
-    return (this.val || val1)
-  } else {
+var or = function(val1, val2) {
     return val1 || val2
-  }
 }
-Boolean.prototype.not = function(val1) {
-  if (val1 == undefined) {
-    return !this.val
-  } else {
+var not = function(val1) {
     return !val1
-  }
 }
-Boolean.prototype.nor = function(val1, val2) {
-  if (val2 == undefined) {
-    return !(this.val || val1)
-  } else {
+var nor = function(val1, val2) {
     return !(val1 || val2)
-  }
 }
-Boolean.prototype.nand = function(val1, val2) {
-  if (val2 == undefined) {
-    return !(this.val && val1)
-  } else {
+var nand = function(val1, val2) {
     return !(val1 && val2)
-  }
 }
-Boolean.prototype.xor = function(val1, val2) {
-  if (val2 == undefined) {
-    return !((this || val1) && (this && val1))
-  } else {
-    return this.val != val1
-  }
+var xor = function(val1, val2) {
+    return val1 != val2
 }
-Boolean.prototype.xnor = function(val1, val2) {
-  if (this == true && val1 == true || this == false && val1 == false) {
+var xnor = function(val1, val2) {
+  if (val1 == true && val2 == true || val1 == false && val2 == false) {
     return true
   } else {
     return false
   }
 }
-
 function toBinary(input){
   var arr = []
   for (var i = 0; i < input.length; i++) {
@@ -1264,7 +1291,6 @@ function toBinary(input){
   }
   return arr
 }
-
 function toBoolean(input){
   var arr = []
   for (var i = 0; i < input.length; i++) {
@@ -1272,15 +1298,12 @@ function toBoolean(input){
   }
   return arr
 }
-
 function t() {
   return true
 }
-
 function f() {
   return false
 }
-
 function True(input) {
   if (input == true) {
     return true
@@ -1288,7 +1311,6 @@ function True(input) {
     return false
   }
 }
-
 function False(input) {
   if (input != true) {
     return true
@@ -1296,6 +1318,7 @@ function False(input) {
     return false
   }
 }
+
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //|+===========================XXX:::::::::::::::::XXX==========================+|
@@ -1366,10 +1389,11 @@ Array.prototype.divideArray = function(array) {
 };
 
 //+==============================================================================+
-console.log('Logic: ' + false.or(true).and(true.nand(false).not()).nor(false).xor(false).xnor(true).toString());
+
+console.log('Logic: ' + xnor(xor(nor(and(or(f(), t()), not(nand(t(), f()))), f()), f()), t()).toString());
 console.log('Date: ' + decrypt('Today is #Nd#, #NM# #D#th, #Y#').toString());
 console.log('Math: ' + eval(math.add(5, 4).toString()));
 console.log('String: ' + 'Hello my name is fox, and I am so awesome, because I am \\ ^ $ * + ? . ( ) | { } [ ] > < & '.goFrom(2).goTo(this.length - 3).encode('regex').encode('html').encode('base64'));
 console.log('Array: ' + [0, 1, 2, 3, 4].addToEach(0.5).addArray([1, 2, 3, 4, 5]).toString());
-var _ = new Now()
-console.log(_.get('day'))
+console.trace('document.body: %O', '');
+solve('5 + 5 + 5x * xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x')
