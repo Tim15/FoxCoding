@@ -71,13 +71,18 @@
   <script>
     function solve() {
       var eq = document.getElementById("input").value
+      console.log(eq)
       var solved = document.getElementById("solveFor").value
+      console.log(solved)
       var x1 = algebra.parse(eq.toString());
+      console.log(x1)
       var x = x1.solveFor(solved.toString());
+      console.log(x)
       //var sum = eq.summation(solved, 1, 1);
       //var lambda = new Expression("lambda");
       //katex.render(lambda.toTex(), x);
       document.getElementById("answer").innerHTML = solved.toString() + " = " + x;
+      console.log(x1.solveFor(solved.toString()))
     }
   </script>
 </body>

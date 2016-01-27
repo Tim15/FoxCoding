@@ -1,146 +1,178 @@
 var add = {},
   pi = Math.PI,
-  picometer = 0.000000000001,
-  nanometer = 0.000000001,
-  micrometer = 0.000001,
-  millimeter = 0.001,
-  centimeter = 0.01,
-  decimeter = 0.1,
-  meter = 1,
-  decameter = 10,
-  hectometer = 100,
-  kilometer = 1000,
-  megameter = 1000000,
-  gigameter = 1000000000,
-  terameter = 1000000000000,
-  inch = 39.3701,
-  foot = 3.28084,
-  yard = 1.09362,
-  sqAcre = 4046.86,
-  sqHectare = 10000,
-  celsius = 1,
-  kelvin = -273,
-  fahrenhiet = 33.8,
-  mile = 1609.34;
-var test, x, y, z, a = 0, b = 0, c = 0;
-var d = new Date();
-var monthLengths = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-var Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-var Now = function() {
-  if (this.month === 0) {
-    this.monthName = "January";
+  strConversions = {
+      'picometer' : {value: 0.000000000001, type: 'length/Distance'},
+      'nanometer' : {value: 0.000000001, type: 'length/Distance'},
+      'micrometer' : {value: 0.000001, type: 'length/Distance'},
+      'millimeter' : {value: 0.001, type: 'length/Distance'},
+      'centimeter' : {value: 0.01, type: 'length/Distance'},
+      'decimeter' : {value: 0.1, type: 'length/Distance'},
+      'meter' : {value: 1, type: 'length/Distance'},
+      'decameter' : {value: 10, type: 'length/Distance'},
+      'hectometer' : {value: 100, type: 'length/Distance'},
+      'kilometer' : {value: 1000, type: 'length/Distance'},
+      'megameter' : {value: 1000000, type: 'length/Distance'},
+      'gigameter' : {value: 1000000000, type: 'length/Distance'},
+      'terameter' : {value: 1000000000000, type: 'length/Distance'},
+      'inch' : {value: 0.0254, type: 'length/Distance'},
+      'foot' : {value: 0.3048, type: 'length/Distance'},
+      'yard' : {value: 0.9144, type: 'length/Distance'},
+      'mile' : {value: 1609.34, type: 'length/Distance'},
+      'nautical mile' : {value: 1852, type: 'length/Distance'},
+      'sqPicometer' : {value: 0.000000000001, type:'area'},
+      'sqNanometer' : {value: 0.000000001, type:'area'},
+      'sqMicrometer' : {value: 0.000001, type:'area'},
+      'sqMillimeter' : {value: 0.001, type:'area'},
+      'sqCentimeter' : {value: 0.01, type:'area'},
+      'sqDecimeter' : {value: 0.1, type:'area'},
+      'sqMeter' : {value: 1, type:'area'},
+      'sqDecameter' : {value: 10, type:'area'},
+      'sqHectometer' : {value: 100, type:'area'},
+      'sqKilometer' : {value: 1000, type:'area'},
+      'sqMegameter' : {value: 1000000, type:'area'},
+      'sqGigameter' : {value: 1000000000, type:'area'},
+      'sqTerameter' : {value: 1000000000000, type:'area'},
+      'sqInch' : {value: 0.0254, type: 'area'},
+      'sqFoot' : {value: 0.3048, type: 'area'},
+      'sqYard' : {value: 0.9144, type: 'area'},
+      'sqMile' : {value: 1609.34, type: 'area'},
+      'sqNautical mile' : {value: 1852, type: 'area'},
+      'sqAcre' : {value: 4046.86, type:'area'},
+      'sqHectare' : {value: 10000, type:'area'},
+      'celsius' : {value: 1, type:'temperature'},
+      'kelvin' : {value: -274.15, type:'temperature'},
+      'fahrenhiet' : {value: 33.8, type:'temperature'},
+      'bit': {value: 1, type:'data/storage'},
+      'byte': {value: 0.125, type:'data/storage'},
+  },
+  test,
+  x,
+  y,
+  z,
+  a = 0,
+  b = 0,
+  c = 0,
+  d = new Date(),
+  monthLengths = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+  Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+function alsdjnaklsdn(obj){
+  if (obj.month === 0) {
+    Date.prototype.monthName = "January";
   };
-  if (this.month == 1) {
-    this.monthName = "February"
+  if (obj.month == 1) {
+    Date.prototype.monthName = "February"
   };
-  if (this.month == 2) {
-    this.monthName = "March"
+  if (obj.month == 2) {
+    Date.prototype.monthName = "March"
   };
-  if (this.month == 3) {
-    this.monthName = "April"
+  if (obj.month == 3) {
+    Date.prototype.monthName = "April"
   };
-  if (this.month == 4) {
-    this.monthName = "May"
+  if (obj.month == 4) {
+    Date.prototype.monthName = "May"
   };
-  if (this.month == 5) {
-    this.monthName = "June"
+  if (obj.month == 5) {
+    Date.prototype.monthName = "June"
   };
-  if (this.month == 6) {
-    this.monthName = "July"
+  if (obj.month == 6) {
+    Date.prototype.monthName = "July"
   };
-  if (this.month == 7) {
-    this.monthName = "August"
+  if (obj.month == 7) {
+    Date.prototype.monthName = "August"
   };
-  if (this.month == 8) {
-    this.monthName = "September"
+  if (obj.month == 8) {
+    Date.prototype.monthName = "September"
   };
-  if (this.month == 9) {
-    this.monthName = "October"
+  if (obj.month == 9) {
+    Date.prototype.monthName = "October"
   };
-  if (this.month == 10) {
-    this.monthName = "November"
+  if (obj.month == 10) {
+    Date.prototype.monthName = "November"
   };
-  if (this.month == 11) {
-    this.monthName = "December"
+  if (obj.month == 11) {
+    Date.prototype.monthName = "December"
   };
-  if (this.month == 0) {
-    this.monthNameShort = "Jan."
+  if (obj.month == 0) {
+    Date.prototype.monthNameShort = "Jan."
   };
-  if (this.month == 1) {
-    this.monthNameShort = "Feb."
+  if (obj.month == 1) {
+    Date.prototype.monthNameShort = "Feb."
   };
-  if (this.month == 2) {
-    this.monthNameShort = "Mar."
+  if (obj.month == 2) {
+    Date.prototype.monthNameShort = "Mar."
   };
-  if (this.month == 3) {
-    this.monthNameShort = "Apr."
+  if (obj.month == 3) {
+    Date.prototype.monthNameShort = "Apr."
   };
-  if (this.month == 4) {
-    this.monthNameShort = "May"
+  if (obj.month == 4) {
+    Date.prototype.monthNameShort = "May"
   };
-  if (this.month == 5) {
-    this.monthNameShort = "June"
+  if (obj.month == 5) {
+    Date.prototype.monthNameShort = "June"
   };
-  if (this.month == 6) {
-    this.monthNameShort = "July"
+  if (obj.month == 6) {
+    Date.prototype.monthNameShort = "July"
   };
-  if (this.month == 7) {
-    this.monthNameShort = "Aug."
+  if (obj.month == 7) {
+    Date.prototype.monthNameShort = "Aug."
   };
-  if (this.month == 8) {
-    this.monthNameShort = "Sept."
+  if (obj.month == 8) {
+    Date.prototype.monthNameShort = "Sept."
   };
-  if (this.month == 9) {
-    this.monthNameShort = "Oct."
+  if (obj.month == 9) {
+    Date.prototype.monthNameShort = "Oct."
   };
-  if (this.month == 10) {
-    this.monthNameShort = "Nov."
+  if (obj.month == 10) {
+    Date.prototype.monthNameShort = "Nov."
   };
-  if (this.month == 11) {
-    this.monthNameShort = "Dec."
+  if (obj.month == 11) {
+    Date.prototype.monthNameShort = "Dec."
   };
-  if (this.weekDay == 0) {
-    this.dayOfWeek = "Sunday"
+  if (obj.weekDay == 0) {
+    Date.prototype.dayOfWeek = "Sunday"
   };
-  if (this.weekDay == 1) {
-    this.dayOfWeek = "Monday"
+  if (obj.weekDay == 1) {
+    Date.prototype.dayOfWeek = "Monday"
   };
-  if (this.weekDay == 2) {
-    this.dayOfWeek = "Tuesday"
+  if (obj.weekDay == 2) {
+    Date.prototype.dayOfWeek = "Tuesday"
   };
-  if (this.weekDay == 3) {
-    this.dayOfWeek = "Wednesday"
+  if (obj.weekDay == 3) {
+    Date.prototype.dayOfWeek = "Wednesday"
   };
-  if (this.weekDay == 4) {
-    this.dayOfWeek = "Thursday"
+  if (obj.weekDay == 4) {
+    Date.prototype.dayOfWeek = "Thursday"
   };
-  if (this.weekDay == 5) {
-    this.dayOfWeek = "Friday"
+  if (obj.weekDay == 5) {
+    Date.prototype.dayOfWeek = "Friday"
   };
-  if (this.weekDay == 6) {
-    this.dayOfWeek = "Saturday"
+  if (obj.weekDay == 6) {
+    Date.prototype.dayOfWeek = "Saturday"
   };
-  if (this.weekDay == 0) {
-    this.dayOfWeekShort = "Sun"
+  if (obj.weekDay == 0) {
+    Date.prototype.dayOfWeekShort = "Sun"
   };
-  if (this.weekDay == 1) {
-    this.dayOfWeekShort = "Mon"
+  if (obj.weekDay == 1) {
+    Date.prototype.dayOfWeekShort = "Mon"
   };
-  if (this.weekDay == 2) {
-    this.dayOfWeekShort = "Tue"
+  if (obj.weekDay == 2) {
+    Date.prototype.dayOfWeekShort = "Tue"
   };
-  if (this.weekDay == 3) {
-    this.dayOfWeekShort = "Wed"
+  if (obj.weekDay == 3) {
+    Date.prototype.dayOfWeekShort = "Wed"
   };
-  if (this.weekDay == 4) {
-    this.dayOfWeekShort = "Thu"
+  if (obj.weekDay == 4) {
+    Date.prototype.dayOfWeekShort = "Thu"
   };
-  if (this.weekDay == 5) {
-    this.dayOfWeekShort = "Fri"
+  if (obj.weekDay == 5) {
+    Date.prototype.dayOfWeekShort = "Fri"
   };
-  if (this.weekDay == 6) {
-    this.dayOfWeekShort = "Sat"
+  if (obj.weekDay == 6) {
+    Date.prototype.dayOfWeekShort = "Sat"
   };
+}
+var Now = function(val1, val2) {
+  alsdjnaklsdn(this)
   this.monthDay = d.getDate() - 1;
   this.dayOfYear = d.getDate() - 1 + monthLengths[d.getMonth()]
   this.weekDay = d.getDay();
@@ -306,7 +338,17 @@ var Now = function() {
   if (d.getFullYear().LeapYear() == true && this.dayOfYear >= 59) {
     this.dayOfYear += 1
   }
+  if (val1 != undefined) {
+    if (val2 != undefined) {
+
+    } else {
+
+    }
+  }
 };
+var formatNow = function(val1, val2){
+  arr = new Now()
+}
 function isArray(myArray) {
   return myArray.constructor.toString().indexOf("Array") > -1;
 }
@@ -331,6 +373,48 @@ function replaceAll(input, obj) {
   }
   return retStr;
 };
+function encodeStringToBase(num, input){
+  if (((num & (num - 1) == 0) || num == 26)){
+    throw ': Base number not valid, use a power of two, or base 26'
+  } else {
+    if (num == 26) {
+      return replaceAll(input, {
+        'A': '1'
+      })
+    } else {
+      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+      var charCodes = []
+      var index = ''
+      var holder = []
+      var stuff
+      var ffuts = ''
+      var bit = Math.pow(2, 1/64)
+      for (var i = 0; i < input.length; i++) {
+        charCodes.push(input.charCodeAt(i))
+      }
+      for (var i = 0; i < charCodes.length; i++) {
+        ffuts = ''
+        stuff = Number(charCodes[i]).toString(2).length % 8
+        for (var j = 0; j < 8 - stuff; j++) {
+          ffuts += '0'
+        }
+        index += ffuts + Number(charCodes[i]).toString(2)
+      }
+      holder = index.match(/.{1,6}/g);
+      for (var i = 0; i < holder.length; i++) {
+        holder[i] = parseInt(holder[i], 2)
+        holder[i] = chars[holder[i]]
+      }
+      holder = holder.join('')
+      stuff = holder.length % 4
+      ffuts = ''
+      for (var j = 0; j < 4 - stuff; j++) {
+        ffuts += '='
+      }
+      return holder + ffuts
+    }
+  }
+}
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -430,34 +514,31 @@ Number.prototype.LeapYear = function() {
   if (this.year % 2 == 0) {
     if (this.year % 100 == 0) {
       if (this.year % 400 == 0) {
-        this.val = true
         this.leapYear = true
       } else {
-        this.val = false
         this.leapYear = false
       }
     } else {
-      this.val = true
       this.leapYear = true
     }
   } else {
-    this.val = false
     this.leapYear = false
   }
 }
 function decrypt(input) {
-  var f = new Now()
+  var arr = new Now()
+  alsdjnaklsdn(arr)
   return replaceAll(input, {
-    '%d%': f.date,
-    '%t%': f.time,
+    '%d%': arr.date,
+    '%t%': arr.time,
     '#m#': d.getMilliseconds(),
     '#mm#': d.getMinutes(),
     '#M#': d.getMonth(),
-    '#NM#': f.monthName,
-    '#nM#': f.monthNameShort,
+    '#NM#': d.monthName,
+    '#nM#': d.monthNameShort,
     '#d#': d.getDay(),
-    '#Nd#': f.dayOfWeek,
-    '#nd#': f.dayOfWeekShort,
+    '#Nd#': d.dayOfWeek,
+    '#nd#': d.dayOfWeekShort,
     '#D#': d.getDate(),
     '#h#': d.getHours(),
     '#Y#': d.getFullYear(),
@@ -574,6 +655,9 @@ function symplify() {
     }
   }
 }
+function newNow(date, format){
+
+}
 function toDate(input) {
 
 }
@@ -586,11 +670,42 @@ function toDate(input) {
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //+------------------------------------------------------------------------------+
 
-RegExp.prototype.addFlag = function (flags) {
+RegExp.prototype.setFlags = function (flags) {
   var arr = this.toString()
-  arr = arr.match(/[gmi]/g)
-  this = this.toString().replace(/\/(([^\/\n])+(.*))\/(g|m|i){0,3}/g, '$1')
-  return new RegExp(this.val, arr.replace(flags, '') + flags)
+  arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
+  this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
+  return new RegExp(this.val, flags)
+};
+RegExp.prototype.addFlags = function (flags) {
+  var arr = this.toString()
+  arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
+  this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
+  for (var i = 0; i < flags.length; i++) {
+    arr = arr + flags[i]
+  }
+  arr = arr.split('').sort().join('')
+    var unique='';
+    for(var i=0; i < arr.length; i++){
+        if(unique.indexOf(arr[i])==-1){
+            unique += arr[i];
+        }
+    }
+    arr = unique;
+  return new RegExp(this.val, arr)
+};
+RegExp.prototype.removeFlags = function (flags) {
+  var arr = this.toString()
+  arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
+  this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
+  for (var i = 0; i < flags.length; i++) {
+    arr = arr.replace(flags[i], '')
+  }
+  return new RegExp(this.val, arr)
+};
+RegExp.prototype.getFlags = function () {
+  var arr = this.toString()
+  arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
+  return arr
 };
 
 //+------------------------------------------------------------------------------+
@@ -642,7 +757,7 @@ String.prototype.removeAt = function(val1, val2) {
 String.prototype.every = function(regex) {
   return this.toString().match(regex)
 };
-String.prototype.encode = function(type) {
+String.prototype.encode = function(type, base) {
   switch (type.toLowerCase().trim()) {
     case 'html':
       return replaceAll(this.toString(), {
@@ -672,6 +787,46 @@ String.prototype.encode = function(type) {
         ']': '%5D'
       });
       break;
+    case 'morse':
+     replaceAll(this.tostring(),{
+      'A': '.-',
+      'B': '-...',
+      'C': '-.-.',
+      'D': '-..',
+      'E': '.',
+      'F': '..-.',
+      'G': '--.',
+      'H': '....',
+      'I': '..',
+      'J': '.---',
+      'K': '-.-',
+      'L': '.-..',
+      'M': '--',
+      'N': '-.',
+      'O': '---',
+      'P': '.--.',
+      'Q': '--.-',
+      'R': '.-.',
+      'S': '...',
+      'T': '-',
+      'U': '..-',
+      'V': '...-',
+      'W': '.--',
+      'X': '-..-',
+      'Y': '-.--',
+      'Z': '--..',
+      '0': '-----',
+      '1': '.----',
+      '2': '..---',
+      '3': '...--',
+      '4': '....-',
+      '5': '.....',
+      '6': '-....',
+      '7': '--...',
+      '8': '---..',
+      '9': '----.',
+    });
+    break;
   }
 };
 String.prototype.decode = function(type) {
@@ -694,8 +849,49 @@ String.prototype.decode = function(type) {
     case 'base64':
       return atob(this.toString())
       break;
-    case '':
-
+    case 'regexp':
+    case 'regex':
+      return this.replace(/\\([\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
+      break;
+    case 'morse':
+      replaceAll(this.tostring(),{
+        '.-': 'A',
+        '-...': 'B',
+        '-.-.': 'C',
+        '-..': 'D',
+        '.': 'E',
+        '..-.': 'F',
+        '--.': 'G',
+        '....': 'H',
+        '..': 'I',
+        '.---': 'J',
+        '-.-': 'K',
+        '.-..': 'L',
+        '--': 'M',
+        '-.': 'N',
+        '---': 'O',
+        '.--.': 'P',
+        '--.-': 'Q',
+        '.-.': 'R',
+        '...': 'S',
+        '-': 'T',
+        '..-': 'U',
+        '...-': 'V',
+        '.--': 'W',
+        '-..-': 'X',
+        '-.--': 'Y',
+        '--..': 'Z',
+        '-----': '0',
+        '.----': '1',
+        '..---': '2',
+        '...--': '3',
+        '....-': '4',
+        '.....': '5',
+        '-....': '6',
+        '--...': '7',
+        '---..': '8',
+        '----.': '9'
+      });
       break;
   }
 };
@@ -743,11 +939,6 @@ String.prototype.fract = function(num1, num2) {
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //+------------------------------------------------------------------------------+
 
-var conversions = [
-  [
-    ['inch', 'in'], inch
-  ]
-]
 var math = {
   eval: function(val1, val2) {
 
@@ -772,7 +963,7 @@ var math = {
       return Math.sin(val1)
     },
     sinh: function(val1) {
-      return Math.log(val1) - Math.log(val1 * -1) / 2;
+      return Math.log(val1) - (Math.log(val1)* -1) / 2;
     },
     asin: function(val1) {
       return Math.asin(val1);
@@ -868,7 +1059,7 @@ var math = {
     var y = Math.pow(Math.abs(val1), 1 / 3);
     return val1 < 0 ? -y : y;
   },
-  line: function(m, x, b) {
+  slope: function(m, x, b) {
     return (m * x) + b
   },
   lim: function(n, c, f) {
@@ -926,6 +1117,57 @@ var math = {
   },
   prim: function(val1) {
     return Math.pow(a, p - 1) % p === 1;
+  },
+  trunc: function(val1) {
+    return val1 < 0 ? Math.ceil(val1) : Math.floor(val1)
+  },
+  sign: function(val1) {
+    val1 = +val1; // convert to a number
+    if (val1 === 0 || isNaN(x)) {
+      return val1;
+    }
+    return x > 0 ? 1 : -1;
+  },
+  toBase: function(num, b1, b2){
+    var a = "0123456789ABCDEFX"
+    var b = 0
+    var c = 0
+    var d = 0
+    var e = 0
+    var f = 0
+    var g = 0
+    num = num.toString()
+    num = num.replace(/ /, "");
+    num = num.toUpperCase();
+    c = 0;
+    //	return b1+b2;
+    for (d = num.length, e = 1; d >= 1; d--, e *= b1) {
+      b = num.charAt(d - 1);
+      for (f = 0; f < b1 + 1; f++) {
+        if (f == b1) {
+          c = "bad imput number";
+          return c;
+        }
+        if (b == a.charAt(f))
+          break;
+      }
+      c += f * e;
+    }
+    num = c;
+    if (num == 0) return "0";
+    c = "";
+    for (e = 1; e <= num; e *= b2);
+    if (num != e) e /= b2;
+    for (g = e; g >= 1; g /= b2) {
+      d = Math.floor(num / g);
+      c += a.charAt(d);
+      num -= d * g;
+    }
+    if(parseInt(c) == NaN || (parseInt(c) != NaN && c.length != parseInt(c).toString().length)){
+      return c;
+    } else {
+      return parseInt(c);
+    }
   },
 }
 var triangle = function() {
@@ -1115,8 +1357,12 @@ function degToRad(x) {
 function radToDeg(x) {
 	return x / Math.PI * 180;
 }
-Number.prototype.convert = function(type1, type2) {
-  this.val = ([type2] / [type1]) * this.val
+var convert = function(amount, val1, val2) {
+  if (val1.type == val2.type){
+    return val1.value * amount / val2.value
+  } else {
+    return null
+  }
 }
 function Calculate(input) {
 
@@ -1195,16 +1441,15 @@ var solve = function(Eq, rav, obj) {
   var qe
   var EQ
   var eq = Eq.split(' = ')
-  eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ') + ' + rav;
-  eq[1] = rav
-  eq = eq.join('=')
-  Eq = Eq.replace(/((\+|\-)?[a-z0-9])((\+|\-)?[a-z0-9])/ig, '$1 * ');
-  Eq = Eq.replace(/(\))(?=[a-z0-9])/ig, '$1 * ');
-  Eq = Eq.replace(/([a-z0-9])(?=\()/ig, '$1 * ');
+  eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ')';
+  eq[1] = '0'
+  Eq = eq.join(' = ')
+  Eq = Eq.replace(/((\+|\-)?([a-z]|(\d+(\.?\d)*)))((\+|\-)?([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
+  Eq = Eq.replace(/(\))(?=([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
+    Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
   Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
   Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
-  Eq = Eq.replace(/\-\s*([a-zA-Z0-9])+/ig, ' + -$1')
-//  Eq = Eq.replace(/(\(\s*([-+]?)(\d+(\.?\d)*)(?:\s*([-+*\/\%])\s+((?:\s[-+])?(\d+(\.?\d)*))\s*)+\))/ig, eval('$1'))
+  Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, ' + -$1')
   console.log(Eq)
   console.log(eq)
   console.log(qe)
@@ -1304,15 +1549,15 @@ function t() {
 function f() {
   return false
 }
-function True(input) {
-  if (input == true) {
+Boolean.prototype.isTrue = function() {
+  if (this == true) {
     return true
   } else {
     return false
   }
 }
-function False(input) {
-  if (input != true) {
+Boolean.prototype.isFalse = function() {
+  if (this != true) {
     return true
   } else {
     return false
@@ -1392,8 +1637,9 @@ Array.prototype.divideArray = function(array) {
 
 console.log('Logic: ' + xnor(xor(nor(and(or(f(), t()), not(nand(t(), f()))), f()), f()), t()).toString());
 console.log('Date: ' + decrypt('Today is #Nd#, #NM# #D#th, #Y#').toString());
-console.log('Math: ' + eval(math.add(5, 4).toString()));
+console.log('Math: ' + eval(math.trig.sinh(4).toString()));
 console.log('String: ' + 'Hello my name is fox, and I am so awesome, because I am \\ ^ $ * + ? . ( ) | { } [ ] > < & '.goFrom(2).goTo(this.length - 3).encode('regex').encode('html').encode('base64'));
 console.log('Array: ' + [0, 1, 2, 3, 4].addToEach(0.5).addArray([1, 2, 3, 4, 5]).toString());
-console.trace('document.body: %O', '');
+console.log('Regex: ' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').toString() + ':' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').getFlags());
 solve('5 + 5 + 5x * xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x')
+console.log(window.btoa('hey mom'))

@@ -14,14 +14,60 @@
 
 <body>
   <div id="list">
-    <table>
-      <tr>
-        <td>
-          <input id="input-textbox" class="style-2" type="text" size="37" />
-        </td>
-        <td>
+    <input id="input-textbox" class="style-2" type="text" size="37" />
+      <table>
+        <tr>
+          <td><button>MC</button></td>
+          <td><button>MR</button></td>
+          <td><button>MS</button></td>
+          <td><button>M+</button></td>
+          <td><button>M-</button></td>
+        </tr>
+        <tr>
+          <td><button>AC</button></td>
+          <td><button>CE</button></td>
+          <td><button>C</button></td>
+          <td><button>%</button></td>
+          <td><button>√</button></td>
+        </tr>
+        <tr>
+          <td><button>(</button></td>
+          <td><button>)</button></td>
+          <td><button>π</button></td>
+          <td><button>e</button></td>
+          <td><button>M-</button></td>
+        </tr>
+        <tr>
+          <td><button>7</button></td>
+          <td><button>8</button></td>
+          <td><button>9</button></td>
+          <td><button>÷</button></td>
+          <td><button>M-</button></td>
+        </tr>
+        <tr>
+          <td><button>4</button></td>
+          <td><button>5</button></td>
+          <td><button>6</button></td>
+          <td><button>×</button></td>
+          <td><button>M-</button></td>
+        </tr>
+        <tr>
+          <td><button>1</button></td>
+          <td><button>2</button></td>
+          <td><button>3</button></td>
+          <td><button>-</button></td>
+          <td><button>M-</button></td>
+        </tr>
+        <tr>
+          <td><button>0</button></td>
+          <td><button>.</button></td>
+          <td><button>=</button></td>
+          <td><button>+</button></td>
+        </tr>
+      </table>
           <button type="button" onclick="go();return false;">Calculate</button>
           <script>
+            var memory = []
             var textIn = document.getElementById("input-textbox");
             var textOut = document.getElementById("output-textbox");
             var output;
@@ -62,12 +108,11 @@
               var output = process(input);
               document.getElementById("output-textbox").value += output + "\n";
             };
+            function add(val1, val2){
+
+            }
           </script>
-        </td>
-      </tr>
-    </table>
-    <textarea id="output-textbox" rows="20" cols="50"></textarea>
-  </div>
+      </div>
 </body>
 
 </html>
