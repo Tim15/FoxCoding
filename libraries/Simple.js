@@ -401,6 +401,11 @@ function encodeStringToBase(num, input){
         index += ffuts + Number(charCodes[i]).toString(2)
       }
       holder = index.match(/.{1,6}/g);
+      ffuts = ''
+      for (var i = 0; i < 6 - (holder[holder.length - 1].length % 6); i++) {
+        ffuts += '0'
+      }
+      holder[holder.length - 1] += ffuts
       for (var i = 0; i < holder.length; i++) {
         holder[i] = parseInt(holder[i], 2)
         holder[i] = chars[holder[i]]
@@ -408,10 +413,12 @@ function encodeStringToBase(num, input){
       holder = holder.join('')
       stuff = holder.length % 4
       ffuts = ''
-      for (var j = 0; j < 4 - stuff; j++) {
+      for (var j = 0; j < stuff; j++) {
         ffuts += '='
       }
-      return holder + ffuts
+      holder += ffuts
+      return holder
+      console.log(holder);
     }
   }
 }
@@ -707,6 +714,126 @@ RegExp.prototype.getFlags = function () {
   arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
   return arr
 };
+var Regex = function(input){
+  this.group = function(input) {
+    return '('+input+')'
+  },
+  this.Set = function(input){
+    return '['+input+']'
+  },
+  this.NegatedSet = function(input){
+    return '[^'+input+']'
+  },
+  this.range = function () {
+    var arr = ''
+    for (var i = 0; i < arguments.length; i+=2) {
+       arr += arguments[i][i] + '-' + arguments[i][i + 1]
+    }
+    return '[' + arr + ']'
+  },
+  this.anyWord = function () {
+    return '\\w'
+  }
+  this.anyNumber = function () {
+    return '\\d'
+  }
+  this.anyWhitespace = function () {
+    return '\\s'
+  }
+  this.anyCharacter = function () {
+    return '.'
+  }
+  this.anyBoundry = function () {
+    return '\\b'
+  }
+  this.notWord = function () {
+    return '\\W'
+  }
+  this.notNumber = function () {
+    return '\\D'
+  }
+  this.notWhitespace = function () {
+    return '\\S'
+  }
+  this.notBoundry = function () {
+    return '\\B'
+  }
+  this.nonCaptureGroup = function (input) {
+    return '(?:' + input + ')'
+  }
+  this.negativeLookahead = function (input) {
+    return '(?!' + input + ')'
+  }
+  this.escape = function (type, input) {
+   switch (type.toLowerCase()) {
+     case 'char':
+     case 'character':
+        return '\\' + input
+      break;
+     case 'octal':
+       return '\\' + input
+      break;
+     case 'hex':
+       return '\\x' + input
+      break;
+     case 'unicode':
+       return '\\u' + input
+      break;
+     case 'control':
+        return '\\c' + input.toUpperCase()
+      break;
+     case 'tab':
+        return '\\t'
+      break;
+     case 'verticalTab':
+        return '\\v'
+      break;
+     case 'lineFeed':
+        return '\\n' + input.toUpperCase()
+      break;
+     case 'formFeed':
+        return '\\f'
+      break;
+     case 'carriageReturn':
+        return '\\r'
+      break;
+     case 'null':
+        return '\\0'
+      break;
+    }
+  }
+  this.reference = function (input) {
+    return '\\' + input
+  }
+  this.lookahead = function (input) {
+    return '(?=' + input + ')'
+  }
+  this.beginning = function () {
+    return '^'
+  }
+  this.end = function () {
+    return '$'
+  }
+  this.oneOrMore = function () {
+    return '+'
+  }
+  this.zeroOrMore = function () {
+    return '*'
+  }
+  this.numToNum = function (val1, val2) {
+    return '{' + val1 + ',' + val2 + '}'
+  }
+  this.numOrMore = function (val1) {
+    return '{' + val1 + ',}'
+  }
+  this.oneOrZero = function (val1) {
+    return '?'
+  }
+  this.or = function (val1) {
+    return '|'
+  }
+}
+var regex = new Regex
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -717,219 +844,264 @@ RegExp.prototype.getFlags = function () {
 //+------------------------------------------------------------------------------+
 
 String.prototype.goFrom = function(input) {
-  return this.toString().slice(input, input.length)
+  if (isArray(this)) {
+
+  } else {
+    return this.toString().slice(input, input.length)
+  }
 };
 String.prototype.goTo = function(input) {
-  return this.toString().slice(0, input)
+  if (isArray(this)) {
+
+  } else {
+    return this.toString().slice(0, input)
+  }
 };
 String.prototype.insertAt = function(input, val) {
-  if (val == undefined) {
-    return this.toString() + input.toString()
+  if (isArray(this)) {
+
   } else {
-    return this.toString().replace(this.charAt(val), this.charAt(val) + input.toString())
+    if (val == undefined) {
+      return this.toString() + input.toString()
+    } else {
+      return this.toString().replace(this.charAt(val), this.charAt(val) + input.toString())
+    }
   }
 };
 String.prototype.charsFrom = function(val1, val2) {
-  if (val1 == undefined) {
-    return this.split('')
-  } else if (val2 == undefined) {
-    return this.toString().slice(0, input).split('')
+  if (isArray(this)) {
+
   } else {
-    return this.toString().slice(val1, val2).split('')
+    if (val1 == undefined) {
+      return this.split('')
+    } else if (val2 == undefined) {
+      return this.toString().slice(0, input).split('')
+    } else {
+      return this.toString().slice(val1, val2).split('')
+    }
   }
 };
 String.prototype.wordsFrom = function(val1, val2) {
-  if (val1 == undefined) {
-    return this.split(' ')
-  } else if (val2 == undefined) {
-    return this.toString().slice(0, input).split(' ')
+  if (isArray(this)) {
+
   } else {
-    return this.toString().slice(val1, val2).split(' ')
+    if (val1 == undefined) {
+      return this.split(' ')
+    } else if (val2 == undefined) {
+      return this.toString().slice(0, input).split(' ')
+    } else {
+      return this.toString().slice(val1, val2).split(' ')
+    }
   }
 };
 String.prototype.removeAt = function(val1, val2) {
-  if (val2 == undefined) {
-    return this.toString().replace(this.toString().slice(val1, this.toString().length - 1), '')
+  if (isArray(this)) {
+
   } else {
-    return this.toString().replace(this.toString().slice(val1, val2), '')
+    if (val2 == undefined) {
+      return this.toString().replace(this.toString().slice(val1, this.toString().length - 1), '')
+    } else {
+      return this.toString().replace(this.toString().slice(val1, val2), '')
+    }
   }
 };
 String.prototype.every = function(regex) {
-  return this.toString().match(regex)
+  if (isArray(this)) {
+
+  } else {
+    return this.toString().match(regex)
+  }
 };
 String.prototype.encode = function(type, base) {
-  switch (type.toLowerCase().trim()) {
-    case 'html':
-      return replaceAll(this.toString(), {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '\"': '&quot;',
-        '\'': '&apos;'
+  if (isArray(this)) {
+
+  } else {
+    switch (type.toLowerCase().trim()) {
+      case 'html':
+        return replaceAll(this.toString(), {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '\"': '&quot;',
+          '\'': '&apos;'
+        });
+        break;
+      case 'url':
+        return replaceAll(this.toString().encodeURI(this.toString()), {
+          '[': '%5B',
+          ']': '%5D'
+        });
+        break;
+      case 'base64':
+        return btoa(this.toString())
+        break;
+      case 'regex':
+      case 'regexp':
+        return this.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+        break;
+      case 'url':
+        return replaceAll(this.toString().encodeURI(this.toString()), {
+          '[': '%5B',
+          ']': '%5D'
+        });
+        break;
+      case 'morse':
+       replaceAll(this.tostring(),{
+        'A': '.-',
+        'B': '-...',
+        'C': '-.-.',
+        'D': '-..',
+        'E': '.',
+        'F': '..-.',
+        'G': '--.',
+        'H': '....',
+        'I': '..',
+        'J': '.---',
+        'K': '-.-',
+        'L': '.-..',
+        'M': '--',
+        'N': '-.',
+        'O': '---',
+        'P': '.--.',
+        'Q': '--.-',
+        'R': '.-.',
+        'S': '...',
+        'T': '-',
+        'U': '..-',
+        'V': '...-',
+        'W': '.--',
+        'X': '-..-',
+        'Y': '-.--',
+        'Z': '--..',
+        '0': '-----',
+        '1': '.----',
+        '2': '..---',
+        '3': '...--',
+        '4': '....-',
+        '5': '.....',
+        '6': '-....',
+        '7': '--...',
+        '8': '---..',
+        '9': '----.',
       });
       break;
-    case 'url':
-      return replaceAll(this.toString().encodeURI(this.toString()), {
-        '[': '%5B',
-        ']': '%5D'
-      });
-      break;
-    case 'base64':
-      return btoa(this.toString())
-      break;
-    case 'regex':
-    case 'regexp':
-      return this.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      break;
-    case 'url':
-      return replaceAll(this.toString().encodeURI(this.toString()), {
-        '[': '%5B',
-        ']': '%5D'
-      });
-      break;
-    case 'morse':
-     replaceAll(this.tostring(),{
-      'A': '.-',
-      'B': '-...',
-      'C': '-.-.',
-      'D': '-..',
-      'E': '.',
-      'F': '..-.',
-      'G': '--.',
-      'H': '....',
-      'I': '..',
-      'J': '.---',
-      'K': '-.-',
-      'L': '.-..',
-      'M': '--',
-      'N': '-.',
-      'O': '---',
-      'P': '.--.',
-      'Q': '--.-',
-      'R': '.-.',
-      'S': '...',
-      'T': '-',
-      'U': '..-',
-      'V': '...-',
-      'W': '.--',
-      'X': '-..-',
-      'Y': '-.--',
-      'Z': '--..',
-      '0': '-----',
-      '1': '.----',
-      '2': '..---',
-      '3': '...--',
-      '4': '....-',
-      '5': '.....',
-      '6': '-....',
-      '7': '--...',
-      '8': '---..',
-      '9': '----.',
-    });
-    break;
+    }
   }
 };
 String.prototype.decode = function(type) {
-  switch (type.toLowerCase().trim()) {
-    case 'html':
-      return this.toString().replaceAll({
-        '&lt;': '<',
-        '&gt;': '>',
-        '&amp;': '&',
-        '&quot;': '\"',
-        '&apos;': '\''
-      });
-      break;
-    case 'url':
-      return this.toString().decodeURI(this.toString()).replaceAll({
-        '[': '%5B',
-        ']': '%5D'
-      });
-      break;
-    case 'base64':
-      return atob(this.toString())
-      break;
-    case 'regexp':
-    case 'regex':
-      return this.replace(/\\([\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
-      break;
-    case 'morse':
-      replaceAll(this.tostring(),{
-        '.-': 'A',
-        '-...': 'B',
-        '-.-.': 'C',
-        '-..': 'D',
-        '.': 'E',
-        '..-.': 'F',
-        '--.': 'G',
-        '....': 'H',
-        '..': 'I',
-        '.---': 'J',
-        '-.-': 'K',
-        '.-..': 'L',
-        '--': 'M',
-        '-.': 'N',
-        '---': 'O',
-        '.--.': 'P',
-        '--.-': 'Q',
-        '.-.': 'R',
-        '...': 'S',
-        '-': 'T',
-        '..-': 'U',
-        '...-': 'V',
-        '.--': 'W',
-        '-..-': 'X',
-        '-.--': 'Y',
-        '--..': 'Z',
-        '-----': '0',
-        '.----': '1',
-        '..---': '2',
-        '...--': '3',
-        '....-': '4',
-        '.....': '5',
-        '-....': '6',
-        '--...': '7',
-        '---..': '8',
-        '----.': '9'
-      });
-      break;
+  if (isArray(this)) {
+
+  } else {
+    switch (type.toLowerCase().trim()) {
+      case 'html':
+        return this.toString().replaceAll({
+          '&lt;': '<',
+          '&gt;': '>',
+          '&amp;': '&',
+          '&quot;': '\"',
+          '&apos;': '\''
+        });
+        break;
+      case 'url':
+        return this.toString().decodeURI(this.toString()).replaceAll({
+          '[': '%5B',
+          ']': '%5D'
+        });
+        break;
+      case 'base64':
+        return atob(this.toString())
+        break;
+      case 'regexp':
+      case 'regex':
+        return this.replace(/\\([\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
+        break;
+      case 'morse':
+        replaceAll(this.tostring(),{
+          '.-': 'A',
+          '-...': 'B',
+          '-.-.': 'C',
+          '-..': 'D',
+          '.': 'E',
+          '..-.': 'F',
+          '--.': 'G',
+          '....': 'H',
+          '..': 'I',
+          '.---': 'J',
+          '-.-': 'K',
+          '.-..': 'L',
+          '--': 'M',
+          '-.': 'N',
+          '---': 'O',
+          '.--.': 'P',
+          '--.-': 'Q',
+          '.-.': 'R',
+          '...': 'S',
+          '-': 'T',
+          '..-': 'U',
+          '...-': 'V',
+          '.--': 'W',
+          '-..-': 'X',
+          '-.--': 'Y',
+          '--..': 'Z',
+          '-----': '0',
+          '.----': '1',
+          '..---': '2',
+          '...--': '3',
+          '....-': '4',
+          '.....': '5',
+          '-....': '6',
+          '--...': '7',
+          '---..': '8',
+          '----.': '9'
+        });
+        break;
+    }
   }
 };
 String.prototype.at = function() {
-  var array = []
-  for (var i = 0; i < arguments.length; i++) {
-    array.push(this.charAt(arguments[i]))
+  if (isArray(this)) {
+
+  } else {
+    var arr = []
+    for (var i = 0; i < arguments.length; i++) {
+      arr.push(this.charAt(arguments[i]))
+    }
+    return arr
   }
-  return array
 }
 String.prototype.condense = function() {
-  return this.trim()
+  if (isArray(this)) {
+
+  } else {
+    return this.trim()
+  }
 }
 String.prototype.txtcode = function() {
-  return
+  if (isArray(this)) {
+
+  } else {
+    return
+  }
 }
 String.prototype.assign = function(obj) {
-  var retStr = this.toString();
-  for (x in obj) {
-    retStr = retStr.replace(new RegExp(x.toString(), 'g'), obj[x]);
+  if (isArray(this)) {
+
+  } else {
+    var retStr = this.toString();
+    for (x in obj) {
+      retStr = retStr.replace(new RegExp(x.toString(), 'g'), obj[x]);
+    }
+    return retStr;
   }
-  return retStr;
 };
 String.prototype.add = function(num) {
-  return this + ' + ' + num;
+  if (isArray(this)) {
+
+  } else {
+    return this + num;
+  }
 }
-String.prototype.minus = function(num) {
-  return this + ' - ' + num;
-}
-String.prototype.divide = function(num) {
-  return this + ' / ' + num;
-}
-String.prototype.multiply = function(num) {
-  return this + ' * ' + num;
-}
-String.prototype.fract = function(num1, num2) {
-    return num1.toString() + '/' + num2.toString()
-}
+
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -940,112 +1112,244 @@ String.prototype.fract = function(num1, num2) {
 //+------------------------------------------------------------------------------+
 
 var math = {
-  eval: function(val1, val2) {
+  eval: function(val1) {
 
   },
   add: function(val1, val2) {
-    return val1 + val2
+    if (isArray(this)) {
+
+    } else {
+      return val1 + val2
+    }
   },
   subtract: function(val1, val2) {
-    return val1 - val2
+    if (isArray(this)) {
+
+    } else {
+      return val1 - val2
+    }
   },
   multiply: function(val1, val2) {
-    return val1 * val2
+    if (isArray(this)) {
+
+    } else {
+      return val1 * val2
+    }
   },
   divide: function(val1, val2) {
-    return val1 * val2
+    if (isArray(this)) {
+
+    } else {
+      return val1 * val2
+    }
   },
   mod: function(val1, val2) {
-    return val1 % val2
+    if (isArray(this)) {
+
+    } else {
+      return val1 % val2
+    }
   },
   trig: {
     sin: function(val1) {
-      return Math.sin(val1)
+      if (isArray(this)) {
+
+      } else {
+        return Math.sin(val1)
+      }
     },
     sinh: function(val1) {
-      return Math.log(val1) - (Math.log(val1)* -1) / 2;
+      if (isArray(this)) {
+
+      } else {
+        return Math.log(val1) - (Math.log(val1)* -1) / 2;
+      }
     },
     asin: function(val1) {
-      return Math.asin(val1);
+      if (isArray(this)) {
+
+      } else {
+        return Math.asin(val1);
+      }
     },
     asinh: function(val1) {
-      if (x === -Infinity) {
-        return x;
+      if (isArray(this)) {
+
       } else {
-        return Math.log(val1 + Math.sqrt(val1 * val1 + 1));
+        if (x === -Infinity) {
+          return x;
+        } else {
+          return Math.log(val1 + Math.sqrt(val1 * val1 + 1));
+        }
       }
     },
     tan: function(val1) {
-      return Math.tan(val1)
+      if (isArray(this)) {
+
+      } else {
+        return Math.tan(val1)
+      }
     },
     tanh: function(val1) {
-      return (Math.log(val1) - Math.log(val1 * -1) / 2) / ((Math.exp(x) + Math.exp(-x)) / 2);
+      if (isArray(this)) {
+
+      } else {
+        return (Math.log(val1) - Math.log(val1 * -1) / 2) / ((Math.exp(x) + Math.exp(-x)) / 2);
+      }
     },
     atan: function(val1) {
-      return Math.atan(val1)
+      if (isArray(this)) {
+
+      } else {
+        return Math.atan(val1)
+      }
     },
     atan2: function(val1, val2) {
-      return Math.atan2(val1, val2)
+      if (isArray(this)) {
+
+      } else {
+        return Math.atan2(val1, val2)
+      }
     },
     atanh: function(val1) {
-      return Math.log((1 + x) / (1 - x)) / 2;
+      if (isArray(this)) {
+
+      } else {
+        return Math.log((1 + x) / (1 - x)) / 2;
+      }
     },
     cos: function(val1) {
-      return Math.cos(val1)
+      if (isArray(this)) {
+
+      } else {
+        return Math.cos(val1)
+      }
     },
     cosh: function(val1) {
-      return ((Math.exp(val1) + Math.exp(-val1)) / 2);
+      if (isArray(this)) {
+
+      } else {
+        return ((Math.exp(val1) + Math.exp(-val1)) / 2);
+      }
     },
     acos: function(val1) {
-      return Math.acos(val1)
+      if (isArray(this)) {
+
+      } else {
+        return Math.acos(val1)
+      }
     },
     acosh: function(val1) {
-      return Math.log(val1 + Math.sqrt(val1 * val1 - 1));
+      if (isArray(this)) {
+
+      } else {
+        return Math.log(val1 + Math.sqrt(val1 * val1 - 1));
+      }
     },
     sec: function(val1) {
-      return 1/ Math.cos(val1)
+      if (isArray(this)) {
+
+      } else {
+        return 1/ Math.cos(val1)
+      }
     },
     sech: function(val1) {
-      return 1/ ((Math.exp(val1) + Math.exp(-val1)) / 2)
+      if (isArray(this)) {
+
+      } else {
+        return 1/ ((Math.exp(val1) + Math.exp(-val1)) / 2)
+      }
     },
     asec: function(val1) {
-      return 1/Math.cos(val1) * -1
+      if (isArray(this)) {
+
+      } else {
+        return 1/Math.cos(val1) * -1
+      }
     },
     cosec: function(val1) {
-      return 1/ Math.sin(val1)
+      if (isArray(this)) {
+
+      } else {
+        return 1/ Math.sin(val1)
+      }
     },
     cot: function(val1) {
-      return Math.cos(val1) / Math.sin(val1)
+      if (isArray(this)) {
+
+      } else {
+          return Math.cos(val1) / Math.sin(val1)
+      }
     },
     coth: function(val1) {
-      return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2);
+      if (isArray(this)) {
+
+      } else {
+          return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2);
+      }
     },
     acot: function(val1) {
-      return (Math.cos(val1) / Math.sin(val1)) * -1
+      if (isArray(this)) {
+
+      } else {
+        return (Math.cos(val1) / Math.sin(val1)) * -1
+      }
     },
     acoth: function(val1) {
-      return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
+      if (isArray(this)) {
+
+      } else {
+        return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
+      }
     },
     csc: function(val1) {
-      return 1 / Math.sin(val1)
+      if (isArray(this)) {
+
+      } else {
+        return 1 / Math.sin(val1)
+      }
     },
     csch: function(val1) {
-      return 1 / Math.log(val1) - Math.log(val1 * -1) / 2;
+      if (isArray(this)) {
+
+      } else {
+        return 1 / Math.log(val1) - Math.log(val1 * -1) / 2;
+      }
     },
     acsc: function(val1) {
-      return (1 / Math.sin(val1)) * -1
+      if (isArray(this)) {
+
+      } else {
+        return (1 / Math.sin(val1)) * -1
+      }
     },
     acsch: function(val1) {
-      return (1 / Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
+      if (isArray(this)) {
+
+      } else {
+        return (1 / Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
+      }
     },
     hyp: function(opp, adj) {
-      return Math.sqrt(Math.pow(opp, 2) + Math.pow(adj, 2));
+      if (isArray(this)) {
+
+      } else {
+        return Math.sqrt(Math.pow(opp, 2) + Math.pow(adj, 2));
+      }
     },
     opp: function(hyp, adj) {
-      return Math.sqrt(Math.pow(hyp, 2) - Math.pow(adj, 2));
+      if (isArray(this)) {
+
+      } else {
+        return Math.sqrt(Math.pow(hyp, 2) - Math.pow(adj, 2));
+      }
     },
     adj: function(hyp, opp) {
-      return Math.sqrt(Math.pow(hyp, 2) - Math.pow(opp, 2));
+      if (isArray(this)) {
+
+      } else {
+        return Math.sqrt(Math.pow(hyp, 2) - Math.pow(opp, 2));
+      }
     },
   },
   sqrt: function(val1) {
@@ -1056,118 +1360,184 @@ var math = {
     }
   },
   cbrt: function(val1) {
-    var y = Math.pow(Math.abs(val1), 1 / 3);
-    return val1 < 0 ? -y : y;
+    if (isArray(this)) {
+
+    } else {
+      var y = Math.pow(Math.abs(val1), 1 / 3);
+      return val1 < 0 ? -y : y;
+    }
   },
-  slope: function(m, x, b) {
-    return (m * x) + b
+  slope: function(type, y, m, x, b) {
+    if (isArray(this)) {
+
+    } else {
+      if(y == '?'){return (m * x) + b}
+      else if(m == '?'){return (y - b) / x}
+      else if(x == '?'){return (y - b) / m}
+      else if(b == '?'){return y - (x * m)}
+    }
   },
   lim: function(n, c, f) {
-    if (f(c) != (Infinity || NaN)){
-      return f(c)
-    } else {
+    if (isArray(this)) {
 
+    } else {
+      if (f(c) != (Infinity || NaN)){
+        return f(c)
+      } else {
+
+      }
     }
   },
   summ: function(n, i, m) {
-    var arr = 0
-    for (var i = 0; i < n; i++) {
-      arr += i(m)
-      m++
+    if (isArray(this)) {
+
+    } else {
+      var arr = 0
+      for (var i = 0; i < n; i++) {
+        arr += i(m)
+        m++
+      }
+      return arr;
     }
-    return arr;
   },
   fact: function(n) {
-    var arr = 1
-    for (var i = 0; i < n; i++) {
-      arr *= (n - i)
+    if (isArray(this)) {
+
+    } else {
+      var arr = 1
+      for (var i = 0; i < n; i++) {
+        arr *= (n - i)
+      }
+      return arr;
     }
-    return arr;
   },
   perm: function(n, r) {
-    var arr = 1
-    var rra = 1
-   for (var i = 0; i < n; i++) {
-          arr *= (n - i)
-          rra *= ((n-r) - i)
+    if (isArray(this)) {
+
+    } else {
+      var arr = 1
+      var rra = 1
+     for (var i = 0; i < n; i++) {
+            arr *= (n - i)
+            rra *= ((n-r) - i)
+      }
+      return arr/rra
     }
-    return arr/rra
   },
   combin: function(n, r) {
-    var arr = 1
-    var rra = 1
-   for (var i = 0; i < n; i++) {
-          arr *= (n - i)
-          rra *= ((n-r) - i)
-          rar *= (r - i)
+    if (isArray(this)) {
+
+    } else {
+     var arr = 1
+     var rra = 1
+     for (var i = 0; i < n; i++) {
+            arr *= (n - i)
+            rra *= ((n-r) - i)
+            rar *= (r - i)
+      }
+      return (arr/rra)/rar
     }
-    return (arr/rra)/rar
   },
   abs: function(val1) {
-    return Math.abs(val1)
+    if (isArray(this)) {
+
+    } else {
+      return Math.abs(val1)
+    }
   },
   ceil: function(val1) {
-    return Math.ceil(val1)
+    if (isArray(this)) {
+
+    } else {
+      return Math.ceil(val1)
+    }
   },
   exp: function(val1) {
-    return Math.exp(val1)
+    if (isArray(this)) {
+
+    } else {
+      return Math.exp(val1)
+    }
   },
   floor: function(val1) {
-    return Math.floor(val1)
+    if (isArray(this)) {
+
+    } else {
+      return Math.floor(val1)
+    }
   },
-  prim: function(val1) {
-    return Math.pow(a, p - 1) % p === 1;
+  prim: function(a, p) {
+    if (isArray(this)) {
+
+    } else {
+      return Math.pow(a, p - 1) % p === 1;
+    }
   },
   trunc: function(val1) {
-    return val1 < 0 ? Math.ceil(val1) : Math.floor(val1)
+    if (isArray(this)) {
+
+    } else {
+      return val1 < 0 ? Math.ceil(val1) : Math.floor(val1)
+    }
   },
   sign: function(val1) {
-    val1 = +val1; // convert to a number
-    if (val1 === 0 || isNaN(x)) {
-      return val1;
+    if (isArray(this)) {
+
+    } else {
+      val1 = +val1; // convert to a number
+      if (val1 === 0 || isNaN(x)) {
+        return val1;
+      }
+      return x > 0 ? 1 : -1;
     }
-    return x > 0 ? 1 : -1;
   },
   toBase: function(num, b1, b2){
-    var a = "0123456789ABCDEFX"
-    var b = 0
-    var c = 0
-    var d = 0
-    var e = 0
-    var f = 0
-    var g = 0
-    num = num.toString()
-    num = num.replace(/ /, "");
-    num = num.toUpperCase();
-    c = 0;
-    //	return b1+b2;
-    for (d = num.length, e = 1; d >= 1; d--, e *= b1) {
-      b = num.charAt(d - 1);
-      for (f = 0; f < b1 + 1; f++) {
-        if (f == b1) {
-          c = "bad imput number";
-          return c;
-        }
-        if (b == a.charAt(f))
-          break;
-      }
-      c += f * e;
-    }
-    num = c;
-    if (num == 0) return "0";
-    c = "";
-    for (e = 1; e <= num; e *= b2);
-    if (num != e) e /= b2;
-    for (g = e; g >= 1; g /= b2) {
-      d = Math.floor(num / g);
-      c += a.charAt(d);
-      num -= d * g;
-    }
-    if(parseInt(c) == NaN || (parseInt(c) != NaN && c.length != parseInt(c).toString().length)){
-      return c;
+    if (isArray(this)) {
+
     } else {
-      return parseInt(c);
+      var a = "0123456789ABCDEFX"
+      var b = 0
+      var c = 0
+      var d = 0
+      var e = 0
+      var f = 0
+      var g = 0
+      num = num.toString()
+      num = num.replace(/ /, "");
+      num = num.toUpperCase();
+      c = 0;
+      //	return b1+b2;
+      for (d = num.length, e = 1; d >= 1; d--, e *= b1) {
+        b = num.charAt(d - 1);
+        for (f = 0; f < b1 + 1; f++) {
+          if (f == b1) {
+            c = "bad imput number";
+            return c;
+          }
+          if (b == a.charAt(f))
+            break;
+        }
+        c += f * e;
+      }
+      num = c;
+      if (num == 0) return "0";
+      c = "";
+      for (e = 1; e <= num; e *= b2);
+      if (num != e) e /= b2;
+      for (g = e; g >= 1; g /= b2) {
+        d = Math.floor(num / g);
+        c += a.charAt(d);
+        num -= d * g;
+      }
+      if(parseInt(c) == NaN || (parseInt(c) != NaN && c.length != parseInt(c).toString().length)){
+        return c;
+      } else {
+        return parseInt(c);
+      }
     }
+  },
+  triangularNum: function (num) {
+    return (Math.pow(num, 2) + num)/2
   },
 }
 var triangle = function() {
@@ -1455,9 +1825,6 @@ var solve = function(Eq, rav, obj) {
   console.log(qe)
   }
 }
-var Expression = function () {
-
-}
 /*
 for (var rra = -Infinity; arr < Infinity; arr += 0.1) {
     if(Math.abs(funct(arr)) < 0.1) {
@@ -1549,6 +1916,18 @@ function t() {
 function f() {
   return false
 }
+function eq(val1, val2){
+  return val1 == val2
+}
+function gt(val1, val2){
+  return val1 > val2
+}
+function lt(val1, val2){
+  return val1 < val2
+}
+function ne(val1, val2){
+  return val1 != val2
+}
 Boolean.prototype.isTrue = function() {
   if (this == true) {
     return true
@@ -1632,6 +2011,139 @@ Array.prototype.divideArray = function(array) {
   }
   return this
 };
+Array.prototype.findValue = function(name, value){
+   var array = $.map(this, function(v,i){
+        var haystack = v[name];
+        var needle = new RegExp(value);
+        // check for string in haystack
+        // return the matched item if true, or null otherwise
+      return needle.test(haystack) ? v : null;
+   });
+  return this;
+}
+
+//+------------------------------------------------------------------------------+
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//|+==========================XXX::::::::::::::::::XXX==========================+|
+//|+=#########################XXX::OBJECT LIBRARY::XXX#########################=+|
+//|+==========================XXX::::::::::::::::::XXX==========================+|
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//+------------------------------------------------------------------------------+
+
+function searchObj(obj, value){
+  var comparator = function(obj, text) {
+  if (obj && text && typeof obj === 'object' && typeof text === 'object') {
+      for (var objKey in obj) {
+          if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
+                  comparator(obj[objKey], text[objKey])) {
+              return true;
+          }
+      }
+      return false;
+  }
+  text = ('' + text).toLowerCase();
+  return ('' + obj).toLowerCase().indexOf(text) > -1;
+  };
+  var search = function(obj, text) {
+  if (typeof text == 'string' && text.charAt(0) === '!') {
+      return !search(obj, text.substr(1));
+  }
+  switch (typeof obj) {
+      case "boolean":
+      case "number":
+      case "string":
+          return comparator(obj, text);
+      case "object":
+          switch (typeof text) {
+              case "object":
+                  return comparator(obj, text);
+              default:
+                  for (var objKey in obj) {
+                      if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
+                          return true;
+                      }
+                  }
+                  break;
+          }
+          return false;
+      case "array":
+          for (var i = 0; i < obj.length; i++) {
+              if (search(obj[i], text)) {
+                  return obj[i];
+              }
+          }
+          return false;
+      default:
+          return false;
+  }
+  }
+  return search(this, value)
+}
+Object.prototype.depth = function() {
+    var level = 1;
+    var key;
+    for(key in this) {
+        if (!this.hasOwnProperty(key)) continue;
+
+        if(typeof this[key] == 'object'){
+            var depth = utils.depthOf(this[key]) + 1;
+            level = Math.max(depth, level);
+        }
+    }
+    return level;
+}
+Object.prototype.duplicate = function() {
+ return this
+}
+Object.prototype.has = function(name){
+  var comparator = function(obj, text) {
+  if (obj && text && typeof obj === 'object' && typeof text === 'object') {
+      for (var objKey in obj) {
+          if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
+                  comparator(obj[objKey], text[objKey])) {
+              return true;
+          }
+      }
+      return false;
+  }
+  text = ('' + text).toLowerCase();
+  return ('' + obj).toLowerCase().indexOf(text) > -1;
+  };
+  var search = function(obj, text) {
+  if (typeof text == 'string' && text.charAt(0) === '!') {
+      return !search(obj, text.substr(1));
+  }
+  switch (typeof obj) {
+      case "boolean":
+      case "number":
+      case "string":
+          return comparator(obj, text);
+      case "object":
+          switch (typeof text) {
+              case "object":
+                  return comparator(obj, text);
+              default:
+                  for (var objKey in obj) {
+                      if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
+                          return true;
+                      }
+                  }
+                  break;
+          }
+          return false;
+      case "array":
+          for (var i = 0; i < obj.length; i++) {
+              if (search(obj[i], text)) {
+                  return true;
+              }
+          }
+          return false;
+      default:
+          return false;
+  }
+  }
+  return search(this, value)
+}
 
 //+==============================================================================+
 
@@ -1642,4 +2154,6 @@ console.log('String: ' + 'Hello my name is fox, and I am so awesome, because I a
 console.log('Array: ' + [0, 1, 2, 3, 4].addToEach(0.5).addArray([1, 2, 3, 4, 5]).toString());
 console.log('Regex: ' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').toString() + ':' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').getFlags());
 solve('5 + 5 + 5x * xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x')
-console.log(window.btoa('hey mom'))
+console.log(window.btoa('hey mom'));
+console.log(encodeStringToBase(64, 'hey mom'));
+console.log(Object.keys({1:'hi', stuff: {'hi': 1, blah: 'stuff  '}}))
