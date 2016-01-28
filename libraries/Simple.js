@@ -388,7 +388,7 @@ function encodeStringToBase(num, input){
       var holder = []
       var stuff
       var ffuts = ''
-      var bit = Math.pow(2, 1/64)
+      var bit = Math.log(num) / Math.log(2)
       for (var i = 0; i < input.length; i++) {
         charCodes.push(input.charCodeAt(i))
       }
@@ -400,7 +400,8 @@ function encodeStringToBase(num, input){
         }
         index += ffuts + Number(charCodes[i]).toString(2)
       }
-      holder = index.match(/.{1,6}/g);
+      var hi = new RegExp('.{1,' + bit.toString() + '}', 'g')
+      holder = index.match(hi);
       ffuts = ''
       for (var i = 0; i < 6 - (holder[holder.length - 1].length % 6); i++) {
         ffuts += '0'
@@ -1539,6 +1540,13 @@ var math = {
   triangularNum: function (num) {
     return (Math.pow(num, 2) + num)/2
   },
+  log: function (val1, val2) {
+    if (val2 == undefined) {
+      return Math.log(val1)
+    } else {
+      return Math.log(val2) / Math.log(val1)
+    }
+  },
 }
 var triangle = function() {
   this.a = '?',
@@ -2155,5 +2163,5 @@ console.log('Array: ' + [0, 1, 2, 3, 4].addToEach(0.5).addArray([1, 2, 3, 4, 5])
 console.log('Regex: ' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').toString() + ':' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').getFlags());
 solve('5 + 5 + 5x * xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x')
 console.log(window.btoa('hey mom'));
-console.log(encodeStringToBase(64, 'hey mom'));
+console.log(encodeStringToBase(32, 'hey mom'));
 console.log(Object.keys({1:'hi', stuff: {'hi': 1, blah: 'stuff  '}}))
