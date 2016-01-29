@@ -1547,6 +1547,30 @@ var math = {
       return Math.log(val2) / Math.log(val1)
     }
   },
+  dist: function (val1, val2) {
+    if (val2 == undefined) {
+      return Math.abs(val1)
+    } else {
+      return Math.abs(Math.abs(val1) - Math.abs(val2))
+    }
+  },
+  random: function (val1, val2) {
+    Math.floor(val1 + (1 + val2 - val1) * Math.random())
+  },
+  pAdicDist: function (val1, val2) {
+    if (val2 == undefined) {
+      return Math.abs(val1)
+    } else {
+      return Math.abs(Math.abs(val1) - Math.abs(val2))
+    }
+  },
+  cis: function (val1, val2) {
+    if (val2 == undefined) {
+      return Math.abs(val1)
+    } else {
+      return Math.abs(Math.abs(val1) - Math.abs(val2))
+    }
+  },
 }
 var triangle = function() {
   this.a = '?',
