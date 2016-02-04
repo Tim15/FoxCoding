@@ -402,7 +402,13 @@ var Now = function(input, format) {
       } else if (isArray(val1)) {
 
       } else if (typeof val1 == 'object') {
-
+        if (val1 == Now()){
+          val1.toMilliseconds()
+          this.toMilliseconds()
+          var VaR = this
+          VaR.total = Math.abs(Math.abs(val1.total) - Math.abs(this.total)
+          return VaR.fromMilliseconds()
+        }
       }
     } else {
 
