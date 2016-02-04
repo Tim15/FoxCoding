@@ -406,7 +406,7 @@ var Now = function(input, format) {
           val1.toMilliseconds()
           this.toMilliseconds()
           var VaR = this
-          VaR.total = Math.abs(Math.abs(val1.total) - Math.abs(this.total)
+          VaR.total = Math.abs(Math.abs(val1.total) - Math.abs(this.total))
           return VaR.fromMilliseconds()
         }
       }
