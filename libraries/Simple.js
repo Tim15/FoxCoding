@@ -1,49 +1,178 @@
 var add = {},
   pi = Math.PI,
   strConversions = {
-      'picometer' : {value: 0.000000000001, type: 'length/Distance'},
-      'nanometer' : {value: 0.000000001, type: 'length/Distance'},
-      'micrometer' : {value: 0.000001, type: 'length/Distance'},
-      'millimeter' : {value: 0.001, type: 'length/Distance'},
-      'centimeter' : {value: 0.01, type: 'length/Distance'},
-      'decimeter' : {value: 0.1, type: 'length/Distance'},
-      'meter' : {value: 1, type: 'length/Distance'},
-      'decameter' : {value: 10, type: 'length/Distance'},
-      'hectometer' : {value: 100, type: 'length/Distance'},
-      'kilometer' : {value: 1000, type: 'length/Distance'},
-      'megameter' : {value: 1000000, type: 'length/Distance'},
-      'gigameter' : {value: 1000000000, type: 'length/Distance'},
-      'terameter' : {value: 1000000000000, type: 'length/Distance'},
-      'inch' : {value: 0.0254, type: 'length/Distance'},
-      'foot' : {value: 0.3048, type: 'length/Distance'},
-      'yard' : {value: 0.9144, type: 'length/Distance'},
-      'mile' : {value: 1609.34, type: 'length/Distance'},
-      'nautical mile' : {value: 1852, type: 'length/Distance'},
-      'sqPicometer' : {value: 0.000000000001, type:'area'},
-      'sqNanometer' : {value: 0.000000001, type:'area'},
-      'sqMicrometer' : {value: 0.000001, type:'area'},
-      'sqMillimeter' : {value: 0.001, type:'area'},
-      'sqCentimeter' : {value: 0.01, type:'area'},
-      'sqDecimeter' : {value: 0.1, type:'area'},
-      'sqMeter' : {value: 1, type:'area'},
-      'sqDecameter' : {value: 10, type:'area'},
-      'sqHectometer' : {value: 100, type:'area'},
-      'sqKilometer' : {value: 1000, type:'area'},
-      'sqMegameter' : {value: 1000000, type:'area'},
-      'sqGigameter' : {value: 1000000000, type:'area'},
-      'sqTerameter' : {value: 1000000000000, type:'area'},
-      'sqInch' : {value: 0.0254, type: 'area'},
-      'sqFoot' : {value: 0.3048, type: 'area'},
-      'sqYard' : {value: 0.9144, type: 'area'},
-      'sqMile' : {value: 1609.34, type: 'area'},
-      'sqNautical mile' : {value: 1852, type: 'area'},
-      'sqAcre' : {value: 4046.86, type:'area'},
-      'sqHectare' : {value: 10000, type:'area'},
-      'celsius' : {value: 1, type:'temperature'},
-      'kelvin' : {value: -274.15, type:'temperature'},
-      'fahrenhiet' : {value: 33.8, type:'temperature'},
-      'bit': {value: 1, type:'data/storage'},
-      'byte': {value: 0.125, type:'data/storage'},
+    'picometer': {
+      value: 0.000000000001,
+      type: 'length/Distance'
+    },
+    'nanometer': {
+      value: 0.000000001,
+      type: 'length/Distance'
+    },
+    'micrometer': {
+      value: 0.000001,
+      type: 'length/Distance'
+    },
+    'millimeter': {
+      value: 0.001,
+      type: 'length/Distance'
+    },
+    'centimeter': {
+      value: 0.01,
+      type: 'length/Distance'
+    },
+    'decimeter': {
+      value: 0.1,
+      type: 'length/Distance'
+    },
+    'meter': {
+      value: 1,
+      type: 'length/Distance'
+    },
+    'decameter': {
+      value: 10,
+      type: 'length/Distance'
+    },
+    'hectometer': {
+      value: 100,
+      type: 'length/Distance'
+    },
+    'kilometer': {
+      value: 1000,
+      type: 'length/Distance'
+    },
+    'megameter': {
+      value: 1000000,
+      type: 'length/Distance'
+    },
+    'gigameter': {
+      value: 1000000000,
+      type: 'length/Distance'
+    },
+    'terameter': {
+      value: 1000000000000,
+      type: 'length/Distance'
+    },
+    'inch': {
+      value: 0.0254,
+      type: 'length/Distance'
+    },
+    'foot': {
+      value: 0.3048,
+      type: 'length/Distance'
+    },
+    'yard': {
+      value: 0.9144,
+      type: 'length/Distance'
+    },
+    'mile': {
+      value: 1609.34,
+      type: 'length/Distance'
+    },
+    'nautical mile': {
+      value: 1852,
+      type: 'length/Distance'
+    },
+    'sqPicometer': {
+      value: 0.000000000001,
+      type: 'area'
+    },
+    'sqNanometer': {
+      value: 0.000000001,
+      type: 'area'
+    },
+    'sqMicrometer': {
+      value: 0.000001,
+      type: 'area'
+    },
+    'sqMillimeter': {
+      value: 0.001,
+      type: 'area'
+    },
+    'sqCentimeter': {
+      value: 0.01,
+      type: 'area'
+    },
+    'sqDecimeter': {
+      value: 0.1,
+      type: 'area'
+    },
+    'sqMeter': {
+      value: 1,
+      type: 'area'
+    },
+    'sqDecameter': {
+      value: 10,
+      type: 'area'
+    },
+    'sqHectometer': {
+      value: 100,
+      type: 'area'
+    },
+    'sqKilometer': {
+      value: 1000,
+      type: 'area'
+    },
+    'sqMegameter': {
+      value: 1000000,
+      type: 'area'
+    },
+    'sqGigameter': {
+      value: 1000000000,
+      type: 'area'
+    },
+    'sqTerameter': {
+      value: 1000000000000,
+      type: 'area'
+    },
+    'sqInch': {
+      value: 0.0254,
+      type: 'area'
+    },
+    'sqFoot': {
+      value: 0.3048,
+      type: 'area'
+    },
+    'sqYard': {
+      value: 0.9144,
+      type: 'area'
+    },
+    'sqMile': {
+      value: 1609.34,
+      type: 'area'
+    },
+    'sqNautical mile': {
+      value: 1852,
+      type: 'area'
+    },
+    'sqAcre': {
+      value: 4046.86,
+      type: 'area'
+    },
+    'sqHectare': {
+      value: 10000,
+      type: 'area'
+    },
+    'celsius': {
+      value: 1,
+      type: 'temperature'
+    },
+    'kelvin': {
+      value: -274.15,
+      type: 'temperature'
+    },
+    'fahrenhiet': {
+      value: 33.8,
+      type: 'temperature'
+    },
+    'bit': {
+      value: 1,
+      type: 'data/storage'
+    },
+    'byte': {
+      value: 0.125,
+      type: 'data/storage'
+    },
   },
   test,
   x,
@@ -52,306 +181,13 @@ var add = {},
   a = 0,
   b = 0,
   c = 0,
-  d = new Date(),
   monthLengths = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
   Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-function alsdjnaklsdn(obj){
-  if (obj.month === 0) {
-    Date.prototype.monthName = "January";
-  };
-  if (obj.month == 1) {
-    Date.prototype.monthName = "February"
-  };
-  if (obj.month == 2) {
-    Date.prototype.monthName = "March"
-  };
-  if (obj.month == 3) {
-    Date.prototype.monthName = "April"
-  };
-  if (obj.month == 4) {
-    Date.prototype.monthName = "May"
-  };
-  if (obj.month == 5) {
-    Date.prototype.monthName = "June"
-  };
-  if (obj.month == 6) {
-    Date.prototype.monthName = "July"
-  };
-  if (obj.month == 7) {
-    Date.prototype.monthName = "August"
-  };
-  if (obj.month == 8) {
-    Date.prototype.monthName = "September"
-  };
-  if (obj.month == 9) {
-    Date.prototype.monthName = "October"
-  };
-  if (obj.month == 10) {
-    Date.prototype.monthName = "November"
-  };
-  if (obj.month == 11) {
-    Date.prototype.monthName = "December"
-  };
-  if (obj.month == 0) {
-    Date.prototype.monthNameShort = "Jan."
-  };
-  if (obj.month == 1) {
-    Date.prototype.monthNameShort = "Feb."
-  };
-  if (obj.month == 2) {
-    Date.prototype.monthNameShort = "Mar."
-  };
-  if (obj.month == 3) {
-    Date.prototype.monthNameShort = "Apr."
-  };
-  if (obj.month == 4) {
-    Date.prototype.monthNameShort = "May"
-  };
-  if (obj.month == 5) {
-    Date.prototype.monthNameShort = "June"
-  };
-  if (obj.month == 6) {
-    Date.prototype.monthNameShort = "July"
-  };
-  if (obj.month == 7) {
-    Date.prototype.monthNameShort = "Aug."
-  };
-  if (obj.month == 8) {
-    Date.prototype.monthNameShort = "Sept."
-  };
-  if (obj.month == 9) {
-    Date.prototype.monthNameShort = "Oct."
-  };
-  if (obj.month == 10) {
-    Date.prototype.monthNameShort = "Nov."
-  };
-  if (obj.month == 11) {
-    Date.prototype.monthNameShort = "Dec."
-  };
-  if (obj.weekDay == 0) {
-    Date.prototype.dayOfWeek = "Sunday"
-  };
-  if (obj.weekDay == 1) {
-    Date.prototype.dayOfWeek = "Monday"
-  };
-  if (obj.weekDay == 2) {
-    Date.prototype.dayOfWeek = "Tuesday"
-  };
-  if (obj.weekDay == 3) {
-    Date.prototype.dayOfWeek = "Wednesday"
-  };
-  if (obj.weekDay == 4) {
-    Date.prototype.dayOfWeek = "Thursday"
-  };
-  if (obj.weekDay == 5) {
-    Date.prototype.dayOfWeek = "Friday"
-  };
-  if (obj.weekDay == 6) {
-    Date.prototype.dayOfWeek = "Saturday"
-  };
-  if (obj.weekDay == 0) {
-    Date.prototype.dayOfWeekShort = "Sun"
-  };
-  if (obj.weekDay == 1) {
-    Date.prototype.dayOfWeekShort = "Mon"
-  };
-  if (obj.weekDay == 2) {
-    Date.prototype.dayOfWeekShort = "Tue"
-  };
-  if (obj.weekDay == 3) {
-    Date.prototype.dayOfWeekShort = "Wed"
-  };
-  if (obj.weekDay == 4) {
-    Date.prototype.dayOfWeekShort = "Thu"
-  };
-  if (obj.weekDay == 5) {
-    Date.prototype.dayOfWeekShort = "Fri"
-  };
-  if (obj.weekDay == 6) {
-    Date.prototype.dayOfWeekShort = "Sat"
-  };
-}
-var Now = function(val1, val2) {
-  alsdjnaklsdn(this)
-  this.monthDay = d.getDate() - 1;
-  this.dayOfYear = d.getDate() - 1 + monthLengths[d.getMonth()]
-  this.weekDay = d.getDay();
-  this.weekDayName = d.dayOfWeek;
-  this.weekDayNameShort = d.dayOfWeekShort;
-  this.year = d.getFullYear();
-  this.hour = d.getHours();
-  this.milisec = d.getMilliseconds();
-  this.min = d.getMinutes();
-  this.month = d.getMonth();
-  this.monthName = d.monthName;
-  this.monthNameShort = d.monthNameShort;
-  this.sec = d.getSeconds();
-  this.timezoneoffset = d.getTimezoneOffset();
-  this.timezone = d.getTimezoneOffset() / 60;
-  this.settings = {};
-  this.settings.dateFormat = ['#M#', '#d#', '#Y#'];
-  this.settings.hourFormat = d.getHours();
-  this.specialday = false
-  this.specialDays = [
-    ['New Year', '1/5', 'each'],
-    ['Martin Luther King Day', '1/18', 'each'],
-    ['Presedents\' Day', '2/15', 'each'],
-    ['Memorial Day', '5/30', 'each'],
-    ['Independence Day', '7/4', 'each'],
-    ['Labor Day', '9/5', 'each'],
-    ['Columbus Day', '10/10', 'each'],
-    ['Veterans Day', '11/11', 'each'],
-    ['Thanksgiving Day', '11/24', 'each']
-  ]
-  this.add = function(amount, type) {
-      switch (type.toLowerCase()) {
-        case 'hour':
-          Now().hour += amount;
-          break;
-        case 'day':
-          Now().monthDay += amount;
-          break;
-        case 'week':
 
-          break;
-        case 'month':
-
-          break;
-        case 'year':
-          Now().year += amount
-          break;
-      }
-    },
-  this.next = function(input, num) {
-      Now().updateTime()
-      x = d.getDate()
-      y = d.getDay()
-      if (num > 1) {
-        z = num * 7
-      } else {
-        z = 0
-      }
-      switch (input.toLowerCase()) {
-        case 'mon':
-        case 'monday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 1))
-          break;
-        case 'tue':
-        case 'tuesday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 2))
-          break;
-        case 'wed':
-        case 'wednesday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 3))
-          break;
-        case 'thu':
-        case 'thursday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 4))
-          break;
-        case 'fri':
-        case 'friday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 5))
-          break;
-        case 'sat':
-        case 'saturday':
-          Now().monthDay = (x + ((y - input.dayToNum) + input.dayToNum + 6))
-          break;
-        case 'sun':
-        case 'Sunday':
-          Now().monthDay = (x + ((i - input.dayToNum) + input.dayToNum))
-          break;
-      }
-    },
-  this.last = function(input, num) {
-      updateTime()
-      x = d.getDate()
-      y = d.getDay()
-      if (num > 1) {
-        z = num * 7
-      } else {
-        z = 0
-      }
-      switch (input.toLowerCase()) {
-        case 'mon':
-        case 'monday':
-          Now().monthDay = (x - i - (6 - (6 - input.dayToNum())) - z)
-          break;
-        case 'tue':
-        case 'tuesday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-        case 'wed':
-        case 'wednesday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-        case 'thu':
-        case 'thursday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-        case 'fri':
-        case 'friday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-        case 'sat':
-        case 'saturday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-        case 'sun':
-        case 'Sunday':
-          Now().monthDay = (x + (-i + (6 - (6 - input.dayToNum()))) - z)
-          break;
-      }
-    },
-  this.is = function(type, time) {
-      var TTTT = type.iparse()
-      if (type == undefined) {
-
-      } else {
-        TTTT.dayToNum()
-        if (true) {
-
-        }
-      }
-    },
-  this.get = function(object, date) {
-      var TTTT = gparse(object)
-      if (date == undefined) {
-        return Now()[TTTT]
-      } else {
-        return date[TTTT]
-      }
-    },
-  this.compare = function(d1, d2) {
-
-    }
-  this.new = function(type, a1, a2, a3, a4) {
-    switch (type.toLowerCase()) {
-      case 'special':
-      case 'holiday':
-        this.specialDays.push([a1, [a2], a3])
-        break;
-    }
-  }
-  this.leapYear = this.year.LeapYear();
-  this.date = this.month + '/' + this.monthDay + '/' + this.year;
-  this.time = this.hour + ':' + this.min + ':' + this.sec;
-  if (d.getFullYear().LeapYear() == true && this.dayOfYear >= 59) {
-    this.dayOfYear += 1
-  }
-  if (val1 != undefined) {
-    if (val2 != undefined) {
-
-    } else {
-
-    }
-  }
-};
-var formatNow = function(val1, val2){
-  arr = new Now()
-}
 function isArray(myArray) {
-  return myArray.constructor.toString().indexOf("Array") > -1;
+  return Object.prototype.toString.call(myArray) === '[object Array]';
 }
+
 function findAtNum(input, numbers) {
   x = '';
   for (var i = 0; i < numbers.length; i++) {
@@ -359,6 +195,7 @@ function findAtNum(input, numbers) {
   }
   return x
 }
+
 function allIndexOf(str, toSearch) {
   var pos, indices = [];
   for (pos = str.indexOf(toSearch); pos !== -1; pos = str.indexOf(toSearch, pos + 1)) {
@@ -366,6 +203,7 @@ function allIndexOf(str, toSearch) {
   }
   return indices;
 }
+
 function replaceAll(input, obj) {
   var retStr = input.toString();
   for (x in obj) {
@@ -373,8 +211,9 @@ function replaceAll(input, obj) {
   }
   return retStr;
 };
-function encodeStringToBase(num, input){
-  if (((num & (num - 1) == 0) || num == 26)){
+
+function encodeStringToBase(num, input) {
+  if (((num & (num - 1) == 0) || num == 26)) {
     throw ': Base number not valid, use a power of two, or base 26'
   } else {
     if (num == 26) {
@@ -432,243 +271,7 @@ function encodeStringToBase(num, input){
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //+------------------------------------------------------------------------------+
 
-function tConvert(time, stuff) {
-  if (time.length > 1) { // If time format correct
-    if (time > 12) {
-      return (time - 12).toString() + 'PM';
-    } else {
-      return time.toString();
-    }
-  }
-}
-function dayToNum() {
-  switch (this.val.toLowerCase().trim()) {
-    case 'mon':
-    case 'monday':
-      Now().weekDay = 1
-      break;
-    case 'tue':
-    case 'tuesday':
-      Now().weekDay = 2
-      break;
-    case 'wed':
-    case 'wednesday':
-      Now().weekDay = 3
-      break;
-    case 'thu':
-    case 'thursday':
-      Now().weekDay = 4
-      break;
-    case 'fri':
-    case 'friday':
-      Now().weekDay = 5
-      break;
-    case 'sat':
-    case 'saturday':
-      Now().weekDay = 6
-      break;
-    case 'sun':
-    case 'Sunday':
-      Now().weekDay = 0
-      break;
-    case 'jan':
-    case 'january':
-      Now().month = 0
-      break;
-    case 'feb':
-    case 'february':
-      Now().month = 1
-      break;
-    case 'mar':
-    case 'march':
-      Now().month = 2
-      break;
-    case 'apr':
-    case 'april':
-      Now().month = 3
-      break;
-    case 'may':
-      Now().month = 4
-      break;
-    case 'june':
-      Now().month = 5
-      break;
-    case 'july':
-      Now().month = 6
-      break;
-    case 'aug':
-    case 'august':
-      Now().month = 7
-      break;
-    case 'sep':
-    case 'september':
-      Now().month = 8
-      break;
-    case 'oct':
-    case 'october':
-      Now().month = 9
-      break;
-    case 'nov':
-    case 'november':
-      Now().month = 10
-      break;
-    case 'dec':
-    case 'december':
-      Now().month = 11
-      break;
-  }
-}
-Number.prototype.LeapYear = function() {
-  if (this.year % 2 == 0) {
-    if (this.year % 100 == 0) {
-      if (this.year % 400 == 0) {
-        this.leapYear = true
-      } else {
-        this.leapYear = false
-      }
-    } else {
-      this.leapYear = true
-    }
-  } else {
-    this.leapYear = false
-  }
-}
-function decrypt(input) {
-  var arr = new Now()
-  alsdjnaklsdn(arr)
-  return replaceAll(input, {
-    '%d%': arr.date,
-    '%t%': arr.time,
-    '#m#': d.getMilliseconds(),
-    '#mm#': d.getMinutes(),
-    '#M#': d.getMonth(),
-    '#NM#': d.monthName,
-    '#nM#': d.monthNameShort,
-    '#d#': d.getDay(),
-    '#Nd#': d.dayOfWeek,
-    '#nd#': d.dayOfWeekShort,
-    '#D#': d.getDate(),
-    '#h#': d.getHours(),
-    '#Y#': d.getFullYear(),
-    '#y#': findAtNum(d.getFullYear(), [2, 3]),
-    '#c#': findAtNum(d.getFullYear(), [0]) + 1
-  });
-}
-function iparse() {
-  var parsed = this.toLowerCase().trim()
-  switch (parsed) {
-    case 'today':
-      this.val = Now().weekDay
-      break;
-    case 'year':
-    case 'thisyear':
-      this.val = Now().year
-      break;
-    case 'month':
-    case 'thismonth':
-      this.val = Now().month
-      break;
-    case 'week':
 
-      break;
-  }
-}
-function gparse(input) {
-  asdf = new Now()
-  var parsed = input.toLowerCase().trim()
-  switch (parsed) {
-    case 'day':
-    case 'today':
-    case 'daynum':
-    case 'daynumber':
-      return 'weekDay'
-      break;
-    case 'dayname':
-    case 'todayname':
-    case 'nameoftoday':
-    case 'nameofday':
-      return 'weekDayName'
-      break;
-    case 'shortdayname':
-    case 'daynameshort':
-    case 'todaynameshort':
-    case 'shorttodayname':
-    case 'nameoftodayshort':
-    case 'shortnameoftoday':
-    case 'nameofdayshort':
-    case 'shortnameofday':
-      return 'weekDayNameShort'
-      break;
-    case 'month':
-    case 'thismonth':
-    case 'monthnum':
-    case 'monthnumber':
-      return 'month'
-      break;
-    case 'monthname':
-    case 'nameofmonth':
-      return 'monthName'
-      break;
-    case 'shortmonthname':
-    case 'monthnameshort':
-    case 'monthnameshort':
-    case 'shortmonthname':
-    case 'nameofmonthshort':
-    case 'shortnameofmonth':
-    case 'nameofmonthshort':
-    case 'shortnameofmonth':
-      return 'monthNameShort'
-      break;
-  }
-}
-function symplify() {
-  leapyear()
-
-  if (Now().sec > 59) {
-    Now().min += 1
-    Now().sec -= 60
-  }
-  if (Now().min > 59) {
-    Now().hour += 1
-    Now().min -= 60
-  }
-  if (Now().hour > 23) {
-    Now().monthDay += 1
-    Now().hour -= 24
-  }
-  if (Now().weekDay > 6) {
-    Now().weekDay -= 7
-  }
-  if (month == (0 || 2 || 4 || 6 || 7 || 9 || 11)) {
-    if (Now().monthDay > 30) {
-      Now().monthDay -= 31
-      Now().monthnum += 1
-    }
-  } else if (month == (3 || 5 || 8)) {
-    if (Now().monthDay > 29) {
-      Now().monthDay -= 30
-      Now().monthnum += 1
-    }
-  } else {
-    if (Now().leapYear == true) {
-      if (Now().monthDay > 28) {
-        Now().monthDay -= 29
-        Now().monthnum += 1
-      }
-    } else {
-      if (Now().monthDay > 27) {
-        Now().monthDay -= 28
-        Now().monthnum += 1
-      }
-    }
-  }
-}
-function newNow(date, format){
-
-}
-function toDate(input) {
-
-}
 
 //+------------------------------------------------------------------------------+
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
@@ -678,13 +281,13 @@ function toDate(input) {
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //+------------------------------------------------------------------------------+
 
-RegExp.prototype.setFlags = function (flags) {
+RegExp.prototype.setFlags = function(flags) {
   var arr = this.toString()
   arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
   this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
   return new RegExp(this.val, flags)
 };
-RegExp.prototype.addFlags = function (flags) {
+RegExp.prototype.addFlags = function(flags) {
   var arr = this.toString()
   arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
   this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
@@ -692,16 +295,16 @@ RegExp.prototype.addFlags = function (flags) {
     arr = arr + flags[i]
   }
   arr = arr.split('').sort().join('')
-    var unique='';
-    for(var i=0; i < arr.length; i++){
-        if(unique.indexOf(arr[i])==-1){
-            unique += arr[i];
-        }
+  var unique = '';
+  for (var i = 0; i < arr.length; i++) {
+    if (unique.indexOf(arr[i]) == -1) {
+      unique += arr[i];
     }
-    arr = unique;
+  }
+  arr = unique;
   return new RegExp(this.val, arr)
 };
-RegExp.prototype.removeFlags = function (flags) {
+RegExp.prototype.removeFlags = function(flags) {
   var arr = this.toString()
   arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
   this.val = this.toString().replace(/\/(.+)\/(([igm])(?!.*\1))*/g, '$1')
@@ -710,127 +313,128 @@ RegExp.prototype.removeFlags = function (flags) {
   }
   return new RegExp(this.val, arr)
 };
-RegExp.prototype.getFlags = function () {
+RegExp.prototype.getFlags = function() {
   var arr = this.toString()
   arr = this.toString().replace(/\/(.+)\/((([igm])(?!.*\4))*)/g, '$2');
   return arr
 };
-var Regex = function(input){
+var Regex = function(input) {
   this.group = function(input) {
-    return '('+input+')'
+    return '(' + input + ')'
   },
-  this.Set = function(input){
-    return '['+input+']'
+  this.Set = function(input) {
+    return '[' + input + ']'
   },
-  this.NegatedSet = function(input){
-    return '[^'+input+']'
+  this.NegatedSet = function(input) {
+    return '[^' + input + ']'
   },
-  this.range = function () {
+  this.range = function() {
     var arr = ''
-    for (var i = 0; i < arguments.length; i+=2) {
-       arr += arguments[i][i] + '-' + arguments[i][i + 1]
+    for (var i = 0; i < arguments.length; i += 2) {
+      arr += arguments[i][i] + '-' + arguments[i][i + 1]
     }
     return '[' + arr + ']'
   },
-  this.anyWord = function () {
+  this.anyWord = function() {
     return '\\w'
   }
-  this.anyNumber = function () {
+  this.anyNumber = function() {
     return '\\d'
   }
-  this.anyWhitespace = function () {
+  this.anyWhitespace = function() {
     return '\\s'
   }
-  this.anyCharacter = function () {
+  this.anyCharacter = function() {
     return '.'
   }
-  this.anyBoundry = function () {
+  this.anyBoundry = function() {
     return '\\b'
   }
-  this.notWord = function () {
+  this.notWord = function() {
     return '\\W'
   }
-  this.notNumber = function () {
+  this.notNumber = function() {
     return '\\D'
   }
-  this.notWhitespace = function () {
+  this.notWhitespace = function() {
     return '\\S'
   }
-  this.notBoundry = function () {
+  this.notBoundry = function() {
     return '\\B'
   }
-  this.nonCaptureGroup = function (input) {
+  this.nonCaptureGroup = function(input) {
     return '(?:' + input + ')'
   }
-  this.negativeLookahead = function (input) {
+  this.negativeLookahead = function(input) {
     return '(?!' + input + ')'
   }
-  this.escape = function (type, input) {
-   switch (type.toLowerCase()) {
-     case 'char':
-     case 'character':
+  this.escape = function(type, input) {
+    switch (type.toLowerCase()) {
+      case 'char':
+      case 'character':
         return '\\' + input
-      break;
-     case 'octal':
-       return '\\' + input
-      break;
-     case 'hex':
-       return '\\x' + input
-      break;
-     case 'unicode':
-       return '\\u' + input
-      break;
-     case 'control':
+        break;
+      case 'octal':
+      case 'oct':
+        return '\\' + input
+        break;
+      case 'hex':
+        return '\\x' + input
+        break;
+      case 'unicode':
+        return '\\u' + input
+        break;
+      case 'control':
         return '\\c' + input.toUpperCase()
-      break;
-     case 'tab':
+        break;
+      case 'tab':
         return '\\t'
-      break;
-     case 'verticalTab':
+        break;
+      case 'verticalTab':
         return '\\v'
-      break;
-     case 'lineFeed':
+        break;
+      case 'lineFeed':
         return '\\n' + input.toUpperCase()
-      break;
-     case 'formFeed':
+        break;
+      case 'formFeed':
         return '\\f'
-      break;
-     case 'carriageReturn':
+        break;
+      case 'carriageReturn':
         return '\\r'
-      break;
-     case 'null':
+        break;
+      case 'null':
         return '\\0'
-      break;
+        break;
     }
   }
-  this.reference = function (input) {
+  this.reference = function(input) {
     return '\\' + input
   }
-  this.lookahead = function (input) {
+  this.lookahead = function(input) {
     return '(?=' + input + ')'
   }
-  this.beginning = function () {
+  this.beginning = function() {
     return '^'
   }
-  this.end = function () {
+  this.end = function() {
     return '$'
   }
-  this.oneOrMore = function () {
+  this.oneOrMore = function() {
     return '+'
   }
-  this.zeroOrMore = function () {
+  this.zeroOrMore = function() {
     return '*'
   }
-  this.numToNum = function (val1, val2) {
+  this.numToNum = function(val1, val2) {
     return '{' + val1 + ',' + val2 + '}'
   }
-  this.numOrMore = function (val1) {
+  this.numOrMore = function(val1) {
     return '{' + val1 + ',}'
   }
-  this.oneOrZero = function (val1) {
+  this.oneOrZero = function(val1) {
     return '?'
   }
-  this.or = function (val1) {
+  this.or = function(val1) {
     return '|'
   }
 }
@@ -947,45 +551,45 @@ String.prototype.encode = function(type, base) {
         });
         break;
       case 'morse':
-       replaceAll(this.tostring(),{
-        'A': '.-',
-        'B': '-...',
-        'C': '-.-.',
-        'D': '-..',
-        'E': '.',
-        'F': '..-.',
-        'G': '--.',
-        'H': '....',
-        'I': '..',
-        'J': '.---',
-        'K': '-.-',
-        'L': '.-..',
-        'M': '--',
-        'N': '-.',
-        'O': '---',
-        'P': '.--.',
-        'Q': '--.-',
-        'R': '.-.',
-        'S': '...',
-        'T': '-',
-        'U': '..-',
-        'V': '...-',
-        'W': '.--',
-        'X': '-..-',
-        'Y': '-.--',
-        'Z': '--..',
-        '0': '-----',
-        '1': '.----',
-        '2': '..---',
-        '3': '...--',
-        '4': '....-',
-        '5': '.....',
-        '6': '-....',
-        '7': '--...',
-        '8': '---..',
-        '9': '----.',
-      });
-      break;
+        replaceAll(this.tostring(), {
+          'A': '.-',
+          'B': '-...',
+          'C': '-.-.',
+          'D': '-..',
+          'E': '.',
+          'F': '..-.',
+          'G': '--.',
+          'H': '....',
+          'I': '..',
+          'J': '.---',
+          'K': '-.-',
+          'L': '.-..',
+          'M': '--',
+          'N': '-.',
+          'O': '---',
+          'P': '.--.',
+          'Q': '--.-',
+          'R': '.-.',
+          'S': '...',
+          'T': '-',
+          'U': '..-',
+          'V': '...-',
+          'W': '.--',
+          'X': '-..-',
+          'Y': '-.--',
+          'Z': '--..',
+          '0': '-----',
+          '1': '.----',
+          '2': '..---',
+          '3': '...--',
+          '4': '....-',
+          '5': '.....',
+          '6': '-....',
+          '7': '--...',
+          '8': '---..',
+          '9': '----.',
+        });
+        break;
     }
   }
 };
@@ -1017,7 +621,7 @@ String.prototype.decode = function(type) {
         return this.replace(/\\([\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
         break;
       case 'morse':
-        replaceAll(this.tostring(),{
+        replaceAll(this.tostring(), {
           '.-': 'A',
           '-...': 'B',
           '-.-.': 'C',
@@ -1163,7 +767,7 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        return Math.log(val1) - (Math.log(val1)* -1) / 2;
+        return Math.log(val1) - (Math.log(val1) * -1) / 2;
       }
     },
     asin: function(val1) {
@@ -1177,8 +781,8 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        if (x === -Infinity) {
-          return x;
+        if (val1 === -Infinity) {
+          return val1;
         } else {
           return Math.log(val1 + Math.sqrt(val1 * val1 + 1));
         }
@@ -1195,7 +799,7 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        return (Math.log(val1) - Math.log(val1 * -1) / 2) / ((Math.exp(x) + Math.exp(-x)) / 2);
+        return (Math.log(val1) - Math.log(val1 * -1) / 2) / ((Math.exp(val1) + Math.exp(-val1)) / 2);
       }
     },
     atan: function(val1) {
@@ -1216,7 +820,7 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        return Math.log((1 + x) / (1 - x)) / 2;
+        return Math.log((1 + val1) / (1 - val1)) / 2;
       }
     },
     cos: function(val1) {
@@ -1251,42 +855,42 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        return 1/ Math.cos(val1)
+        return 1 / Math.cos(val1)
       }
     },
     sech: function(val1) {
       if (isArray(this)) {
 
       } else {
-        return 1/ ((Math.exp(val1) + Math.exp(-val1)) / 2)
+        return 1 / ((Math.exp(val1) + Math.exp(-val1)) / 2)
       }
     },
     asec: function(val1) {
       if (isArray(this)) {
 
       } else {
-        return 1/Math.cos(val1) * -1
+        return 1 / Math.cos(val1) * -1
       }
     },
     cosec: function(val1) {
       if (isArray(this)) {
 
       } else {
-        return 1/ Math.sin(val1)
+        return 1 / Math.sin(val1)
       }
     },
     cot: function(val1) {
       if (isArray(this)) {
 
       } else {
-          return Math.cos(val1) / Math.sin(val1)
+        return Math.cos(val1) / Math.sin(val1)
       }
     },
     coth: function(val1) {
       if (isArray(this)) {
 
       } else {
-          return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2);
+        return ((Math.exp(val1) + Math.exp(-val1)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2);
       }
     },
     acot: function(val1) {
@@ -1300,7 +904,7 @@ var math = {
       if (isArray(this)) {
 
       } else {
-        return ((Math.exp(x) + Math.exp(-x)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
+        return ((Math.exp(val1) + Math.exp(-val1)) / 2) / (Math.log(val1) - Math.log(val1 * -1) / 2) * -1;
       }
     },
     csc: function(val1) {
@@ -1354,8 +958,8 @@ var math = {
     },
   },
   sqrt: function(val1) {
-    if (x === -Infinity) {
-      return x;
+    if (val1 === -Infinity) {
+      return val1;
     } else {
       return Math.sqrt(val1);
     }
@@ -1372,17 +976,39 @@ var math = {
     if (isArray(this)) {
 
     } else {
-      if(y == '?'){return (m * x) + b}
-      else if(m == '?'){return (y - b) / x}
-      else if(x == '?'){return (y - b) / m}
-      else if(b == '?'){return y - (x * m)}
+      if (y == '?') {
+        return (m * x) + b
+      } else if (m == '?') {
+        return (y - b) / x
+      } else if (x == '?') {
+        return (y - b) / m
+      } else if (b == '?') {
+        return y - (x * m)
+      }
+    }
+  },
+  pointSlope: function(type, m, y, y1, x, x1) {
+    if (isArray(this)) {
+
+    } else {
+      if (y == '?') {
+        return m * (x - x1) - y1
+      } else if (y1 == '?') {
+        return m * (x - x1) - y
+      } else if (x == '?') {
+        return (y - y1) - (m * (-1 * x1))/m
+      } else if (x1 == '?') {
+        return (y - y1) - (m * (-1 * x))/m
+      } else if (m == '?') {
+        return (y - y1)/(x - x1)
+      }
     }
   },
   lim: function(n, c, f) {
     if (isArray(this)) {
 
     } else {
-      if (f(c) != (Infinity || NaN)){
+      if (f(c) != (Infinity || NaN)) {
         return f(c)
       } else {
 
@@ -1418,25 +1044,25 @@ var math = {
     } else {
       var arr = 1
       var rra = 1
-     for (var i = 0; i < n; i++) {
-            arr *= (n - i)
-            rra *= ((n-r) - i)
+      for (var i = 0; i < n; i++) {
+        arr *= (n - i)
+        rra *= ((n - r) - i)
       }
-      return arr/rra
+      return arr / rra
     }
   },
   combin: function(n, r) {
     if (isArray(this)) {
 
     } else {
-     var arr = 1
-     var rra = 1
-     for (var i = 0; i < n; i++) {
-            arr *= (n - i)
-            rra *= ((n-r) - i)
-            rar *= (r - i)
+      var arr = 1
+      var rra = 1
+      for (var i = 0; i < n; i++) {
+        arr *= (n - i)
+        rra *= ((n - r) - i)
+        rar *= (r - i)
       }
-      return (arr/rra)/rar
+      return (arr / rra) / rar
     }
   },
   abs: function(val1) {
@@ -1492,11 +1118,11 @@ var math = {
       return x > 0 ? 1 : -1;
     }
   },
-  toBase: function(num, b1, b2){
+  toBase: function(num, b1, b2) {
     if (isArray(this)) {
 
     } else {
-      var a = "0123456789ABCDEFX"
+      var a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
       var b = 0
       var c = 0
       var d = 0
@@ -1530,41 +1156,41 @@ var math = {
         c += a.charAt(d);
         num -= d * g;
       }
-      if(parseInt(c) == NaN || (parseInt(c) != NaN && c.length != parseInt(c).toString().length)){
+      if (parseInt(c) == NaN || (parseInt(c) != NaN && c.length != parseInt(c).toString().length)) {
         return c;
       } else {
         return parseInt(c);
       }
     }
   },
-  triangularNum: function (num) {
-    return (Math.pow(num, 2) + num)/2
+  triangularNum: function(num) {
+    return (Math.pow(num, 2) + num) / 2
   },
-  log: function (val1, val2) {
+  log: function(val1, val2) {
     if (val2 == undefined) {
       return Math.log(val1)
     } else {
       return Math.log(val2) / Math.log(val1)
     }
   },
-  dist: function (val1, val2) {
+  dist: function(val1, val2) {
     if (val2 == undefined) {
       return Math.abs(val1)
     } else {
       return Math.abs(Math.abs(val1) - Math.abs(val2))
     }
   },
-  random: function (val1, val2) {
+  random: function(val1, val2) {
     Math.floor(val1 + (1 + val2 - val1) * Math.random())
   },
-  pAdicDist: function (val1, val2) {
+  pAdicDist: function(val1, val2) {
     if (val2 == undefined) {
       return Math.abs(val1)
     } else {
       return Math.abs(Math.abs(val1) - Math.abs(val2))
     }
   },
-  cis: function (val1, val2) {
+  cis: function(val1, val2) {
     if (val2 == undefined) {
       return Math.abs(val1)
     } else {
@@ -1574,123 +1200,152 @@ var math = {
 }
 var triangle = function() {
   this.a = '?',
-  this.b = '?',
-  this.c = '?',
-  this.C = '?',
-  this.A = '?',
-  this.B = '?',
-  this.perimeter = '?'
+    this.b = '?',
+    this.c = '?',
+    this.C = '?',
+    this.A = '?',
+    this.B = '?',
+    this.perimeter = '?'
 }
 var rectangle = function() {
   this.l = '?',
-  this.w = '?',
-  this.perimeter = '?',
-  this.area = '?'
+    this.w = '?',
+    this.perimeter = '?',
+    this.area = '?'
 }
 var circle = function() {
   this.r = '?',
-  this.d = '?',
-  this.circumference = '?',
-  this.area = '?'
+    this.d = '?',
+    this.circumference = '?',
+    this.area = '?'
 }
+
 function solveTri(obj) {
-  var sides  = (obj.a != '?') + (obj.b != '?') + (obj.c != '?');  // Testing how many sides we know
-	var angles = (obj.A != '?') + (obj.B != '?') + (obj.C != '?');  // Testing how many angles we know
-	var status; // Making a variable and status
+  var sides = (obj.a != '?') + (obj.b != '?') + (obj.c != '?'); // Testing how many sides we know
+  var angles = (obj.A != '?') + (obj.B != '?') + (obj.C != '?'); // Testing how many angles we know
+  var status; // Making a variable and status
 
-	if (sides + angles != 3)
-		throw "Give exactly 3 pieces of information";// If there are more or less than 3 make an error
-	else if (sides == 0)
-		throw "Give at least one side length";// If there are no side, give at least 1
+  if (sides + angles != 3)
+    throw "Give exactly 3 pieces of information"; // If there are more or less than 3 make an error
+  else if (sides == 0)
+    throw "Give at least one side length"; // If there are no side, give at least 1
 
-	else if (sides == 3) {
-		status = "Side side side (SSS) case";// Solve using 3 sides
-		if (obj.a + obj.b <= obj.c || obj.b + obj.c <= obj.a || obj.c + obj.a <= obj.b)
-			throw status + " - No solution";// If two sides added is less than, or equal to another side, there is no solution https://www.khanacademy.org/math/in-seventh-grade-math/triangle-pror/sum-length-triangle/v/triangle-inqequality-theorem
-		obj.A = solveAngle(obj.b, obj.c, obj.a);// Solve the angle A, using sides, see function: solveAngle
-		obj.B = solveAngle(obj.c, obj.a, obj.b);// Solve the angle B, using sides, see function: solveAngle
-		obj.C = solveAngle(obj.a, obj.b, obj.c);// Solve the angle C, using sides, see function: solveAngle
-		// Heron's formula https://www.khanacademy.org/math/geometry/basic-geometry/heron-formula-tutorial/v/heron-s-formula
-		var s = (obj.a + obj.b + obj.c) / 2;// s = one half of the perimeter
-		obj.area = Math.sqrt(s * (s - obj.a) * (s - obj.b) * (s - obj.c));// area = the square root of s times (s minus side a) times (s minus side b) times (s minus side c)
+  else if (sides == 3) {
+    status = "Side side side (SSS) case"; // Solve using 3 sides
+    if (obj.a + obj.b <= obj.c || obj.b + obj.c <= obj.a || obj.c + obj.a <= obj.b)
+      throw status + " - No solution"; // If two sides added is less than, or equal to another side, there is no solution https://www.khanacademy.org/math/in-seventh-grade-math/triangle-pror/sum-length-triangle/v/triangle-inqequality-theorem
+    obj.A = solveAngle(obj.b, obj.c, obj.a); // Solve the angle A, using sides, see function: solveAngle
+    obj.B = solveAngle(obj.c, obj.a, obj.b); // Solve the angle B, using sides, see function: solveAngle
+    obj.C = solveAngle(obj.a, obj.b, obj.c); // Solve the angle C, using sides, see function: solveAngle
+    // Heron's formula https://www.khanacademy.org/math/geometry/basic-geometry/heron-formula-tutorial/v/heron-s-formula
+    var s = (obj.a + obj.b + obj.c) / 2; // s = one half of the perimeter
+    obj.area = Math.sqrt(s * (s - obj.a) * (s - obj.b) * (s - obj.c)); // area = the square root of s times (s minus side a) times (s minus side b) times (s minus side c)
 
-	} else if (angles == 2) {
-		status = "Angle side angle (ASA) case";// Solve using an angle between two sides
-		// Find missing angle
-		if (obj.A == '?') obj.A = 180 - obj.B - obj.C;// If angle A is unknown it is 180 minus the sum of the other two angles
-		if (obj.B == '?') obj.B = 180 - obj.C - obj.A;// If angle B is unknown it is 180 minus the sum of the other two angles
-		if (obj.C == '?') obj.C = 180 - obj.A - obj.B;// If angle C is unknown it is 180 minus the sum of the other two angles
-		if (obj.A <= 0 || obj.B <= 0 || C <= 0)
-			throw status + " - No solution";// If any of the angles are less than, or equal to 0  there is no solution
-		var sinA = Math.sin(degToRad(obj.A));// Finding the sin of the radian of A
-		var sinB = Math.sin(degToRad(obj.B));// Finding the sin of the radian of B
-		var sinC = Math.sin(degToRad(obj.C));// Finding the sin of the radian of C
-		// Use law of sines to find sidesobj.
-		var ratio;  // side / sin(angle)
-		if (obj.a != '?') { ratio = obj.a / sinA; obj.area = obj.a * ratio * sinB * sinC / 2; }
-		if (obj.b != '?') { ratio = obj.b / sinB; obj.area = obj.b * ratio * sinC * sinA / 2; }
-		if (obj.c != '?') { ratio = obj.c / sinC; obj.area = obj.c * ratio * sinA * sinB / 2; }
-		if (obj.a == '?') obj.a = ratio * sinA;
-		if (obj.b == '?') obj.b = ratio * sinB;
-		if (obj.c == '?') obj.c = ratio * sinC;
+  } else if (angles == 2) {
+    status = "Angle side angle (ASA) case"; // Solve using an angle between two sides
+    // Find missing angle
+    if (obj.A == '?') obj.A = 180 - obj.B - obj.C; // If angle A is unknown it is 180 minus the sum of the other two angles
+    if (obj.B == '?') obj.B = 180 - obj.C - obj.A; // If angle B is unknown it is 180 minus the sum of the other two angles
+    if (obj.C == '?') obj.C = 180 - obj.A - obj.B; // If angle C is unknown it is 180 minus the sum of the other two angles
+    if (obj.A <= 0 || obj.B <= 0 || C <= 0)
+      throw status + " - No solution"; // If any of the angles are less than, or equal to 0  there is no solution
+    var sinA = Math.sin(degToRad(obj.A)); // Finding the sin of the radian of A
+    var sinB = Math.sin(degToRad(obj.B)); // Finding the sin of the radian of B
+    var sinC = Math.sin(degToRad(obj.C)); // Finding the sin of the radian of C
+    // Use law of sines to find sidesobj.
+    var ratio; // side / sin(angle)
+    if (obj.a != '?') {
+      ratio = obj.a / sinA;
+      obj.area = obj.a * ratio * sinB * sinC / 2;
+    }
+    if (obj.b != '?') {
+      ratio = obj.b / sinB;
+      obj.area = obj.b * ratio * sinC * sinA / 2;
+    }
+    if (obj.c != '?') {
+      ratio = obj.c / sinC;
+      obj.area = obj.c * ratio * sinA * sinB / 2;
+    }
+    if (obj.a == '?') obj.a = ratio * sinA;
+    if (obj.b == '?') obj.b = ratio * sinB;
+    if (obj.c == '?') obj.c = ratio * sinC;
 
-	} else if (obj.A != '?' && obj.a == '?' || obj.B != '?' && obj.b == '?' || obj.C != '?' && obj.c == '?') {
-		status = "Side angle side (SAS) case";
-		if (obj.A != '?' && obj.A >= 180 || obj.B != '?' && obj.B >= 180 || obj.C != '?' && obj.C >= 180)
-			throw status + " - No solution";
-		if (obj.a == '?') obj.a = solveSide(obj.b, obj.c, obj.A);
-		if (obj.b == '?') obj.b = solveSide(obj.c, obj.a, obj.B);
-		if (obj.c == '?') obj.c = solveSide(obj.a, obj.b, obj.C);
-		if (obj.A == '?') obj.A = solveAngle(obj.b, obj.c, obj.a);
-		if (obj.B == '?') obj.B = solveAngle(obj.c, obj.a, obj.b);
-		if (obj.C == '?') obj.C = solveAngle(obj.a, obj.b, obj.c);
-		if (obj.A != '?') obj.area = obj.b * obj.c * Math.sin(degToRad(obj.A)) / 2;
-		if (obj.B != '?') obj.area = obj.c * obj.a * Math.sin(degToRad(obj.B)) / 2;
-		if (obj.C != '?') obj.area = obj.a * obj.b * Math.sin(degToRad(obj.C)) / 2;
+  } else if (obj.A != '?' && obj.a == '?' || obj.B != '?' && obj.b == '?' || obj.C != '?' && obj.c == '?') {
+    status = "Side angle side (SAS) case";
+    if (obj.A != '?' && obj.A >= 180 || obj.B != '?' && obj.B >= 180 || obj.C != '?' && obj.C >= 180)
+      throw status + " - No solution";
+    if (obj.a == '?') obj.a = solveSide(obj.b, obj.c, obj.A);
+    if (obj.b == '?') obj.b = solveSide(obj.c, obj.a, obj.B);
+    if (obj.c == '?') obj.c = solveSide(obj.a, obj.b, obj.C);
+    if (obj.A == '?') obj.A = solveAngle(obj.b, obj.c, obj.a);
+    if (obj.B == '?') obj.B = solveAngle(obj.c, obj.a, obj.b);
+    if (obj.C == '?') obj.C = solveAngle(obj.a, obj.b, obj.c);
+    if (obj.A != '?') obj.area = obj.b * obj.c * Math.sin(degToRad(obj.A)) / 2;
+    if (obj.B != '?') obj.area = obj.c * obj.a * Math.sin(degToRad(obj.B)) / 2;
+    if (obj.C != '?') obj.area = obj.a * obj.b * Math.sin(degToRad(obj.C)) / 2;
 
-	} else {
-		status = "Side side angle (SSA) case - ";
-		var knownSide, knownAngle, partialSide;
-		if (obj.a != '?' && obj.A != '?') { knownSide = obj.a; knownAngle = obj.A; }
-		if (obj.b != '?' && obj.B != '?') { knownSide = obj.b; knownAngle = obj.B; }
-		if (obj.c != '?' && obj.C != '?') { knownSide = obj.c; knownAngle = obj.C; }
-		if (obj.a != '?' && obj.A == '?') partialSide = obj.a;
-		if (obj.b != '?' && obj.B == '?') partialSide = obj.b;
-		if (obj.c != '?' && obj.C == '?') partialSide = obj.c;
-		if (knownAngle >= 180)
-			throw status + "No solution";
-		var ratio = knownSide / Math.sin(degToRad(knownAngle));
-		var temp = partialSide / ratio;  // sin(partialAngle)
-		var partialAngle, unknownSide, unknownAngle;
-		if (temp > 1 || knownAngle >= 90 && knownSide <= partialSide)
-			throw status + "No solution";
-		else if (temp == 1 || knownSide >= partialSide) {
-			status += "Unique solution";
-			partialAngle = radToDeg(Math.asin(temp));
-			unknownAngle = 180 - knownAngle - partialAngle;
-			unknownSide = ratio * Math.sin(degToRad(unknownAngle));  // Law of sines
-			obj.area = knownSide * partialSide * Math.sin(degToRad(unknownAngle)) / 2;
-		} else {
-			status += "Two solutions";
-			var partialAngle0 = radToDeg(Math.asin(temp));
-			var partialAngle1 = 180 - partialAngle0;
-			var unknownAngle0 = 180 - knownAngle - partialAngle0;
-			var unknownAngle1 = 180 - knownAngle - partialAngle1;
-			var unknownSide0 = ratio * Math.sin(degToRad(unknownAngle0));  // Law of sines
-			var unknownSide1 = ratio * Math.sin(degToRad(unknownAngle1));  // Law of sines
-			partialAngle = [partialAngle0, partialAngle1];
-			unknownAngle = [unknownAngle0, unknownAngle1];
-			unknownSide = [unknownSide0, unknownSide1];
-			obj.area = [knownSide * partialSide * Math.sin(degToRad(unknownAngle0)) / 2,
-			        knownSide * partialSide * Math.sin(degToRad(unknownAngle1)) / 2];
-		}
-		if (obj.a != '?' && obj.A == '?') obj.A = partialAngle;
-		if (obj.b != '?' && obj.B == '?') obj.B = partialAngle;
-		if (obj.c != '?' && obj.C == '?') obj.C = partialAngle;
-		if (obj.a == '?' && obj.A == '?') { obj.a = unknownSide; obj.A = unknownAngle; }
-		if (obj.b == '?' && obj.B == '?') { obj.b = unknownSide; obj.B = unknownAngle; }
-		if (obj.c == '?' && obj.C == '?') { obj.c = unknownSide; obj.C = unknownAngle; }
-	}
+  } else {
+    status = "Side side angle (SSA) case - ";
+    var knownSide, knownAngle, partialSide;
+    if (obj.a != '?' && obj.A != '?') {
+      knownSide = obj.a;
+      knownAngle = obj.A;
+    }
+    if (obj.b != '?' && obj.B != '?') {
+      knownSide = obj.b;
+      knownAngle = obj.B;
+    }
+    if (obj.c != '?' && obj.C != '?') {
+      knownSide = obj.c;
+      knownAngle = obj.C;
+    }
+    if (obj.a != '?' && obj.A == '?') partialSide = obj.a;
+    if (obj.b != '?' && obj.B == '?') partialSide = obj.b;
+    if (obj.c != '?' && obj.C == '?') partialSide = obj.c;
+    if (knownAngle >= 180)
+      throw status + "No solution";
+    var ratio = knownSide / Math.sin(degToRad(knownAngle));
+    var temp = partialSide / ratio; // sin(partialAngle)
+    var partialAngle, unknownSide, unknownAngle;
+    if (temp > 1 || knownAngle >= 90 && knownSide <= partialSide)
+      throw status + "No solution";
+    else if (temp == 1 || knownSide >= partialSide) {
+      status += "Unique solution";
+      partialAngle = radToDeg(Math.asin(temp));
+      unknownAngle = 180 - knownAngle - partialAngle;
+      unknownSide = ratio * Math.sin(degToRad(unknownAngle)); // Law of sines
+      obj.area = knownSide * partialSide * Math.sin(degToRad(unknownAngle)) / 2;
+    } else {
+      status += "Two solutions";
+      var partialAngle0 = radToDeg(Math.asin(temp));
+      var partialAngle1 = 180 - partialAngle0;
+      var unknownAngle0 = 180 - knownAngle - partialAngle0;
+      var unknownAngle1 = 180 - knownAngle - partialAngle1;
+      var unknownSide0 = ratio * Math.sin(degToRad(unknownAngle0)); // Law of sines
+      var unknownSide1 = ratio * Math.sin(degToRad(unknownAngle1)); // Law of sines
+      partialAngle = [partialAngle0, partialAngle1];
+      unknownAngle = [unknownAngle0, unknownAngle1];
+      unknownSide = [unknownSide0, unknownSide1];
+      obj.area = [knownSide * partialSide * Math.sin(degToRad(unknownAngle0)) / 2,
+        knownSide * partialSide * Math.sin(degToRad(unknownAngle1)) / 2
+      ];
+    }
+    if (obj.a != '?' && obj.A == '?') obj.A = partialAngle;
+    if (obj.b != '?' && obj.B == '?') obj.B = partialAngle;
+    if (obj.c != '?' && obj.C == '?') obj.C = partialAngle;
+    if (obj.a == '?' && obj.A == '?') {
+      obj.a = unknownSide;
+      obj.A = unknownAngle;
+    }
+    if (obj.b == '?' && obj.B == '?') {
+      obj.b = unknownSide;
+      obj.B = unknownAngle;
+    }
+    if (obj.c == '?' && obj.C == '?') {
+      obj.c = unknownSide;
+      obj.C = unknownAngle;
+    }
+  }
   obj.perimeter = obj.a + obj.b + obj.c
   var Sratios = Math.sin(A).toString() + Math.sin(B).toString() + Math.sin(C).toString()
   var Cratios = Math.cos(A).toString() + Math.cos(B).toString() + Math.cos(C).toString()
@@ -1699,73 +1354,80 @@ function solveTri(obj) {
   var SEratios = math.sec(A).toString() + math.sec(B).toString() + math.sec(C).toString()
   var COratios = math.cot(A).toString() + math.cot(B).toString() + math.cot(C).toString()
 }
-function solveRect(obj){
-  if (obj.l != '?' && obj.w != '?'){
+
+function solveRect(obj) {
+  if (obj.l != '?' && obj.w != '?') {
     obj.perimeter = (obj.l * 2) + (obj.w * 2)
     obj.area = obj.l * obj.w
-  } else if (obj.l != '?' && obj.perimeter != '?'){
+  } else if (obj.l != '?' && obj.perimeter != '?') {
     obj.w = (obj.perimeter - (obj.l * 2)) / 2
     obj.area = (obj.w * obj.l)
-  } else if (obj.w != '?' && obj.perimeter != '?'){
+  } else if (obj.w != '?' && obj.perimeter != '?') {
     obj.l = (obj.perimeter - (obj.w * 2)) / 2
     obj.area = (obj.l * obj.w)
-  } else if (obj.l != '?' && obj.area != '?'){
+  } else if (obj.l != '?' && obj.area != '?') {
     obj.w = (obj.perimeter - (obj.l * 2)) / 2
     obj.perimeter = (obj.w * obj.l)
-  } else if (obj.w != '?' && obj.perimeter != '?'){
+  } else if (obj.w != '?' && obj.perimeter != '?') {
     obj.l = (obj.area - (obj.w * 2)) / 2
     obj.area = (obj.l * obj.w)
   }
 }
-function solveCircle(obj){
-  if (obj.r != '?'){
+
+function solveCircle(obj) {
+  if (obj.r != '?') {
     obj.d = obj.r * 2
     obj.circumference = 2 * Math.PI * obj.r
     obj.area = Math.pi * Math.pow(obj.r, 2)
-  } else if (obj.d != '?'){
-      obj.r = obj.d / 2
-      obj.circumference = 2 * Math.PI * obj.r
-      obj.area = Math.pi * Math.pow(obj.r, 2)
-  } else if (obj.circumference != '?'){
-      obj.r = (obj.circumference/Math.PI)/2
-      obj.d = obj.r * 2
-      obj.area = Math.pi * Math.pow(obj.r, 2)
-  } else if (obj.area != '?'){
-      obj.r = Math.sqrt(obj.area)/Math.PI
-      obj.d = obj.r * 2
-      obj.circumference = 2 * Math.PI * obj.r
+  } else if (obj.d != '?') {
+    obj.r = obj.d / 2
+    obj.circumference = 2 * Math.PI * obj.r
+    obj.area = Math.pi * Math.pow(obj.r, 2)
+  } else if (obj.circumference != '?') {
+    obj.r = (obj.circumference / Math.PI) / 2
+    obj.d = obj.r * 2
+    obj.area = Math.pi * Math.pow(obj.r, 2)
+  } else if (obj.area != '?') {
+    obj.r = Math.sqrt(obj.area) / Math.PI
+    obj.d = obj.r * 2
+    obj.circumference = 2 * Math.PI * obj.r
   }
 }
+
 function solveSide(a, b, C) {
-	C = degToRad(C);
-	if (C > 0.001){
-		return Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(C));
-	} else {
-		return Math.sqrt((a - b) * (a - b) + a * b * C * C * (1 - C * C / 12));
-    }
+  C = degToRad(C);
+  if (C > 0.001) {
+    return Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(C));
+  } else {
+    return Math.sqrt((a - b) * (a - b) + a * b * C * C * (1 - C * C / 12));
+  }
 }
+
 function solveAngle(a, b, c) {
-	var temp = (a * a + b * b - c * c) / (2 * a * b);
-	if (-1 <= temp && temp <= 0.9999999)
-		return radToDeg(Math.acos(temp));
-	else if (temp <= 1)  // Explained in http://www.nayuki.io/page/numerically-stable-law-of-cosines
-		return radToDeg(Math.sqrt((c * c - (a - b) * (a - b)) / (a * b)));
-	else
-		throw "No solution";
+  var temp = (a * a + b * b - c * c) / (2 * a * b);
+  if (-1 <= temp && temp <= 0.9999999)
+    return radToDeg(Math.acos(temp));
+  else if (temp <= 1) // Explained in http://www.nayuki.io/page/numerically-stable-law-of-cosines
+    return radToDeg(Math.sqrt((c * c - (a - b) * (a - b)) / (a * b)));
+  else
+    throw "No solution";
 }
+
 function degToRad(x) {
-	return x / 180 * Math.PI;
+  return x / 180 * Math.PI;
 }
+
 function radToDeg(x) {
-	return x / Math.PI * 180;
+  return x / Math.PI * 180;
 }
 var convert = function(amount, val1, val2) {
-  if (val1.type == val2.type){
+  if (val1.type == val2.type) {
     return val1.value * amount / val2.value
   } else {
     return null
   }
 }
+
 function Calculate(input) {
 
 
@@ -1828,49 +1490,65 @@ var Equation = {
   z: '?',
 };
 var solve = function(Eq, rav, obj) {
-  var end = false
-  var fc = Eq.charAt(0);
-  if (!fc.match(/[a-z0-9\.\+\-\(]/i)) {
-    throw 'You can\'t have ' + fc + ' as your first character, you need a letter, number or one of these . + - ('
-    end = true
+    var end = false
+    var fc = Eq.charAt(0);
+    if (!fc.match(/[a-z0-9\.\+\-\(]/i)) {
+      throw 'You can\'t have ' + fc + ' as your first character, you need a letter, number or one of these . + - ('
+      end = true
+    }
+    if (!end) {
+      for (var x in obj) {
+        if (obj.hasOwnProperty(x)) {
+          Eq = Eq.replace(x, obj.x)
+        }
+      }
+      var qe
+      var EQ
+      var eq = Eq.split(' = ')
+      eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ')';
+      eq[1] = '0'
+      Eq = eq.join(' = ')
+      Eq = Eq.replace(/(\))(?=([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
+      Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
+      Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
+      Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
+      Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, ' + (-$1)')
+      Eq = Eq.replace(/((\d+)(\.?\d)*)/ig, '$2 + 0$3')
+      eq = Eq.match(/[0](\.?\d)+/g)
+      Eq = Eq.replace(/[0](\.?\d)+/g, '')
+      qe = Eq.match(/(\d+)+/g)
+/*      var j
+      for (var i = 0; i < Eq.length; i++) {
+        if(Eq[i] == '('){
+          j++
+        } else if (Eq[i] == '('true) {
+          j--
+        } else if(j == 0 & Eq[i] == ) {
+
+        }
+      }
+      for (var i = 0; i < eq.length; i++) {
+        Eq = Eq.replace(eq[i], eval(eq[i]))
+      }*/
+      console.log(Eq)
+      console.log(eq)
+      return Eq
+    }
   }
-  if (!end){
-    for (var x in obj) {
-      if (obj.hasOwnProperty(x)) {
-        Eq = Eq.replace(x, obj.x)
+/*
+  for (var rra = -Infinity; arr < Infinity; arr += 0.1) {
+      if(Math.abs(funct(arr)) < 0.1) {
+        console.log("Root = " + Math.round(arr, 2));
       }
     }
-  var qe
-  var EQ
-  var eq = Eq.split(' = ')
-  eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ')';
-  eq[1] = '0'
-  Eq = eq.join(' = ')
-  Eq = Eq.replace(/((\+|\-)?([a-z]|(\d+(\.?\d)*)))((\+|\-)?([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
-  Eq = Eq.replace(/(\))(?=([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
-    Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
-  Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
-  Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
-  Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, ' + -$1')
-  console.log(Eq)
-  console.log(eq)
-  console.log(qe)
-  }
-}
-/*
-for (var rra = -Infinity; arr < Infinity; arr += 0.1) {
-    if(Math.abs(funct(arr)) < 0.1) {
-      console.log("Root = " + Math.round(arr, 2));
-    }
-  }
-*/
-//+------------------------------------------------------------------------------+
-//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-//|+===========================XXX:::::::::::::::::XXX==========================+|
-//|+=##########################XXX::LOGIC LIBRARY::XXX#########################=+|
-//|+===========================XXX:::::::::::::::::XXX==========================+|
-//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-//+------------------------------------------------------------------------------+
+  */
+  //+------------------------------------------------------------------------------+
+  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+  //|+===========================XXX:::::::::::::::::XXX==========================+|
+  //|+=##########################XXX::LOGIC LIBRARY::XXX#########################=+|
+  //|+===========================XXX:::::::::::::::::XXX==========================+|
+  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+  //+------------------------------------------------------------------------------+
 
 function lvar(argument) {
   this.max = 0
@@ -1904,22 +1582,22 @@ function leval(val1) {
   }
 }
 var and = function(val1, val2) {
-    return val1 && val2
+  return val1 && val2
 }
 var or = function(val1, val2) {
-    return val1 || val2
+  return val1 || val2
 }
 var not = function(val1) {
-    return !val1
+  return !val1
 }
 var nor = function(val1, val2) {
-    return !(val1 || val2)
+  return !(val1 || val2)
 }
 var nand = function(val1, val2) {
-    return !(val1 && val2)
+  return !(val1 && val2)
 }
 var xor = function(val1, val2) {
-    return val1 != val2
+  return val1 != val2
 }
 var xnor = function(val1, val2) {
   if (val1 == true && val2 == true || val1 == false && val2 == false) {
@@ -1928,17 +1606,42 @@ var xnor = function(val1, val2) {
     return false
   }
 }
-function toBinary(input){
+Boolean.prototype.and = function(val1) {
+  return val1 && this
+}
+Boolean.prototype.or = function(val1) {
+  return val1 || this
+}
+Boolean.prototype.not = function() {
+  return !this
+}
+Boolean.prototype.nor = function(val1) {
+  return !(val1 || this)
+}
+Boolean.prototype.nand = function(val1) {
+  return !(val1 && this)
+}
+Boolean.prototype.xor = function(val1) {
+  return val1 != this
+}
+Boolean.prototype.xnor = function(val1) {
+  if (val1 == true && this == true || val1 == false && this == false) {
+    return true
+  } else {
+    return false
+  }
+}
+function toBinary(input) {
   var arr = []
   for (var i = 0; i < input.length; i++) {
     arr.push((input[i] + false))
   }
   return arr
 }
-function toBoolean(input){
+function toBoolean(input) {
   var arr = []
   for (var i = 0; i < input.length; i++) {
-       arr.push(input[i] == 1)
+    arr.push(input[i] == 1)
   }
   return arr
 }
@@ -1948,17 +1651,29 @@ function t() {
 function f() {
   return false
 }
-function eq(val1, val2){
-  return val1 == val2
+function eq(val1, val2) {
+  return val1 === val2
 }
-function gt(val1, val2){
+function gt(val1, val2) {
   return val1 > val2
 }
-function lt(val1, val2){
+function lt(val1, val2) {
   return val1 < val2
 }
-function ne(val1, val2){
+function ne(val1, val2) {
   return val1 != val2
+}
+Boolean.prototype.eq = function(val1) {
+  return this === val1
+}
+Boolean.prototype.gt = function(val1) {
+  return this > val1
+}
+Boolean.prototype.lt = function(val1) {
+  return this < val1
+}
+Boolean.prototype.ne = function(val1) {
+  return this != val1
 }
 Boolean.prototype.isTrue = function() {
   if (this == true) {
@@ -1968,6 +1683,20 @@ Boolean.prototype.isTrue = function() {
   }
 }
 Boolean.prototype.isFalse = function() {
+  if (this != true) {
+    return true
+  } else {
+    return false
+  }
+}
+var isTrue = function() {
+  if (this == true) {
+    return true
+  } else {
+    return false
+  }
+}
+var isFalse = function() {
   if (this != true) {
     return true
   } else {
@@ -2043,14 +1772,14 @@ Array.prototype.divideArray = function(array) {
   }
   return this
 };
-Array.prototype.findValue = function(name, value){
-   var array = $.map(this, function(v,i){
-        var haystack = v[name];
-        var needle = new RegExp(value);
-        // check for string in haystack
-        // return the matched item if true, or null otherwise
-      return needle.test(haystack) ? v : null;
-   });
+Array.prototype.findValue = function(name, value) {
+  var array = $.map(this, function(v, i) {
+    var haystack = v[name];
+    var needle = new RegExp(value);
+    // check for string in haystack
+    // return the matched item if true, or null otherwise
+    return needle.test(haystack) ? v : null;
+  });
   return this;
 }
 
@@ -2062,130 +1791,136 @@ Array.prototype.findValue = function(name, value){
 //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 //+------------------------------------------------------------------------------+
 
-function searchObj(obj, value){
+function searchObj(obj, value) {
   var comparator = function(obj, text) {
-  if (obj && text && typeof obj === 'object' && typeof text === 'object') {
+    if (obj && text && typeof obj === 'object' && typeof text === 'object') {
       for (var objKey in obj) {
-          if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
-                  comparator(obj[objKey], text[objKey])) {
-              return true;
-          }
+        if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
+          comparator(obj[objKey], text[objKey])) {
+          return true;
+        }
       }
       return false;
-  }
-  text = ('' + text).toLowerCase();
-  return ('' + obj).toLowerCase().indexOf(text) > -1;
+    }
+    text = ('' + text).toLowerCase();
+    return ('' + obj).toLowerCase().indexOf(text) > -1;
   };
   var search = function(obj, text) {
-  if (typeof text == 'string' && text.charAt(0) === '!') {
+    if (typeof text == 'string' && text.charAt(0) === '!') {
       return !search(obj, text.substr(1));
-  }
-  switch (typeof obj) {
+    }
+    switch (typeof obj) {
       case "boolean":
       case "number":
       case "string":
-          return comparator(obj, text);
+        return comparator(obj, text);
       case "object":
-          switch (typeof text) {
-              case "object":
-                  return comparator(obj, text);
-              default:
-                  for (var objKey in obj) {
-                      if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
-                          return true;
-                      }
-                  }
-                  break;
-          }
-          return false;
-      case "array":
-          for (var i = 0; i < obj.length; i++) {
-              if (search(obj[i], text)) {
-                  return obj[i];
+        switch (typeof text) {
+          case "object":
+            return comparator(obj, text);
+          default:
+            for (var objKey in obj) {
+              if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
+                return true;
               }
+            }
+            break;
+        }
+        return false;
+      case "array":
+        for (var i = 0; i < obj.length; i++) {
+          if (search(obj[i], text)) {
+            return obj[i];
           }
-          return false;
+        }
+        return false;
       default:
-          return false;
-  }
+        return false;
+    }
   }
   return search(this, value)
 }
 Object.prototype.depth = function() {
-    var level = 1;
-    var key;
-    for(key in this) {
-        if (!this.hasOwnProperty(key)) continue;
+  var level = 1;
+  var key;
+  for (key in this) {
+    if (!this.hasOwnProperty(key)) continue;
 
-        if(typeof this[key] == 'object'){
-            var depth = utils.depthOf(this[key]) + 1;
-            level = Math.max(depth, level);
-        }
+    if (typeof this[key] == 'object') {
+      var depth = utils.depthOf(this[key]) + 1;
+      level = Math.max(depth, level);
     }
-    return level;
+  }
+  return level;
 }
 Object.prototype.duplicate = function() {
- return this
+  return this
 }
-Object.prototype.has = function(name){
+Object.prototype.has = function(name) {
   var comparator = function(obj, text) {
-  if (obj && text && typeof obj === 'object' && typeof text === 'object') {
+    if (obj && text && typeof obj === 'object' && typeof text === 'object') {
       for (var objKey in obj) {
-          if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
-                  comparator(obj[objKey], text[objKey])) {
-              return true;
-          }
+        if (objKey.charAt(0) !== '$' && hasOwnProperty.call(obj, objKey) &&
+          comparator(obj[objKey], text[objKey])) {
+          return true;
+        }
       }
       return false;
-  }
-  text = ('' + text).toLowerCase();
-  return ('' + obj).toLowerCase().indexOf(text) > -1;
+    }
+    text = ('' + text).toLowerCase();
+    return ('' + obj).toLowerCase().indexOf(text) > -1;
   };
   var search = function(obj, text) {
-  if (typeof text == 'string' && text.charAt(0) === '!') {
+    if (typeof text == 'string' && text.charAt(0) === '!') {
       return !search(obj, text.substr(1));
-  }
-  switch (typeof obj) {
+    }
+    switch (typeof obj) {
       case "boolean":
       case "number":
       case "string":
-          return comparator(obj, text);
+        return comparator(obj, text);
       case "object":
-          switch (typeof text) {
-              case "object":
-                  return comparator(obj, text);
-              default:
-                  for (var objKey in obj) {
-                      if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
-                          return true;
-                      }
-                  }
-                  break;
-          }
-          return false;
-      case "array":
-          for (var i = 0; i < obj.length; i++) {
-              if (search(obj[i], text)) {
-                  return true;
+        switch (typeof text) {
+          case "object":
+            return comparator(obj, text);
+          default:
+            for (var objKey in obj) {
+              if (objKey.charAt(0) !== '$' && search(obj[objKey], text)) {
+                return true;
               }
+            }
+            break;
+        }
+        return false;
+      case "array":
+        for (var i = 0; i < obj.length; i++) {
+          if (search(obj[i], text)) {
+            return true;
           }
-          return false;
+        }
+        return false;
       default:
-          return false;
-  }
+        return false;
+    }
   }
   return search(this, value)
 }
 
 //+==============================================================================+
 
-console.log('Logic: ' + xnor(xor(nor(and(or(f(), t()), not(nand(t(), f()))), f()), f()), t()).toString());
-console.log('Date: ' + decrypt('Today is #Nd#, #NM# #D#th, #Y#').toString());
+console.log('Logic: ' + xnor(xor(nor(and(or(f(), eq(4, 4)), not(nand(t(), ne(4, 4)))), gt(4, 4)), lt(4, 4), t())).or(true).toString());
 console.log('Math: ' + eval(math.trig.sinh(4).toString()));
 console.log('String: ' + 'Hello my name is fox, and I am so awesome, because I am \\ ^ $ * + ? . ( ) | { } [ ] > < & '.goFrom(2).goTo(this.length - 3).encode('regex').encode('html').encode('base64'));
 console.log('Array: ' + [0, 1, 2, 3, 4].addToEach(0.5).addArray([1, 2, 3, 4, 5]).toString());
 console.log('Regex: ' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').toString() + ':' + /hi/gim.setFlags('g').addFlags('mg').removeFlags('mi').getFlags());
-solve('5 + 5 + 5x * xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x')
+console.log(solve('5.5 + 5 + 5x + xx - (5^5) + 6(5 + 5) = 5 + 5^x + 5(6 + 5) - 4', 'x'))
 console.log(window.btoa('hey mom'));
 console.log(encodeStringToBase(32, 'hey mom'));
-console.log(Object.keys({1:'hi', stuff: {'hi': 1, blah: 'stuff  '}}))
+console.log(Object.keys({
+  1: 'hi',
+  stuff: {
+    'hi': 1,
+    blah: 'stuff  '
+  }
+}))
+console.log(eq(4, '4'));
