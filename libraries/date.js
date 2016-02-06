@@ -105,6 +105,7 @@ function replaceAll(input, obj) {
 
 var Now = function(input, format) {
   var D = new Date
+  this.aiudhooainsoaunsvius = 'cailos oiicasjm,oaisfmaoismfaiosm,f'
   this.settings = {}
     this.settings.monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     this.settings.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -230,12 +231,22 @@ var Now = function(input, format) {
     this.total -= this.Second.multiplyer * this.Second.value
     this.Millisecond.value = Math.floor(this.total/this.Millisecond.multiplyer)
     this.total -= this.Millisecond.multiplyer * this.Millisecond.value
+    var leeap = ((this.Year_ % 2 == 0) ? ((this.Year_ % 100 == 0)? ((this.Year_ % 400 == 0) ? (true) : (false)) : (true)) : (false))
+    if(this.leeap == true) {
+      if (this.Month.value == 2 && this.Date.value == 1) {
+        this.Month.value = 1
+        this.Date.value == 29
+      } else if(true){
+
+      }
+    }
     return this.total
   }
-  function addType(type, amount){
+  this.addType = function(type, amount){
     this.toMilliseconds()
-    type = type[0].toUpperCase() + type.slice(1, type.length - 1)
+    type = type[0].toUpperCase() + type.slice(1, type.length)
     this.total += this[type].multiplyer * amount
+    this.fromMilliseconds()
   }
   this.create = function (input, format) {
     if (input != null && format != null) {
@@ -268,9 +279,7 @@ var Now = function(input, format) {
       } else if (isArray(input)) {
 
       } else if (typeof input == 'object') {
-        for (var xx in object) {
 
-        }
       }
     } else {
 
@@ -402,7 +411,7 @@ var Now = function(input, format) {
       } else if (isArray(val1)) {
 
       } else if (typeof val1 == 'object') {
-        if (val1 == Now()){
+        if (val1.aiudhooainsoaunsvius == this.aiudhooainsoaunsvius){
           val1.toMilliseconds()
           this.toMilliseconds()
           var VaR = this

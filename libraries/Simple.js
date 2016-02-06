@@ -1512,12 +1512,13 @@ var solve = function(Eq, rav, obj) {
       Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
       Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
       Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
-      Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, ' + (-$1)')
-      Eq = Eq.replace(/((\d+)(\.?\d)*)/ig, '$2 + 0$3')
+      Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, '+ (-$1)')
+      Eq = Eq.replace(/((\d+)(\.?\d)+)/ig, '$2 + 0$3')
       eq = Eq.match(/[0](\.?\d)+/g)
       Eq = Eq.replace(/[0](\.?\d)+/g, '')
-      qe = Eq.match(/(\d+)+/g)
-/*      var j
+      Eq = Eq.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+      qe = Eq.match(/([^0.()](\d)[^()A-Za-z])+/g)
+      /*var j
       for (var i = 0; i < Eq.length; i++) {
         if(Eq[i] == '('){
           j++
@@ -1532,6 +1533,7 @@ var solve = function(Eq, rav, obj) {
       }*/
       console.log(Eq)
       console.log(eq)
+      console.log(qe)
       return Eq
     }
   }
