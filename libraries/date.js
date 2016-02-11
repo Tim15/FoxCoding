@@ -105,7 +105,6 @@ function replaceAll(input, obj) {
 
 var Now = function(input, format) {
   var D = new Date
-  this.aiudhooainsoaunsvius = 'cailos oiicasjm,oaisfmaoismfaiosm,f'
   this.settings = {}
     this.settings.monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     this.settings.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -114,41 +113,33 @@ var Now = function(input, format) {
     this.settings.shortDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     this.settings.seasons = ['Winter', 'Spring', 'Summer', 'Fall']
     this.settings.shortSeasons = ['W', 'S', 'S', 'F']
-  this.just = {}
-  this.Year = {}
-    this.Year.value = D.getFullYear()
-    this.Year.multiplyer = 365.25 * 24 * 60 * 60 * 1000
-    this.Year.milli = this.Year.value * this.Year.multiplyer
-  this.LeapYear = ((this.Year_ % 2 == 0) ? ((this.Year_ % 100 == 0)? ((this.Year_ % 400 == 0) ? (true) : (false)) : (true)) : (false))
-    if(this.LeapYear) {
-      this.settings.monthLengths[1] = 28
-    } else {
-      this.settings.monthLengths[1] = 29
+    this.settings.formatWords = {
+      shift: {
+        next: 'next',
+        last: 'last',
+        this: 'this',
+      },
+      edge: {
+        begining: 'begining',
+        end: 'end',
+        last: 'last',
+        first: 'first',
+        start: 'start'
+      },
+      direction: {
+
+      },
+      unit: {
+        milliseconds: 'milliseconds',
+        seconds: 'seconds',
+        minutes: 'minutes',
+        hours: 'hours',
+        days: 'days',
+        months: 'months',
+        years: 'years',
+      },
     }
-  this.Month = {}
-    this.Month.value = D.getMonth()
-    this.Month.multiplyer = this.settings.monthLengths[D.getMonth()] * 24 * 60 * 60 * 1000
-    this.Month.milli = (this.Month.value + 1) * this.Month.multiplyer - this.Month.multiplyer
-  this.Date = {}
-    this.Date.value = D.getDate()
-    this.Date.multiplyer = 24 * 60 * 60 * 1000
-    this.Date.milli = (this.Date.value + 1) * this.Date.multiplyer - this.Date.multiplyer
-  this.Hour = {}
-    this.Hour.value = D.getHours()
-    this.Hour.multiplyer = 60 * 60 * 1000
-    this.Hour.milli = (this.Hour.value + 1) * this.Hour.multiplyer - this.Hour.multiplyer
-  this.Minute = {}
-    this.Minute.value = D.getMinutes()
-    this.Minute.multiplyer = 60 * 1000
-    this.Minute.milli = (this.Minute.value + 1) * this.Minute.multiplyer - this.Minute.multiplyer
-  this.Second = {}
-    this.Second.value = D.getSeconds()
-    this.Second.multiplyer = 1000
-    this.Second.milli = (this.Second.value + 1) * this.Second.multiplyer - this.Second.multiplyer
-  this.Millisecond = {}
-    this.Millisecond.value = D.getMilliseconds()
-    this.Millisecond.multiplyer = 1
-    this.Millisecond.milli = (this.Millisecond.value + 1) * this.Millisecond.multiplyer - this.Millisecond.multiplyer
+  this.just = {}
   var formatObj = {
     '': '',
   }
@@ -159,7 +150,7 @@ var Now = function(input, format) {
   } else if (input != null) {
     if (typeof input == 'string') {
       if (input.toLowerCase() == 'now') {
-        this.total =
+        this.total = 0
         this.Year = {}
           this.Year.value = D.getFullYear()
           this.Year.multiplyer = 365.25 * 24 * 60 * 60 * 1000
@@ -194,10 +185,10 @@ var Now = function(input, format) {
           this.Millisecond.value = D.getMilliseconds()
           this.Millisecond.multiplyer = 1
           this.Millisecond.milli = (this.Millisecond.value + 1) * this.Millisecond.multiplyer
-      } else {
-        if (true) {
-
-        }
+        this.WeekDay = {}
+          this.WeekDay.value = D.getDay()
+      } else if (input.toLowerCase() == 'today') {
+        //
       }
     } else if (typeof input == 'number') {
       this.just = {called:'now', input:input}
@@ -207,10 +198,48 @@ var Now = function(input, format) {
         inputLength++
       }
     } else if (typeof input == 'object') {
-      //Don't know what to do
+      //
     }
   } else {
-
+    this.total = 0
+    this.Year = {}
+      this.Year.value = D.getFullYear()
+      this.Year.multiplyer = 365.25 * 24 * 60 * 60 * 1000
+      this.Year.milli = this.Year.value * this.Year.multiplyer
+    this.LeapYear = ((this.Year_ % 2 == 0) ? ((this.Year_ % 100 == 0)? ((this.Year_ % 400 == 0) ? (true) : (false)) : (true)) : (false))
+      if(this.LeapYear) {
+        this.settings.monthLengths[1] = 28
+      } else {
+        this.settings.monthLengths[1] = 29
+      }
+    this.Month = {}
+      this.Month.value = D.getMonth()
+      this.Month.multiplyer = this.settings.monthLengths[D.getMonth()] * 24 * 60 * 60 * 1000
+      this.Month.milli = (this.Month.value + 1) * this.Month.multiplyer
+    this.Date = {}
+      this.Date.value = D.getDate()
+      this.Date.multiplyer = 24 * 60 * 60 * 1000
+      this.Date.milli = (this.Date.value + 1) * this.Date.multiplyer
+    this.Hour = {}
+      this.Hour.value = D.getHours()
+      this.Hour.multiplyer = 60 * 60 * 1000
+      this.Hour.milli = (this.Hour.value + 1) * this.Hour.multiplyer
+    this.Minute = {}
+      this.Minute.value = D.getMinutes()
+      this.Minute.multiplyer = 60 * 1000
+      this.Minute.milli = (this.Minute.value + 1) * this.Minute.multiplyer
+    this.Minshe = {}
+      this.Minshe.id = btoa(btoa(btoa(btoa(btoa(btoa(btoa('dgkdpmg+dpifjd/oifjp+oudfg/ohd/d+fghd/fgh +dfd+ f/gh')))))))
+    this.Second = {}
+      this.Second.value = D.getSeconds()
+      this.Second.multiplyer = 1000
+      this.Second.milli = (this.Second.value + 1) * this.Second.multiplyer
+    this.Millisecond = {}
+      this.Millisecond.value = D.getMilliseconds()
+      this.Millisecond.multiplyer = 1
+      this.Millisecond.milli = (this.Millisecond.value + 1) * this.Millisecond.multiplyer
+    this.WeekDay = {}
+      this.WeekDay.value = D.getDay()
   }
   this.toMilliseconds = function () {
     this.total = this.Year.milli + this.Month.milli + this.Date.milli + this.Hour.milli + this.Minute.milli + this.Second.milli + this.Millisecond.milli
@@ -231,15 +260,8 @@ var Now = function(input, format) {
     this.total -= this.Second.multiplyer * this.Second.value
     this.Millisecond.value = Math.floor(this.total/this.Millisecond.multiplyer)
     this.total -= this.Millisecond.multiplyer * this.Millisecond.value
-    var leeap = ((this.Year_ % 2 == 0) ? ((this.Year_ % 100 == 0)? ((this.Year_ % 400 == 0) ? (true) : (false)) : (true)) : (false))
-    if(this.leeap == true) {
-      if (this.Month.value == 2 && this.Date.value == 1) {
-        this.Month.value = 1
-        this.Date.value == 29
-      } else if(true){
-
-      }
-    }
+    var leeap = ((this.Year.value % 2 == 0) ? ((this.Year.value % 100 == 0)? ((this.Year.value % 400 == 0) ? (true) : (false)) : (true)) : (false))
+    this.WeekDay.value = new new Date('' + this.settings.monthNames[this.Month.value].toString() + ' ' + (this.Date.value + 1).toString() + ', ' + this.Year.value.toString()).getDay()
     return this.total
   }
   this.addType = function(type, amount){
@@ -370,6 +392,23 @@ var Now = function(input, format) {
       return this
     }
   }//type = type[0].toUpperCase() + type.slice(1, type.length - 1)
+  this.set = function (input) {
+    if (input != null){
+      if(supportedFormats[input] != undefined){
+        if (typeof input == 'string') {
+
+        } else if (typeof input == 'number') {
+
+        } else if (isArray(input)) {
+
+        } else if (typeof input == 'object') {
+
+        }
+      }
+    } else {
+      return this
+    }
+  }
   this.startOf = function (input) {
     if (input != null){
       if (typeof input == 'string') {
@@ -759,6 +798,71 @@ var arr = new Now()
 
 
 console.log(isArray([]));
+console.log(Number.NaN)
 var arr = new Now()
-var obj = {b:'e'}
-console.log(obj.hi)
+function toWord(num) {
+    var ones = ['','one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+    var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+    var others = [
+     '',
+     'thousand',
+     'million',
+     'billion',
+     'trillion',
+     'quadrillion',
+     'quintillion',
+     'sextillion',
+     'septillion',
+     'octillion',
+     'nonillion',
+     'decillion',
+     'undecillion',
+     'duodecillion',
+     'tredecillion',
+     'quattuordecillion',
+     'quindecillion',
+     'sexdecillion',
+     'septendecillion',
+     'octodecillion',
+     'novemdecillion',
+     'vigintillion',
+     'unvigintillion',
+     'duovigintillion',
+     'trevigintillion',
+     'quattuorvigintillion',
+     'quinvigintillion',
+     'sexvigintillion',
+     'septenvigintillion',
+     'octovigintillion'
+   ]
+    num = num.toString().replace(',', '')
+  for (var i = 0; i < num.length % 3; i++) {
+    num = '0' + num
+  }
+  var split = []
+  for (var i = 0; i < num.length; i+=3) {
+    split.push(num.substr(i, 3))
+  }
+  split = split.reverse()
+  var holder = []
+  for (var i = 0; i < split.length; i++) {
+    holder.push('')
+    if(split[i][0] != 0){
+      holder[i] += ones[split[i][0]] + ' hundred '
+    }
+    if (split[i][1] == 0) {
+      holder[i] += ones[split[i][2]] + ' ' + others[i]
+    } else if(split[i][1] < 2){
+      holder[i] += ones[(split[i][1] * 10) + split[i][2]] + ' ' + others[i]
+    } else {
+      if (ones[split[i][2]] == '') {
+        holder[i] += tens[split[i][1]] + ' ' + others[i]
+      } else {
+        holder[i] += tens[split[i][1]] + '-' + ones[split[i][2]] + ' ' + others[i]
+      }
+    }
+  }
+  holder = holder.reverse().join(', ')
+  return holder
+}
+console.log(toWord(1400))
