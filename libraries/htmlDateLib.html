@@ -10,13 +10,13 @@
 <body>
   <span id="time"></span>
   <p>
-    Now() = Everything about now
+    Now() = right now
     <br>Now.next('thursday', 2) = Two thursdays from now
     <br>Now.add(3, 'days') = Three days from now
     <br>Now.add(3, 'days').startOf('day') gets the time at the start of two days from now
     <br>Now.startOf('day') = Gets the time at the start of the day
     <br>Now.endOf('day') = Gets the time at the end of the day
-    <br>Now.parse(12/3/15, [#M#-#d#-#Y#]) = {Month: 12, Day: 3, Year: 15}
+    <br>Now.parse('12/3/15', ['#M#', '#d#', '#Y#']) = {Month: 12, Day: 3, Year: 15}
     <br>Now.time = the current time
     <br>Now.settings.dateFormat = ['#M#', '#d#', '#Y#'] changes the order of the date var
     <br>Now.compare(Now, Now.add(3, 'days')) = the differences between the first, and second argument
@@ -28,7 +28,7 @@
     <br>Now.get('week') = the number of the week
 ----------------------------------------------------------------------------------------------------------------------
     Now.get() defaults to now
-    Now.
+    Now('today') from the begining of today to the end
 
   </p>
 </body>

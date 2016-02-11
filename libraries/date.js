@@ -261,7 +261,7 @@ var Now = function(input, format) {
     this.Millisecond.value = Math.floor(this.total/this.Millisecond.multiplyer)
     this.total -= this.Millisecond.multiplyer * this.Millisecond.value
     var leeap = ((this.Year.value % 2 == 0) ? ((this.Year.value % 100 == 0)? ((this.Year.value % 400 == 0) ? (true) : (false)) : (true)) : (false))
-    this.WeekDay.value = new new Date('' + this.settings.monthNames[this.Month.value].toString() + ' ' + (this.Date.value + 1).toString() + ', ' + this.Year.value.toString()).getDay()
+    this.WeekDay.value = new Date('' + this.settings.monthNames[this.Month.value].toString() + ' ' + (this.Date.value + 1).toString() + ', ' + this.Year.value.toString()).getDay()
     return this.total
   }
   this.addType = function(type, amount){
@@ -307,7 +307,7 @@ var Now = function(input, format) {
 
     }
   }
-  this.subtract = function (input) {
+  this.subtract = function (input, amount) {
     if (input != null && amount != null) {
 
     } else if (input != null){
@@ -375,8 +375,10 @@ var Now = function(input, format) {
 
     }
   }
-  this.get = function (input) {
-    if (input != null){
+  this.get = function (input, time) {
+    if (input != null && time != null) {
+
+    } else if (input != null){
       if(supportedFormats[input] != undefined){
         if (typeof input == 'string') {
 
@@ -409,8 +411,10 @@ var Now = function(input, format) {
       return this
     }
   }
-  this.startOf = function (input) {
-    if (input != null){
+  this.startOf = function (input, time) {
+    if (input != null && time != null) {
+
+    } else if (input != null){
       if (typeof input == 'string') {
 
       } else if (typeof input == 'number') {
@@ -424,8 +428,10 @@ var Now = function(input, format) {
 
     }
   }
-  this.endOf = function (input) {
-    if (input != null){
+  this.endOf = function (input, time) {
+    if (input != null && time != null) {
+
+    } else if (input != null){
       if (typeof input == 'string') {
 
       } else if (typeof input == 'number') {
