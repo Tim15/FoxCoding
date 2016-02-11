@@ -146,7 +146,7 @@ var Now = function(input, format) {
   this.total = 0
   this.settings.supportedFormats = {}
   if (input != null && format != null) {
-
+    //
   } else if (input != null) {
     if (typeof input == 'string') {
       if (input.toLowerCase() == 'now') {
@@ -450,7 +450,7 @@ var Now = function(input, format) {
       } else if (isArray(val1)) {
 
       } else if (typeof val1 == 'object') {
-        if (val1.aiudhooainsoaunsvius == this.aiudhooainsoaunsvius){
+        if (val1.Minshe == this.Minshe){
           val1.toMilliseconds()
           this.toMilliseconds()
           var VaR = this
@@ -463,7 +463,6 @@ var Now = function(input, format) {
     }
   }
 }
-
 
 /*  var toNumObj = {
     'jan(ruary)?': '0',
@@ -796,7 +795,6 @@ function hi() {
 var arr = new Now()
 */
 
-
 console.log(isArray([]));
 console.log(Number.NaN)
 var arr = new Now()
@@ -853,7 +851,7 @@ function toWord(num) {
     if (split[i][1] == 0) {
       holder[i] += ones[split[i][2]] + ' ' + others[i]
     } else if(split[i][1] < 2){
-      holder[i] += ones[(split[i][1] * 10) + split[i][2]] + ' ' + others[i]
+      holder[i] += ones[split[i][1] + split[i][2]] + ' ' + others[i]
     } else {
       if (ones[split[i][2]] == '') {
         holder[i] += tens[split[i][1]] + ' ' + others[i]
@@ -865,4 +863,4 @@ function toWord(num) {
   holder = holder.reverse().join(', ')
   return holder
 }
-console.log(toWord(1400))
+console.log(toWord(1419))
