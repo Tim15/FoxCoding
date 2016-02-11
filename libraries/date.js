@@ -146,7 +146,7 @@ var Now = function(input, format) {
   this.total = 0
   this.settings.supportedFormats = {}
   if (input != null && format != null) {
-    //
+
   } else if (input != null) {
     if (typeof input == 'string') {
       if (input.toLowerCase() == 'now') {
@@ -198,7 +198,65 @@ var Now = function(input, format) {
         inputLength++
       }
     } else if (typeof input == 'object') {
-      //
+      var refObj = {
+      'T': 'time',
+      'D': 'date',
+      'ms': 'millisecond',
+      's': 'second',
+      'm': 'minute',
+      'h': 'hour',
+      'w': 'weekDay',
+      'd': 'day',
+      'M': 'month',
+      'S': 'season',
+      'y': 'smallYear',
+      't': 'timezoneOffset',
+      'z': 'timezone',
+      'l': 'leapyear',
+      'yy': 'dayOfYear',
+      'dd': 'dayName',
+      'ddd': 'shortDayName',
+      'MM': 'monthName',
+      'MMM': 'shortMonthName',
+      'time': 'time',
+      'date': 'date',
+      'millisec': 'millisecond',
+      'sec': 'second',
+      'min': 'minute',
+      'offset': 'timezoneOffset',
+      'z': 'timezone',
+      'leap': 'leapyear',
+      'dN': 'dayName',
+      'dn': 'shortDayName',
+      'MN': 'monthName',
+      'Mn': 'shortMonthName',
+      'time': 'time',
+      'date': 'date',
+      'millisecond': 'millisecond',
+      'second': 'second',
+      'minute': 'minute',
+      'hour': 'hour',
+      'weekDay': 'weekDay',
+      'day': 'day',
+      'month': 'month',
+      'season': 'season',
+      'smallYear': 'smallYear',
+      'timezoneOffset': 'timezoneOffset',
+      'timezone': 'timezone',
+      'leapyear': 'leapyear',
+      'dayOfYear': 'dayOfYear',
+      'dayName': 'dayName',
+      'shortDayName': 'shortDayName',
+      'monthName': 'monthName',
+      'shortMonthName': 'shortMonthName',
+    }
+    var newObj;
+    for (var i=0; i < Object.keys(refObj).length; i++){
+      if(input.hasOwnProperty(Object.keys(refObj)[i])){
+        newObj = input[Object.keys(refObj)[i]]
+      }
+    }
+    
     }
   } else {
     this.total = 0
@@ -261,7 +319,7 @@ var Now = function(input, format) {
     this.Millisecond.value = Math.floor(this.total/this.Millisecond.multiplyer)
     this.total -= this.Millisecond.multiplyer * this.Millisecond.value
     var leeap = ((this.Year.value % 2 == 0) ? ((this.Year.value % 100 == 0)? ((this.Year.value % 400 == 0) ? (true) : (false)) : (true)) : (false))
-    this.WeekDay.value = new Date('' + this.settings.monthNames[this.Month.value].toString() + ' ' + (this.Date.value + 1).toString() + ', ' + this.Year.value.toString()).getDay()
+    this.WeekDay.value = new new Date('' + this.settings.monthNames[this.Month.value].toString() + ' ' + (this.Date.value + 1).toString() + ', ' + this.Year.value.toString()).getDay()
     return this.total
   }
   this.addType = function(type, amount){
@@ -307,7 +365,7 @@ var Now = function(input, format) {
 
     }
   }
-  this.subtract = function (input, amount) {
+  this.subtract = function (input) {
     if (input != null && amount != null) {
 
     } else if (input != null){
@@ -375,10 +433,8 @@ var Now = function(input, format) {
 
     }
   }
-  this.get = function (input, time) {
-    if (input != null && time != null) {
-
-    } else if (input != null){
+  this.get = function (input) {
+    if (input != null){
       if(supportedFormats[input] != undefined){
         if (typeof input == 'string') {
 
@@ -411,10 +467,8 @@ var Now = function(input, format) {
       return this
     }
   }
-  this.startOf = function (input, time) {
-    if (input != null && time != null) {
-
-    } else if (input != null){
+  this.startOf = function (input) {
+    if (input != null){
       if (typeof input == 'string') {
 
       } else if (typeof input == 'number') {
@@ -428,10 +482,8 @@ var Now = function(input, format) {
 
     }
   }
-  this.endOf = function (input, time) {
-    if (input != null && time != null) {
-
-    } else if (input != null){
+  this.endOf = function (input) {
+    if (input != null){
       if (typeof input == 'string') {
 
       } else if (typeof input == 'number') {
@@ -456,7 +508,7 @@ var Now = function(input, format) {
       } else if (isArray(val1)) {
 
       } else if (typeof val1 == 'object') {
-        if (val1.Minshe == this.Minshe){
+        if (val1.aiudhooainsoaunsvius == this.aiudhooainsoaunsvius){
           val1.toMilliseconds()
           this.toMilliseconds()
           var VaR = this
@@ -469,6 +521,7 @@ var Now = function(input, format) {
     }
   }
 }
+
 
 /*  var toNumObj = {
     'jan(ruary)?': '0',
@@ -801,6 +854,7 @@ function hi() {
 var arr = new Now()
 */
 
+
 console.log(isArray([]));
 console.log(Number.NaN)
 var arr = new Now()
@@ -857,7 +911,7 @@ function toWord(num) {
     if (split[i][1] == 0) {
       holder[i] += ones[split[i][2]] + ' ' + others[i]
     } else if(split[i][1] < 2){
-      holder[i] += ones[split[i][1] + split[i][2]] + ' ' + others[i]
+      holder[i] += ones[(split[i][1] * 10) + split[i][2]] + ' ' + others[i]
     } else {
       if (ones[split[i][2]] == '') {
         holder[i] += tens[split[i][1]] + ' ' + others[i]
@@ -869,4 +923,4 @@ function toWord(num) {
   holder = holder.reverse().join(', ')
   return holder
 }
-console.log(toWord(1419))
+console.log(toWord(1400))
