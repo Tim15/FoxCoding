@@ -50,7 +50,6 @@
   app.controller('appCtrl', function() {
     this.courses = courses;
   });
-  /*
   var JS = angular.module('JavascriptLesson', [ ]);
   JS.controller('JavascriptController', function () {
     this.lessons = javascriptLessons;
@@ -67,5 +66,5 @@
         },
       ],
     },
-  ]*/
+  ]
 }());

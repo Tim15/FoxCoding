@@ -19,27 +19,14 @@
         <span class="mdl-layout-title">Learn to code</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <!--<a class="mdl-navigation__link" href="\lessons\html.html">Html</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\jquery.html">JQuery</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\angularjs.html">AngularJS</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\nodejs.html">NodeJS</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\python.html">Python</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\php.html">PHP</a>-->
-          <!--<a class="mdl-navigation__link" href="\lessons\sql.html">SQL</a>-->
+         <a ng-repeat="course in ctrl.courses" class="mdl-navigation__link" href="{{course.link}}">{{course.name}}</a>
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Learn To code</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="#basics">Basics</a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
-        <a class="mdl-navigation__link" href="#"></a>
+        <a ng-repeat="JavascriptController as ctrl" class="mdl-navigation__link" href="#{{link.id}}">{{link.name}}</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -48,8 +35,8 @@
           <br>
           <h1 class="courseTitle">Javascript</h1>
           <div ng-controller="JavascriptController as jsControl">
-            <ul ng-repeat="link in jsControl.lessons">
-              <li class="JSlinks"><a href="#{{link.id}}">{{link.name}}</a></li>
+            <ul>
+              <li ng-repeat="link in jsControl.lessons" class="JSlinks"><a href="#{{link.id}}">{{link.name}}</a></li>
             </ul>
             <div ng-repeat="section in jsControl.lessons">
               <h3 class="sectionTitle" id={{section.id}}>{{section.name}}</h3>

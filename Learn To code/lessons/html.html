@@ -7,26 +7,25 @@
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue_grey-indigo.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../index.css">
+  <script src="/Users/Oixion/Documents/Coding/angular.min.js"></script>
   <script src="../code.js" charset="utf-8"></script>
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 </head>
 
-<body>
-
+<body ng-app="JavascriptLesson">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Learn to code</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="\lessons\html.html">Html</a>
-          <a class="mdl-navigation__link" href="\lessons\javascript.html">JavaScript</a>
-          <a class="mdl-navigation__link" href="\lessons\jquery.html">JQuery</a>
-          <a class="mdl-navigation__link" href="\lessons\angularjs.html">AngularJS</a>
-          <a class="mdl-navigation__link" href="\lessons\nodejs.html">NodeJS</a>
-          <a class="mdl-navigation__link" href="\lessons\python.html">Python</a>
-          <a class="mdl-navigation__link" href="\lessons\php.html">PHP</a>
-          <a class="mdl-navigation__link" href="\lessons\sql.html">SQL</a>
+          <!--<a class="mdl-navigation__link" href="\lessons\html.html">Html</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\jquery.html">JQuery</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\angularjs.html">AngularJS</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\nodejs.html">NodeJS</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\python.html">Python</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\php.html">PHP</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\sql.html">SQL</a>-->
         </nav>
       </div>
     </header>
@@ -45,31 +44,25 @@
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <br>
-        <h1 class="lessonTitle center">HTML</h1>
-        <br>
-        <br>
-        <h3 class="center">Intro</h3>
-        <p class="center">Html stands for Hyper-Text Markup language, and is a language that is used to create the content of a web page, like this paragraph.
-          <br>This language uses <a href="css.html" class="link">CSS</a> to style it and make it look good. Also Html uses <a href="javascript.html" class="link">JavaScript</a> to make it interactive. Html is made up of tags, which can be opening, or closing tags. The way you write opening tags is
-          <strong>&lt;put the tag name and attributes here&gt;</strong>, and this is an example of an ending tag
-          <strong>&lt;/put the tag name here&gt;</strong>. For example there is the p tag for paragraphs, which is &lt;p&gt; and &lt;/p&gt;. Before we get started you need to learn some tags to input js, and css. For Js do
-          <strong>&lt;script&gt;</strong> and
-          <strong>&lt;/script&gt;</strong> then put the Js inside. For css do
-          <strong>&lt;style&gt;</strong> and
-          <strong>&lt;/style&gt;</strong>.</p>
-        <h3 class="center">Basics</h3>
-        <p>Here are some basic tags</p>
-        <ul>
-          <li><strong>&lt;p&gt;Content&lt;\p&gt;:</strong> This is</li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <div id="page">
+          <br>
+          <h1 class="courseTitle">HTML</h1>
+          <div ng-controller="JavascriptController as jsControl">
+            <ul ng-repeat="link in jsControl.lessons">
+              <li class="JSlinks"><a href="#{{link.id}}">{{link.name}}</a></li>
+            </ul>
+            <div ng-repeat="section in jsControl.lessons">
+              <h3 class="sectionTitle" id={{section.id}}>{{section.name}}</h3>
+              <div ng-repeat="contents in section.contents">
+                <h4 class="lessonTitle">{{contents.name}}</h4>
+                <br>
+                <p>
+                  {{contents.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
