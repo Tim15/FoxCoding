@@ -1,17 +1,16 @@
-#canvasTable{
-  margin-left: auto;
-  margin-right: auto;
+#page{
+  margin-left: 2em;
 }
-.lessonTitle{
+.JSlinks{
+  
+}
+.courseTitle{
+  text-align: center;
   font-weight: bold;
 }
-.center{
-  text-align: center;
+.sectionTitle{
+
 }
-.pp{
-  padding-left: 2em;
-  padding-right: 2em;
-}
-.link:hover{
-  color: #6781ff;
+.lessonTitle{
+
 }

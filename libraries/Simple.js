@@ -3,7 +3,8 @@ var add = {},
   strConversions = {
     'picometer': {
       value: 0.000000000001,
-      type: 'length/Distance'
+      type: 'length/Distance',
+      alias: ['picometer']
     },
     'nanometer': {
       value: 0.000000001,
@@ -320,24 +321,24 @@ RegExp.prototype.getFlags = function() {
 };
 var Regex = function(input) {
   this.group = function(input) {
-    return '(' + input + ')'
-  },
-  this.Set = function(input) {
-    return '[' + input + ']'
-  },
-  this.NegatedSet = function(input) {
-    return '[^' + input + ']'
-  },
-  this.range = function() {
-    var arr = ''
-    for (var i = 0; i < arguments.length; i += 2) {
-      arr += arguments[i][i] + '-' + arguments[i][i + 1]
+      return '(' + input + ')'
+    },
+    this.Set = function(input) {
+      return '[' + input + ']'
+    },
+    this.NegatedSet = function(input) {
+      return '[^' + input + ']'
+    },
+    this.range = function() {
+      var arr = ''
+      for (var i = 0; i < arguments.length; i += 2) {
+        arr += arguments[i][i] + '-' + arguments[i][i + 1]
+      }
+      return '[' + arr + ']'
+    },
+    this.anyWord = function() {
+      return '\\w'
     }
-    return '[' + arr + ']'
-  },
-  this.anyWord = function() {
-    return '\\w'
-  }
   this.anyNumber = function() {
     return '\\d'
   }
@@ -996,11 +997,11 @@ var math = {
       } else if (y1 == '?') {
         return m * (x - x1) - y
       } else if (x == '?') {
-        return (y - y1) - (m * (-1 * x1))/m
+        return (y - y1) - (m * (-1 * x1)) / m
       } else if (x1 == '?') {
-        return (y - y1) - (m * (-1 * x))/m
+        return (y - y1) - (m * (-1 * x)) / m
       } else if (m == '?') {
-        return (y - y1)/(x - x1)
+        return (y - y1) / (x - x1)
       }
     }
   },
@@ -1196,6 +1197,43 @@ var math = {
     } else {
       return Math.abs(Math.abs(val1) - Math.abs(val2))
     }
+  },
+  det: function(matrix) {
+    var sum = 0;
+    var s;
+    if (matrix.length == 1) {
+      return (matrix[0][0]);
+    }
+    if (matrix.length == 2) {
+      return ((matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]));
+    }
+    if (matrix.length == 3) {
+      return ((matrix[0][0] * matrix[1][1] * matrix[2][2]) + (matrix[0][1] * matrix[1][2] * matrix[2][0]) + (matrix[0][2] * matrix[1][0] * matrix[2][1]) - (matrix[0][0] * matrix[1][2] * matrix[2][1]) - (matrix[0][1] * matrix[1][0] * matrix[2][2]) - (matrix[0][2] * matrix[1][1] * matrix[2][0]));
+    }
+
+
+    for (var i = 0; i < matrix.length; i++) {
+      var smaller = new Array(matrix.length - 1);
+      for (h = 0; h < smaller.length; h++) {
+        smaller[h] = new Array(smaller.length);
+      }
+      for (a = 1; a < matrix.length; a++) {
+        for (b = 0; b < matrix.length; b++) {
+          if (b < i) {
+            smaller[a - 1][b] = matrix[a][b];
+          } else if (b > i) {
+            smaller[a - 1][b - 1] = matrix[a][b];
+          }
+        }
+      }
+      if (i % 2 == 0) {
+        s = 1;
+      } else {
+        s = -1;
+      }
+      sum += s * matrix[0][i] * (determinant(smaller));
+    }
+    return (sum);
   },
 }
 var triangle = function() {
@@ -1490,67 +1528,74 @@ var Equation = {
   z: '?',
 };
 var solve = function(Eq, rav, obj) {
-    var end = false
-    var fc = Eq.charAt(0);
-    if (!fc.match(/[a-z0-9\.\+\-\(]/i)) {
-      throw 'You can\'t have ' + fc + ' as your first character, you need a letter, number or one of these . + - ('
-      end = true
-    }
-    if (!end) {
-      for (var x in obj) {
-        if (obj.hasOwnProperty(x)) {
-          Eq = Eq.replace(x, obj.x)
-        }
-      }
-      var qe
-      var EQ
-      var eq = Eq.split(' = ')
-      eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ')';
-      eq[1] = '0'
-      Eq = eq.join(' = ')
-      Eq = Eq.replace(/(\))(?=([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
-      Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
-      Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
-      Eq = Eq.replace(/(abs)|(acos)|(asin)|(atan)|(atan2)|(ceil)|(cos)|(exp)|(floor)|(log)|(max)|(min)|(random)|(round)|(sin)|(sqrt)|(tan)|(e)|(pi)/ig, 'Math.$1')
-      Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, '+ (-$1)')
-      Eq = Eq.replace(/((\d+)(\.?\d)+)/ig, '$2 + 0$3')
-      eq = Eq.match(/[0](\.?\d)+/g)
-      Eq = Eq.replace(/[0](\.?\d)+/g, '')
-      Eq = Eq.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-      qe = Eq.match(/([^0.()](\d)[^()A-Za-z])+/g)
-      /*var j
-      for (var i = 0; i < Eq.length; i++) {
-        if(Eq[i] == '('){
-          j++
-        } else if (Eq[i] == '('true) {
-          j--
-        } else if(j == 0 & Eq[i] == ) {
-
-        }
-      }
-      for (var i = 0; i < eq.length; i++) {
-        Eq = Eq.replace(eq[i], eval(eq[i]))
-      }*/
-      console.log(Eq)
-      console.log(eq)
-      console.log(qe)
-      return Eq
-    }
+  var end = false
+  var fc = Eq.charAt(0);
+  if (!fc.match(/[a-z0-9\.\+\-\(]/i)) {
+    throw 'You can\'t have ' + fc + ' as your first character, you need a letter, number or one of these . + - ('
+    end = true
   }
-/*
-  for (var rra = -Infinity; arr < Infinity; arr += 0.1) {
-      if(Math.abs(funct(arr)) < 0.1) {
-        console.log("Root = " + Math.round(arr, 2));
+  if (!end) {
+    for (var x in obj) {
+      if (obj.hasOwnProperty(x)) {
+        Eq = Eq.replace(x, obj.x)
       }
     }
-  */
-  //+------------------------------------------------------------------------------+
-  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-  //|+===========================XXX:::::::::::::::::XXX==========================+|
-  //|+=##########################XXX::LOGIC LIBRARY::XXX#########################=+|
-  //|+===========================XXX:::::::::::::::::XXX==========================+|
-  //|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-  //+------------------------------------------------------------------------------+
+    var qe
+    var EQ
+    var eq = Eq.split(' = ')
+    eq[0] = '(' + eq[0] + ')' + ' - (' + eq[1] + ')';
+    eq[1] = '0'
+    Eq = eq.join(' = ')
+    Eq = Eq.replace(/(\))(?=([a-z]|(\d+(\.?\d)*)))/ig, '$1 * ');
+    Eq = Eq.replace(/(([a-z]|(\d+(\.?\d)*)))(?=\()/ig, '$1 * ');
+    Eq = Eq.replace(/((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))\s*\^\s*((?:\d+\.?\d*)|\w+|\((?:(?:[^\(\)]*(?:\([^\(\)]*\)))*)\))/g, 'Math.pow($1, $2)')
+    Eq = Eq.replace(/abs\(.\)/g, eval('Math.abs(parseInt($1))'));
+  Eq = Eq.replace(/acos\(.\)/g, Math.acos(parseInt('$1')));
+  Eq = Eq.replace(/asin\(.\)/g, Math.asin(parseInt('$1')));
+  Eq = Eq.replace(/atan\(.\)/g, Math.atan(parseInt('$1')));
+  Eq = Eq.replace(/atan2\(.\)/g, Math.atan2(parseInt('$1')));
+  Eq = Eq.replace(/ceil\(.\)/g, Math.ceil(parseInt('$1')));
+  Eq = Eq.replace(/cos\(.\)/g, Math.cos(parseInt('$1')));
+  Eq = Eq.replace(/exp\(.\)/g, Math.exp(parseInt('$1')));
+  Eq = Eq.replace(/floor\(.\)/g, Math.floor(parseInt('$1')));
+  Eq = Eq.replace(/log\(.\)/g, Math.log(parseInt('$1')));
+  Eq = Eq.replace(/max\(.\)/g, Math.max(parseInt('$1')));
+  Eq = Eq.replace(/min\(.\)/g, Math.min(parseInt('$1')));
+  Eq = Eq.replace(/pow\(.\)/g, Math.pow(parseInt('$1')));
+  Eq = Eq.replace(/random\(.\)/g, Math.random(parseInt('$1')));
+  Eq = Eq.replace(/round\(.\)/g, Math.round(parseInt('$1')));
+  Eq = Eq.replace(/sin\(.\)/g, Math.sin(parseInt('$1')));
+  Eq = Eq.replace(/sqrt\(.\)/g, Math.sqrt(parseInt('$1')));
+  Eq = Eq.replace(/tan\(.\)/g, Math.tan(parseInt('$1')));
+  Eq = Eq.replace(/pi/g, Math.PI);
+  Eq = Eq.replace(/\-\s*([a-z]|(\d+(\.?\d)*))+/ig, '+ (-$1)')
+    /*var j
+    for (var i = 0; i < Eq.length; i++) {
+      if(Eq[i] == '('){
+        j++
+      } else if (Eq[i] == '('true) {
+        j--
+      } else if(j == 0 & Eq[i] == ) {
+
+      }
+    }
+    for (var i = 0; i < eq.length; i++) {
+      Eq = Eq.replace(eq[i], eval(eq[i]))
+    }*/
+  console.log(Eq)
+  console.log(eq)
+  console.log(qe)
+  return Eq
+}
+}
+
+//+------------------------------------------------------------------------------+
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//|+===========================XXX:::::::::::::::::XXX==========================+|
+//|+=##########################XXX::LOGIC LIBRARY::XXX#########################=+|
+//|+===========================XXX:::::::::::::::::XXX==========================+|
+//|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+//+------------------------------------------------------------------------------+
 
 function lvar(argument) {
   this.max = 0
@@ -1559,23 +1604,23 @@ function lvar(argument) {
   this.val = []
 }
 String.prototype.parse = function(type, val1) {
-    if (type.toString().toLowerCase() == 'js') {
-      if (val1 == undefined) {
-        return this.toLowerCase().replaceAll({
-          'or': '||',
-          'not': '!',
-          'and': '&&'
-        });
-      } else {
-        return val1.toLowerCase().replaceAll({
-          'or': '||',
-          'not': '!',
-          'and': '&&'
-        });
-      }
+  if (type.toString().toLowerCase() == 'js') {
+    if (val1 == undefined) {
+      return this.toLowerCase().replaceAll({
+        'or': '||',
+        'not': '!',
+        'and': '&&'
+      });
+    } else {
+      return val1.toLowerCase().replaceAll({
+        'or': '||',
+        'not': '!',
+        'and': '&&'
+      });
     }
   }
-  //NOTE: the and, and the xnor functions don't work, the and was edited
+}
+
 function leval(val1) {
   if (val1 == undefined) {
     return this.replace(this[0], '\'+').replace(this[this.length - 1], '+\'')
@@ -1633,6 +1678,7 @@ Boolean.prototype.xnor = function(val1) {
     return false
   }
 }
+
 function toBinary(input) {
   var arr = []
   for (var i = 0; i < input.length; i++) {
@@ -1640,6 +1686,7 @@ function toBinary(input) {
   }
   return arr
 }
+
 function toBoolean(input) {
   var arr = []
   for (var i = 0; i < input.length; i++) {
@@ -1647,21 +1694,27 @@ function toBoolean(input) {
   }
   return arr
 }
+
 function t() {
   return true
 }
+
 function f() {
   return false
 }
+
 function eq(val1, val2) {
   return val1 === val2
 }
+
 function gt(val1, val2) {
   return val1 > val2
 }
+
 function lt(val1, val2) {
   return val1 < val2
 }
+
 function ne(val1, val2) {
   return val1 != val2
 }

@@ -7,26 +7,25 @@
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue_grey-indigo.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../index.css">
+  <script src="/Users/Oixion/Documents/Coding/angular.min.js"></script>
   <script src="../code.js" charset="utf-8"></script>
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 </head>
 
-<body>
-
+<body ng-app="JavascriptLesson">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Learn to code</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="\lessons\html.html">Html</a>
-          <a class="mdl-navigation__link" href="\lessons\javascript.html">JavaScript</a>
-          <a class="mdl-navigation__link" href="\lessons\jquery.html">JQuery</a>
-          <a class="mdl-navigation__link" href="\lessons\angularjs.html">AngularJS</a>
-          <a class="mdl-navigation__link" href="\lessons\nodejs.html">NodeJS</a>
-          <a class="mdl-navigation__link" href="\lessons\python.html">Python</a>
-          <a class="mdl-navigation__link" href="\lessons\php.html">PHP</a>
-          <a class="mdl-navigation__link" href="\lessons\sql.html">SQL</a>
+          <!--<a class="mdl-navigation__link" href="\lessons\html.html">Html</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\jquery.html">JQuery</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\angularjs.html">AngularJS</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\nodejs.html">NodeJS</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\python.html">Python</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\php.html">PHP</a>-->
+          <!--<a class="mdl-navigation__link" href="\lessons\sql.html">SQL</a>-->
         </nav>
       </div>
     </header>
@@ -45,45 +44,25 @@
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <br>
-        <h1 class="lessonTitle center">Javascript</h1>
-        <br>
-        <br>
-        <h3 class="center">Intro</h3>
-        <p class="center">Javascript is a programming language that is used to add interactivity to html, such as Making things happen when you push a button, or doing math.
-          <br>This language is used with <a href="html.html" class="link">html</a>. Javascript is made up of many different things, that we will go over in the tutorial.</p>
-          <p class="pp"><strong><em>Note:</em></strong></p>
-          <ul style="margin-left:2em;">
-            <li>Java script is case sensitive, so if you name something with a capital, when you acess it use the capital</li>
-            <li>Javascript statemnts are usually ended with a semicolon, So if you create a varible, or somthing else, rnd it with a semicolon.</li>
-          </ul>
-          <h3 class="center">Basics</h3>
+        <div id="page">
           <br>
-          <br>
-          <p class="pp">The first thing you should learn about are variables, Variable store data that can be used later. They are created using the word var, then the one word variable name, = the variable value. You can also make multiple variables in one statement,
-            by adding a comma in between them. Variables can be set to many things, including html elements, and functions, but there are a few basic data types, they can be set to.</p>
-          <ul style="margin-left:2em;">
-            <li>Strings: Strings are pieces of text, made by surrounding the data in quotes EX: 'This is a string'</li>
-            <li>Numbers: Numbers can be whole numbers (integers), or have a decimal (floats). Made by typing a number EX: 1 or 2.1</li>
-            <li>Boleans: Booleans are pieces of data that can only be true, or false, made by typing true, or false EX: true</li>
-            <li>Boleans: Booleans are variables, that have a list of values, made by brackets, and in between them a values then a comma EX: [true, 1, 'This is a string', ['Hi', 'Bye']]</li>
-            <li>Objects: Objects, are variables, that have many attributes, even other objects. made by typing curly braces, and in between them are the attributes, a colon , and values EX: {string: 'This is a string', number: 1, boolean: true, array: [true,
-              1, 'This is a string'] }</li>
-          </ul>
-          <h6 class="pp"><strong>Example:</strong></h6>
-          <p class="pp">&nbsp;&nbsp;&nbsp;&nbsp;<strong>Input:</strong>
-          <br>
-          <br>var MyString = 'This is a string variable', MyNumber = 1, MyBoolean = true;
-          <br>
-          <br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Output:</strong>
-          <br>
-          <br>A variable called, MyString with a value of 'This is a string variable', MyNumber with a value of 1, and MyBoolean with a value of true.</p>
-          <br>
-          <br>
-          <br>
-          <p class="pp">&nbsp;&nbsp;&nbsp;&nbsp;Try it:</p>
-          <p>make a variable called myVar and set it to 'This is a string'</p>
-          <textarea id="2.1.1"></textarea>
+          <h1 class="courseTitle">Javascript</h1>
+          <div ng-controller="JavascriptController as jsControl">
+            <ul ng-repeat="link in jsControl.lessons">
+              <li class="JSlinks"><a href="#{{link.id}}">{{link.name}}</a></li>
+            </ul>
+            <div ng-repeat="section in jsControl.lessons">
+              <h3 class="sectionTitle" id={{section.id}}>{{section.name}}</h3>
+              <div ng-repeat="contents in section.contents">
+                <h4 class="lessonTitle">{{contents.name}}</h4>
+                <br>
+                <p>
+                  {{contents.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>

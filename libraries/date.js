@@ -253,10 +253,10 @@ var Now = function(input, format) {
     var newObj;
     for (var i=0; i < Object.keys(refObj).length; i++){
       if(input.hasOwnProperty(Object.keys(refObj)[i])){
-        newObj = input[Object.keys(refObj)[i]]
+        var rrrrr = Object.keys(refObj)[i][0].toUpperCase() + Object.keys(refObj)[i].slice(1, Object.keys(refObj)[i].length)
+        this[rrrrr].value = input[Object.keys(refObj)[i]]
       }
     }
-    
     }
   } else {
     this.total = 0
