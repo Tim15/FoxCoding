@@ -27,7 +27,16 @@ Comments are very useful when you are editing confusing code, and want to docume
 
 Functions  are useful, if you have large pieces of code, that would be hard to integrate into your code multiple times.  For example if you wanted to add a number that the user picked to `myVariable` then you might write a function.
 
-####Defining 
+####Creating Functions
+
+Functions 
+
+    #This sets myVariable to 1
+    myVariable = 1
+    #This sets myVariable to 2
+    myVariable = 2
+    
+    def myFunction():
 
 #### Arguments
 
