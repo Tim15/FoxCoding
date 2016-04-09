@@ -3,6 +3,10 @@
 
 In this tutorial I will go over some basic programming concepts that are commonly used in different coding languages. For examples we will be using Python. Please note that syntax and key words are not the same for every language 
 
+
+----------
+
+
 ###Variables
 
 Variables are useful for storing and changing data. For example if we create a variable named `myVariable` and set it to 1, then we can repeatedly come back to it and use the value. Also usually variables can change, so if we wanted `myVariable`  to double itself, we could then change it to 2. In python this would look like:
@@ -42,6 +46,10 @@ Arrays are like lists, that can hold things in its cells. Arrays are created by 
 
 **Note:** There are other data types in lower level languages, such as C/C++. They will be described in "Programming Concepts 3: Low-level Languages".
 
+
+----------
+
+
 ### Comments
 Comments are very useful when you are editing confusing code, and want to document what you have done, or you and a partner are both working on a project, and you want them to be able to look at the comments and know what you have done. For example if you wanted to say what each line of your code does, you would use comments.
 
@@ -55,6 +63,10 @@ Comments are very useful when you are editing confusing code, and want to docume
 ###Functions
 		
 Functions  are useful, if you have large pieces of code, that would be hard to integrate into your code multiple times.  For example if you wanted to add a number that the user picked to `myVariable` then you might write a function.
+
+
+----------
+
 
 ####Creating Functions
 
