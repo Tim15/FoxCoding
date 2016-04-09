@@ -62,4 +62,3 @@ We are going to create a variable called myVariable and set it to 1, then .
 
 ####Comparison operators
 
-
