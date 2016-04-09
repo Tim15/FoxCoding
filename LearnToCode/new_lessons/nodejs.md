@@ -1,3 +1,4 @@
+
 ## Node.js 1
 ##### JavaScript for the server
 
@@ -5,7 +6,7 @@ Node.js is a fast, scalable server-side language that uses a JavaScript engine, 
 
 It allows you to build web apps asynchronously (code runs at the same time, uses callbacks).
 
-Prerequisites:
+**Prerequisites:**
 
 - Programming Concepts 1 & 2
 - JavaScript 1
@@ -45,6 +46,31 @@ Let's look at it line by line:
 4. `server.listen(80);` So far, we have just been writing the function that will be called when we get a request. But now we start the server by `listen()`ing for requests on port 80
 
 ### Modules
+Node.js has a very powerful module system, along with a great package manager, `npm` (node package manager), that is widely used all over the web.
 
+
+#### Installing Modules
+You install modules from the terminal, using the `npm` command. You can look at [npm's website](npmjs.com) to search for packages. **Remember:** quite a few modules are built-in, so you don't need to install them.
+
+To install the package `express` (very useful web framework):
+
+    npm install express
+
+This will create a special folder called `node_modules` and install `express` in it. All modules are installed in the special `node_modules` folder that is created in the directory of the current project.
+
+But what if you wanted to install a module so it would be accessible everywhere on your computer? You could use the `-g` option. For example, this will install `yeoman` (project generator):
+
+    npm install -g yeoman
+
+There is a lot more to learn about npm, such as the `package.json` file, creating packages, etc. that will be covered in a later section.
+
+#### Loading Modules
+To load a module, you use the `require()` function, like this:
+
+    var myModule = require('someGreatModule');
+
+Node will load the module `someGreatModule` into the variable `myModule` so you can access all it's methods and properties.
+
+*"Creating Modules" will be described in another section.*
 
 ### Basic I/O
